@@ -18,26 +18,27 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # For the CSV of *each character's name, cause of death, etc.*)
-top_columns_character_details = ['character','date_of_death', 'episode_title', 'season_number']
+top_columns_character_details = ['character','date_of_death', 'episode_title', 'season_number', 'diagnosis']
 
 filename = str(date) + 'character-details.csv'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
 
-CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
-CharacterDeatils.writerow(top_columns_character_details)
+# CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
+# CharacterDeatils.writerow(top_columns_character_details)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Loop over every page
 def scrape_character_pages(url_array):
-	print 'scrape each page is called ... '
+	# print 'scrape each page is called ... '
 
 	counter = 0
-	print counter
-
-		
+	# print counter
+	# url_array = ["http://greysanatomy.wikia.com/wiki/Derek_Shepherd"]
 	for url in url_array:
-		# print url
-		if counter <= 10:
+		print '-----------------------------------------------------------------------------------'
+		print url
+		if counter <= 300:
+			# print counter
 			url_page = urllib.urlopen(url).read()
 
 			# Go into the url_page guts and find the aside div
@@ -48,22 +49,63 @@ def scrape_character_pages(url_array):
 				get_aside = get_aside.group(1)
 				character_died = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Died</h3>(.+?)<div class="pi-data-value pi-font">(.+?) <a href="/wiki/(.+?)" title="(.+?)">(.+?)</div>(.+?)</div>', get_aside, re.S|re.DOTALL)
 				
-				character_medical_info = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Appearances</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
+				# Character medical information
+				character_medical_info = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Medical Information</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
+				
+				# If there is medical information
+				if character_medical_info is not None:
+					get_full_medical_info = character_medical_info.group(1)
+					get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', character_medical_info.group(1), re.S|re.DOTALL)
+
+					diagnosis = []
+					if get_diagnosis is not None:
+						get_diagnosis = get_diagnosis.group(3)
+
+						get_multiple_diagnosis = re.search('<ul><li>(.+?)</li></ul>', get_diagnosis, re.S|re.DOTALL)
+
+						# Check if there are multiple reasons someone died
+						if get_multiple_diagnosis:
+							get_multiple_diagnosis = get_multiple_diagnosis.group(1)
+							each_diagnosis = get_multiple_diagnosis.split('</li><li>')
+							diagnosis = each_diagnosis
+						else:
+							diagnosis = get_diagnosis
+
+					else: 
+						get_diagnosis = "No Diagnosis"
+				
+				# Get the ep/season information - season number + episode title
+				character_season_info = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Appearances</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
 
 				# Gets *everything* from Appearances onward -> 
-				if character_medical_info is not None:
-					full_character_info = character_medical_info.group(1)
-					print '! get season ----------------------------------!'	
+				if character_season_info is not None:
+					full_character_info = character_season_info.group(1)
 					# print full_character_info
 
 					get_episode_title = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Only</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>(.+?)</div>(.+?)</div>', full_character_info, re.S|re.DOTALL)
 
-					get_season = re.search('<h3 class="pi-data-label pi-secondary-font">Seasons</h3>(.+?)<div class="pi-data-value pi-font"><b><a href="/wiki/Grey%27s_Anatomy" title="(.+?)">GA</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>', full_character_info, re.S|re.DOTALL)
+					get_season = re.search('<h3 class="pi-data-label pi-secondary-font">Seasons</h3>(.+?)<div class="pi-data-value pi-font"></div>(.+?)</div>', full_character_info, re.S|re.DOTALL)
 
 					if get_season is not None:
-						season_number = get_season.group(5)
-						print season_number
-					
+						get_season = get_season.group(0) # the content with the seasons
+						print 'get_season'
+						print get_season
+
+						if get_season is not None:
+							# Need to get *everything in the first div because it contains many variations - ie., a ul + li, or another div. ###Inconsistent data structure###
+							search_for = re.search('<div class="pi-data-value pi-font">(.+?)</div>', get_season, re.S|re.DOTALL)
+							all_seasons = search_for.group(2)
+							# print all_seasons
+
+							# for single in re.finditer('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>(.+?)</a>', all_seasons, re.S|re.DOTALL):
+								# print single.group(4)
+
+						season_number = '0'
+						# if get_season is not None:
+						# 	each_season = re.search('</a>(.+?)</a>', get_season, re.S|re.DOTALL)
+						# 	if each_season is not None:
+								# print each_season.group(0)
+
 					if get_episode_title is not None:
 						episode_title = get_episode_title.group(4)
 						# print episode_title
@@ -84,9 +126,8 @@ def scrape_character_pages(url_array):
 					time = ""
 
 				# Make the array to push into the spreadsheet
-				data = [name, time, episode_title, season_number]
-				print data
-				CharacterDeatils.writerow(data)
+				# data = [name, time, episode_title, season_number, diagnosis]
+				# CharacterDeatils.writerow(data)
 			counter = counter + 1
 
 # Get initial page - get all names
