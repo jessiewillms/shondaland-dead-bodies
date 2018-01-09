@@ -19,7 +19,7 @@ CharacterNameAndURL.writerow(top_columns)
 # ------------------------------------------------------------------------------------------------------------------- # 
 # For the CSV of *each character's name, cause of death, etc.*)
 # top_columns_character_details = ['character','date_of_death', 'episode_title', 'season_number', 'diagnosis', 'first_ep', 'last_ep', 'seasons_array']
-top_columns_character_details =  ['name', 'time', 'single_or_multiple_episodes', 'first_ep', 'last_ep', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'single_or_multiple_episodes', 'first_ep', 'last_ep', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
@@ -34,20 +34,25 @@ def scrape_character_pages(url_array):
 
 	counter = 0
 	# print counter
-	# url_array = ["http://greysanatomy.wikia.com/wiki/Derek_Shepherd"]
 	for url in url_array:
 		print '-----------------------------------------------------------------------------------'
 		# print url
-		if counter <= 10:
+		if counter <= 200:
 			# print counter
 			url_page = urllib.urlopen(url).read()
 
 			# Go into the url_page guts and find the aside div
-			get_aside = re.search('<aside class="portable-infobox pi-background pi-theme-patient pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
+			# portable-infobox pi-background pi-theme-attending pi-layout-default
+			get_aside = re.search('<aside class="portable-infobox pi-background (.+?) pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
+			get_aside_content = get_aside.group(2)
+
 
 			# If the aside is not empty, print the content (ie., what is in the .group())
-			if get_aside is not None:
-				get_aside = get_aside.group(1)
+			if get_aside_content is not None:
+				get_aside = get_aside_content
+				# print get_aside
+				#  ..group(2)
+				
 				character_died = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Died</h3>(.+?)<div class="pi-data-value pi-font">(.+?) <a href="/wiki/(.+?)" title="(.+?)">(.+?)</div>(.+?)</div>', get_aside, re.S|re.DOTALL)
 				
 				# Character medical information
@@ -75,12 +80,13 @@ def scrape_character_pages(url_array):
 					else: 
 						get_diagnosis = "No Diagnosis"
 				
+				# Get the name of the character
+				get_name_box = re.search('<h2 class="pi-item pi-item-spacing pi-title">(.+?)</h2>', get_aside, re.S|re.DOTALL)
+				name = get_name_box.group(1)
+				
+
 				# Get the ep/season information - season number + episode title
 				get_appearances_box = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Appearances</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
-
-				# print get_appearances_box
-
-				# Gets *everything* from Appearances onward -> 
 				if get_appearances_box is not None:
 					get_appearances_content = get_appearances_box.group(1)
 					# print get_appearances_content
@@ -90,15 +96,22 @@ def scrape_character_pages(url_array):
 					check_appearances = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 
 					check_only_or_first = check_appearances.group(2)
+
+					# -----------------------------------------------------------------------------
+					# Build some empty variables 
 					single_or_multiple_episodes = ""
+					first_ep = ""
+					last_ep = ""
+					seasons_array = ""
+					# -----------------------------------------------------------------------------
 
 					if check_only_or_first == "Only":
-						# print check_only_or_first
+						get_only_appearance = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>', get_appearances_content, re.S|re.DOTALL)
+						first_ep = get_only_appearance.group(5)
+						
 						single_or_multiple_episodes = "single"
-
-						get_only_appearance = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Only</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
-						# print 'single ep'
-						only_episode_title = get_only_appearance.group(0)
+						last_ep = ""
+						seasons_array = ""
 					
 					# If there are multiple episodes
 					elif check_only_or_first == "First":
@@ -107,7 +120,6 @@ def scrape_character_pages(url_array):
 
 						# --------------------------------------------------------------------
 						# Get content from the appearances div/box
-						# --------------------------------------------------------------------
 						get_first_appearance = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 						
 						# Get the guts of the box (ie., all the content in the div)
@@ -117,7 +129,6 @@ def scrape_character_pages(url_array):
 						# --------------------------------------------------------------------
 						# Loop over the get_guts array (ie., content in Appearances) and create
 						# the necessary variables for the ep. titles and season numbers
-						# --------------------------------------------------------------------
 						for single in get_guts:
 							# print single.group(0)
 
@@ -129,6 +140,8 @@ def scrape_character_pages(url_array):
 								first = single_we.group(4)
 								first_ep = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', first, re.S|re.DOTALL)
 								first_ep = first_ep.group(3)
+
+								# print first_ep
 
 							# When did they last appear
 							elif single_we.group(2) == "Last":
@@ -154,10 +167,10 @@ def scrape_character_pages(url_array):
 						single_or_multiple_episodes = "error"
 						print single_or_multiple_episodes
 
-						# Make the array to push into the spreadsheet
-						character_data = [single_or_multiple_episodes, first_ep, last_ep, seasons_array]
-						print character_data
-						CharacterDeatils.writerow(character_data)
+					# Make the array to push into the spreadsheet
+					character_data = [counter, name, single_or_multiple_episodes, first_ep, last_ep, seasons_array]
+					CharacterDeatils.writerow(character_data)
+					
 				else:	
 					print 'n/a'
 
@@ -173,9 +186,12 @@ def scrape_character_pages(url_array):
 				else:
 					time = ""
 
-			counter = counter + 1
 			
-		
+			else:
+				print 'no aside'
+				print url
+				print name
+			counter = counter + 1
 
 # Get initial page - get all names
 def scrape_page(html_page):
