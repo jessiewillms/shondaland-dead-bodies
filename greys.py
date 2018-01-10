@@ -36,7 +36,7 @@ def scrape_character_pages(url_array):
 	# print counter
 	for url in url_array:
 		print '-----------------------------------------------------------------------------------'
-		print url
+		# print url
 		if counter <= 200:
 			# print counter
 			url_page = urllib.urlopen(url).read()
@@ -111,44 +111,19 @@ def scrape_character_pages(url_array):
 						get_guts = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 						# get_actor_name = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Portrayed by</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 
-						# print 'Only -- get single actor name'
+						# Get actor name
 						for single in get_guts:
-							
-							# print 'single.group(2)'
-							
-							get_text = single.group(2)
+							single_we = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>', single.group(0), re.S|re.DOTALL)
+							if single_we.group(2) == "Portrayed by":
+								get_actor = single_we.group(4)
+								# print get_actor
 
-							if get_text == "Portrayed by":
-								# print "yes"
-								get_text_field = single.group(3)
-								
-								great = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', get_text_field, re.S|re.DOTALL)
-								if great is not None:
-									print 'great'
-									print great.group(3)
-									# get_text_field_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', get_text_field, re.S|re.DOTALL)
-									# actor =  get_text_field_text.group(3)
+								if '<a href=' not in get_actor:
+									actor =  get_actor
 								else:
-									print 'no url'
-								# print 'no'
-# /								get_actor_link = single.group(0)
- # .								print get_actor_link
-							# 	# Sometimes the actor name is not a link (anchor tag)
-							# 	if "</a>" not in get_actor_link: 
-							# 		actor = get_actor_link
-							# 		print 'no url for actor'
-							# 		print actor
-							# 	else:
-							# 		get_actor_link_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', get_actor_link, re.S|re.DOTALL)
-							# 		# print 'get_actor_link_text'
-							# 		actor = get_actor_link_text.group(2)
-							# 		print 'has a link for the actor'
-							# 		print actor
-							# else:
-							# 	actor = "no 'Portrayed by' text for character"
-							# 	print 'no actor box'
-							# 	print actor
-						actor = "123"
+									get_name = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', get_actor, re.S|re.DOTALL)
+									actor = get_name.group(3)
+						
 						single_or_multiple_episodes = "single"
 						last_ep = ""
 						seasons_array = ""
@@ -218,6 +193,7 @@ def scrape_character_pages(url_array):
 					# print 'print actor'
 					# print actor
 					character_data = [counter, name, actor, single_or_multiple_episodes, first_ep, last_ep, seasons_array]
+					print character_data
 					CharacterDeatils.writerow(character_data)
 					
 				else:	

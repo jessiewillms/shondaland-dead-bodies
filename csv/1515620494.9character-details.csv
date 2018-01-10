@@ -7,11 +7,11 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 5,Kim Allen,Sara Gilbert,single,Suicide is Painless,,
 6,Grandma Anderson,Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
 7,Holly Anderson,Christa B. Allen,single,All By Myself,,
-8,Jessica Anderson,no 'Portrayed by' text for character,single,Suddenly,,
+8,Jessica Anderson,Christa B. Allen,single,Suddenly,,
 9,Robert Anderson,Dan Conroy,multiple,Dark Was the Night,Suddenly,['8']
 10,Wallace Anderson,Khamani Griffin,single,Invest in Love,,
 11,Harper Avery,Chelcie Ross,multiple,Perfect Little Accident,Go Big or Go Home,"['6', '14']"
-12,Samuel Norbert Avery,no 'Portrayed by' text for character,single,All I Could Do Was Cry,,
+12,Samuel Norbert Avery,Chelcie Ross,single,All I Could Do Was Cry,,
 13,Alexander Ball,Joel Grey,single,Nothing to Fear,,
 14,Joyce Basche,Sarah Lilly,multiple,She's Killing Me,Sleeping Monster,['9']
 15,Cathy Becker,Erinn Hayes,single,I Saw What I Saw,,
@@ -43,10 +43,10 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 41,Ray Daniels,Jeffrey Pierce,single,Know When to Fold,,
 42,Danny,Alexander Walsh,single,With or Without You,,
 43,Daphne,Meredith Salenger,single,My Next Life,,
-44,Kevin Davidson,no 'Portrayed by' text for character,single,"Winning a Battle, Losing the War",,
+44,Kevin Davidson,Meredith Salenger,single,"Winning a Battle, Losing the War",,
 45,Troy Davis,Doug Simpson,single,Drifting Back,,
 46,Rachel Dawson,Enid Graham,multiple,Can't Fight This Feeling,Sleeping Monster,['9']
-47,Elena Debray,no 'Portrayed by' text for character,single,Crime and Punishment,,
+47,Elena Debray,Enid Graham,single,Crime and Punishment,,
 48,Kyle Diaz,Wilmer Valderrama,multiple,I Wear the Face,At Last,['12']
 49,Doc,Wilmer Valderrama,multiple,Owner of a Lonely Heart,Some Kind of Miracle,"['2', '3']"
 50,William Dunn,Eric Stoltz,multiple,Wish You Were Here,Stairway to Heaven,['5']
@@ -83,7 +83,7 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 81,Jordan Kenley,John Sloman,single,Wish You Were Here,,
 82,Vincent Kenner,John Sloman,multiple,"Dream a Little Dream of Me, Part 1","Dream a Little Dream of Me, Part 2",['5']
 83,Ryan Kerrigan,Wes Brown,multiple,If I Hadn't Forgotten...,Who We Are,[]
-84,Daniel Kiefer,no 'Portrayed by' text for character,single,I Choose You,,
+84,Daniel Kiefer,Wes Brown,single,I Choose You,,
 85,Jeffrey King,David Chisum,single,"Come on Down to My Boat, Baby",,
 86,Seth Lepik,Tom Costello,multiple,She's Killing Me,Sleeping Monster,['9']
 87,Billy Linneman,Kinsey McLean,single,Suicide is Painless,,
@@ -94,8 +94,8 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 92,Gretchen McKay,Linara Washington,single,"There's a Fine, Fine Line",,
 93,Holden McKee,Brian Kerwin,single,Thanks for the Memories,,
 94,Francesca McNeil,Harley Graham,multiple,You Be Illin',Change of Heart,['10']
-95,Donald Mercer,no 'Portrayed by' text for character,single,Throwing it All Away,,
-96,Michael,no 'Portrayed by' text for character,single,One Step Too Far,,
+95,Donald Mercer,Harley Graham,single,Throwing it All Away,,
+96,Michael,Harley Graham,single,One Step Too Far,,
 97,Michelle,Sydney Tamiia Poitier,multiple,Love and Lies,Step One,[]
 98,Timothy Miller,Ed Lauter,single,These Ties That Bind,,
 99,Dan Mooney,Richard T. Jones,single,Suicide is Painless,,
@@ -112,8 +112,8 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 110,Heather Parker,Agnes Bruckner,multiple,Contamination,Blowups,[]
 111,Charles Percy,Robert Baker,multiple,Invasion,Unbreak My Heart,"['6', '8', '12']"
 112,Michael Perkins,Jackson Lee Wurth,single,Contamination,,
-113,Mr. Peterson,no 'Portrayed by' text for character,single,I Must Have Lost It on the Wind,,
-114,Thomas Peterson,no 'Portrayed by' text for character,multiple,Have You Seen Me Lately?,Moment of Truth,['8']
+113,Mr. Peterson,Jackson Lee Wurth,single,I Must Have Lost It on the Wind,,
+114,Thomas Peterson,Jackson Lee Wurth,multiple,Have You Seen Me Lately?,Moment of Truth,['8']
 115,Phillip,Adam Lazarre-White,single,What You Do for Love,,
 116,Diane Pierce,LaTanya Richardson Jackson,multiple,None of Your Business,"Be Still, My Soul",['13']
 117,Mary Portman,Mandy Moore,multiple,Sanctuary,That's Me Trying,"['6', '7']"
@@ -131,15 +131,15 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 130,Ruthie Sales,Maggie Siff,single,The Heart of the Matter,,
 131,Tony Savitch,David Vegh,single,A Hard Day's Night,,
 132,Erin Shandley,Bhama Roget,single,Haunt You Every Day,,
-133,Unnamed,no 'Portrayed by' text for character,single,"Gone, Baby, Gone",,
+133,Unnamed,Bhama Roget,single,"Gone, Baby, Gone",,
 134,Derek Christopher Shepherd,Patrick Dempsey,multiple,GA,Private Practice,"['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']"
 135,Mr. Shepherd,Brice Williams,single,Who We Are,,
 136,Lenny Shulte,Josh Clark,single,Seal Our Fate,,
 137,David Simons,Trent Gill,single,What a Difference a Day Makes,,
-138,"""Cosmo"" Singh",no 'Portrayed by' text for character,single,"There's a Fine, Fine Line",,
+138,"""Cosmo"" Singh",Trent Gill,single,"There's a Fine, Fine Line",,
 139,Mark Everett Sloan,Eric Dane,multiple,GA,Grey's Anatomy,"['2', '3', '4', '5', '6', '7', '8', '9']"
 140,Jessica Smithson,Mary-Charles Jones,single,Sweet Surrender,,
-141,Drea Spencer,no 'Portrayed by' text for character,single,And Then There Was One,,
+141,Drea Spencer,Mary-Charles Jones,single,And Then There Was One,,
 142,Edward Squire,Al White,single,Old Time Rock and Roll,,
 143,Jeremiah Tate,Thomas Ian Nicholas,single,"Deny, Deny, Deny",,
 144,Steve Tate,Shawn-Caulin Young,single,Got to Be Real,,
@@ -165,6 +165,6 @@ counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
 165,Ken Wilson,Matt Riedy,single,"In Which We Meet Addison, a Nice Girl From Somewhere Else",,
 166,Bob Yates,Greg Ainsworth,single,Playing God,,
 167,Charlie Yost,Jack Axelrod,multiple,Let the Angels Commit,Let the Truth Sting,"['3', '4']"
-168,Brian Young,no 'Portrayed by' text for character,single,Who Is He (And What Is He To You)?,,
+168,Brian Young,Jack Axelrod,single,Who Is He (And What Is He To You)?,,
 169,Dylan Young,Kyle Chandler,multiple,It's the End of the World,Some Kind of Miracle,"['2', '3']"
 170,Yvonne,Kym Whitley,single,Into You Like a Train,,
