@@ -1,0 +1,57 @@
+counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
+0,Abraham,Old Time Rock and Roll,single,Old Time Rock and Roll,,
+1,Brad Ackles,17 Seconds,single,17 Seconds,,
+2,Karen Adams,In Which Addison Finds the Magic,single,In Which Addison Finds the Magic,,
+3,Reed Adamson,Nora Zehetner,multiple,Invasion,Sanctuary,['6']
+4,Winnie Adkins,You Haven't Done Nothin',single,You Haven't Done Nothin',,
+5,Kim Allen,Suicide is Painless,single,Suicide is Painless,,
+6,Grandma Anderson,Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
+7,Holly Anderson,All By Myself,single,All By Myself,,
+8,Jessica Anderson,Suddenly,single,Suddenly,,
+9,Robert Anderson,Dan Conroy,multiple,Dark Was the Night,Suddenly,['8']
+10,Wallace Anderson,Invest in Love,single,Invest in Love,,
+11,Harper Avery,Chelcie Ross,multiple,Perfect Little Accident,Go Big or Go Home,"['6', '14']"
+12,Samuel Norbert Avery,All I Could Do Was Cry,single,All I Could Do Was Cry,,
+13,Alexander Ball,Nothing to Fear,single,Nothing to Fear,,
+14,Joyce Basche,Sarah Lilly,multiple,She's Killing Me,Sleeping Monster,['9']
+15,Cathy Becker,I Saw What I Saw,single,I Saw What I Saw,,
+16,Ed Beckert,It's a Long Way Back,single,It's a Long Way Back,,
+17,Grace Bickham,Break on Through,single,Break on Through,,
+18,Andrew Billings,Both Sides Now,single,Both Sides Now,,
+19,Charlie Bilson,All You Need is Love,single,All You Need is Love,,
+20,Dr. Bones,All You Need is Love,multiple,Time Has Come Today,,
+21,Heather Brooks,Tina Majorino,multiple,"Going, Going, Gone",I Want You With Me,"['9', '10']"
+22,Teresa Brotherton,Physical Attraction... Chemical Reaction,single,Physical Attraction... Chemical Reaction,,
+23,Rosemary Bullard,Rise Up,single,Rise Up,,
+24,Henry Burton,Scott Foley,multiple,Adrift and at Peace,Suddenly,"['7', '8']"
+25,Jake Burton,Yesterday,single,Yesterday,,
+26,Rich Campion,Bad Blood,single,Bad Blood,,
+27,Vivian Carlsmith,Apron Strings,single,Apron Strings,,
+28,Emma Carroll,The Lion Sleeps Tonight,single,The Lion Sleeps Tonight,,
+29,Casey,Things We Lost in the Fire,single,Things We Lost in the Fire,,
+30,Jason Castor,Do You Know?,single,Do You Know?,,
+31,Alison Clark,Here's to Future Days,single,Here's to Future Days,,
+32,Alison Clark,Sympathy for the Parents,single,Sympathy for the Parents,,
+33,Gary Clark,Michael O'Neill,multiple,Sympathy for the Parents,Death and All His Friends,['6']
+34,Elsie Clatch,Till I Hear It From You,single,Till I Hear It From You,,
+35,Annie Connors,If Tomorrow Never Comes,single,If Tomorrow Never Comes,,
+36,Liz Cooper,We Are Never Ever Getting Back Together,single,We Are Never Ever Getting Back Together,,
+37,Louise Cortez,Something's Gotta Give,single,Something's Gotta Give,,
+38,Darren Covington,The Becoming,single,The Becoming,,
+39,Bonnie Crasnoff,Monica Keena,multiple,Into You Like a Train,Some Kind of Miracle,"['2', '3']"
+40,Elyse Cruse,Can't Fight This Feeling,single,Can't Fight This Feeling,,
+41,Ray Daniels,Know When to Fold,single,Know When to Fold,,
+42,Danny,With or Without You,single,With or Without You,,
+43,Daphne,My Next Life,single,My Next Life,,
+44,Kevin Davidson,"Winning a Battle, Losing the War",single,"Winning a Battle, Losing the War",,
+45,Troy Davis,Drifting Back,single,Drifting Back,,
+46,Rachel Dawson,Enid Graham,multiple,Can't Fight This Feeling,Sleeping Monster,['9']
+47,Elena Debray,Crime and Punishment,single,Crime and Punishment,,
+48,Kyle Diaz,Wilmer Valderrama,multiple,I Wear the Face,At Last,['12']
+49,Doc,Wilmer Valderrama,multiple,Owner of a Lonely Heart,Some Kind of Miracle,"['2', '3']"
+50,William Dunn,Eric Stoltz,multiple,Wish You Were Here,Stairway to Heaven,['5']
+51,"Dennison Duquette, Jr.",Jeffrey Dean Morgan,multiple,Begin the Begin,Here's to Future Days,"['2', '3', '5']"
+52,James Evans,James Remar,multiple,Puttin' on the Ritz,Take It Back,['10']
+53,Elizabeth Fallon,Anna Maria Horsford,multiple,No Man's Land,Some Kind of Miracle,"['1', '3']"
+54,Jesse Fannon,Superstition,single,Superstition,,
+55,Emile Flores,Valentine's Day Massacre,single,Valentine's Day Mas

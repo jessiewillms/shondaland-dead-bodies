@@ -1,0 +1,170 @@
+counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
+0,Abraham,actor,single,Old Time Rock and Roll,,
+1,Brad Ackles,actor,single,17 Seconds,,
+2,Karen Adams,actor,single,In Which Addison Finds the Magic,,
+3,Reed Adamson,Nora Zehetner,multiple,Invasion,Sanctuary,['6']
+4,Winnie Adkins,actor,single,You Haven't Done Nothin',,
+5,Kim Allen,actor,single,Suicide is Painless,,
+6,Grandma Anderson,Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
+7,Holly Anderson,actor,single,All By Myself,,
+8,Jessica Anderson,actor,single,Suddenly,,
+9,Robert Anderson,Dan Conroy,multiple,Dark Was the Night,Suddenly,['8']
+10,Wallace Anderson,actor,single,Invest in Love,,
+11,Harper Avery,Chelcie Ross,multiple,Perfect Little Accident,Go Big or Go Home,"['6', '14']"
+12,Samuel Norbert Avery,actor,single,All I Could Do Was Cry,,
+13,Alexander Ball,actor,single,Nothing to Fear,,
+14,Joyce Basche,Sarah Lilly,multiple,She's Killing Me,Sleeping Monster,['9']
+15,Cathy Becker,actor,single,I Saw What I Saw,,
+16,Ed Beckert,actor,single,It's a Long Way Back,,
+17,Grace Bickham,actor,single,Break on Through,,
+18,Andrew Billings,actor,single,Both Sides Now,,
+19,Charlie Bilson,actor,single,All You Need is Love,,
+20,Dr. Bones,actor,multiple,Time Has Come Today,,
+21,Heather Brooks,Tina Majorino,multiple,"Going, Going, Gone",I Want You With Me,"['9', '10']"
+22,Teresa Brotherton,actor,single,Physical Attraction... Chemical Reaction,,
+23,Rosemary Bullard,actor,single,Rise Up,,
+24,Henry Burton,Scott Foley,multiple,Adrift and at Peace,Suddenly,"['7', '8']"
+25,Jake Burton,actor,single,Yesterday,,
+26,Rich Campion,actor,single,Bad Blood,,
+27,Vivian Carlsmith,actor,single,Apron Strings,,
+28,Emma Carroll,actor,single,The Lion Sleeps Tonight,,
+29,Casey,actor,single,Things We Lost in the Fire,,
+30,Jason Castor,actor,single,Do You Know?,,
+31,Alison Clark,actor,single,Here's to Future Days,,
+32,Alison Clark,actor,single,Sympathy for the Parents,,
+33,Gary Clark,Michael O'Neill,multiple,Sympathy for the Parents,Death and All His Friends,['6']
+34,Elsie Clatch,actor,single,Till I Hear It From You,,
+35,Annie Connors,actor,single,If Tomorrow Never Comes,,
+36,Liz Cooper,actor,single,We Are Never Ever Getting Back Together,,
+37,Louise Cortez,actor,single,Something's Gotta Give,,
+38,Darren Covington,actor,single,The Becoming,,
+39,Bonnie Crasnoff,Monica Keena,multiple,Into You Like a Train,Some Kind of Miracle,"['2', '3']"
+40,Elyse Cruse,actor,single,Can't Fight This Feeling,,
+41,Ray Daniels,actor,single,Know When to Fold,,
+42,Danny,actor,single,With or Without You,,
+43,Daphne,actor,single,My Next Life,,
+44,Kevin Davidson,actor,single,"Winning a Battle, Losing the War",,
+45,Troy Davis,actor,single,Drifting Back,,
+46,Rachel Dawson,Enid Graham,multiple,Can't Fight This Feeling,Sleeping Monster,['9']
+47,Elena Debray,actor,single,Crime and Punishment,,
+48,Kyle Diaz,Wilmer Valderrama,multiple,I Wear the Face,At Last,['12']
+49,Doc,Wilmer Valderrama,multiple,Owner of a Lonely Heart,Some Kind of Miracle,"['2', '3']"
+50,William Dunn,Eric Stoltz,multiple,Wish You Were Here,Stairway to Heaven,['5']
+51,"Dennison Duquette, Jr.",Jeffrey Dean Morgan,multiple,Begin the Begin,Here's to Future Days,"['2', '3', '5']"
+52,James Evans,James Remar,multiple,Puttin' on the Ritz,Take It Back,['10']
+53,Elizabeth Fallon,Anna Maria Horsford,multiple,No Man's Land,Some Kind of Miracle,"['1', '3']"
+54,Jesse Fannon,actor,single,Superstition,,
+55,Emile Flores,actor,single,Valentine's Day Massacre,,
+56,Eugene Foote,actor,single,Blues for Sister Someone,,
+57,Beatrice Bradford Forbes,JoBeth Williams,multiple,Blowups,Home Again,[]
+58,Jordan Franklin,actor,single,Who's Zoomin' Who?,,
+59,Peter Gekofsky,actor,single,Suicide is Painless,,
+60,Stan Giamatti,Theo Rossi,multiple,"Crash Into Me, Part 1","Crash Into Me, Part 2",['4']
+61,David Gibbs,Michael B. Silver,multiple,God Laughs,Losing Battles,[]
+62,Brett Gibson,actor,single,When I Grow Up,,
+63,Peter Gibson,actor,single,When I Grow Up,,
+64,Susan Grant,Ann Cusack,multiple,Blowups,Blind Love,[]
+65,Greta,actor,single,Losing My Mind,,
+66,Ellis Grey,Kate Burton,multiple,A Hard Day's Night,"Who Lives, Who Dies, Who Tells Your Story","['1', '2', '3', '6', '8', '11', '14']"
+67,Alexandra Caroline Grey,Chyler Leigh,multiple,GA,Grey's Anatomy,"['3', '4', '5', '6', '7', '8']"
+68,Susan Grey,Mare Winningham,multiple,The Name of the Game,"The Other Side of This Life, Part 2","['2', '3']"
+69,Nick Hanscom,Seth Green,multiple,"Crash Into Me, Part 1","Crash Into Me, Part 2",['4']
+70,Jen Harmon,Jennifer Westfeldt,multiple,GA,Grey's Anatomy,['5']
+71,Randy Helsby,actor,single,Tainted Obligation,,
+72,Emily Jensen,actor,single,"Could We Start Again, Please?",,
+73,Kirk Jensen,actor,single,Equal and Opposite,,
+74,JJ,actor,single,She's Leaving Home,,
+75,Jordan,actor,single,What a Difference a Day Makes,,
+76,Lillie Jordan,actor,single,Slip Slidin' Away,,
+77,Kathleen Kane,actor,single,Everybody's Crying Mercy,,
+78,Kara,actor,single,The Hard Part,,
+79,Veronica Kays,Brigid Brannagh,multiple,Roar,Don't Stop Me Now,['13']
+80,Keith,actor,single,True Colors (Grey's Anatomy),,
+81,Jordan Kenley,actor,single,Wish You Were Here,,
+82,Vincent Kenner,actor,multiple,"Dream a Little Dream of Me, Part 1","Dream a Little Dream of Me, Part 2",['5']
+83,Ryan Kerrigan,Wes Brown,multiple,If I Hadn't Forgotten...,Who We Are,[]
+84,Daniel Kiefer,actor,single,I Choose You,,
+85,Jeffrey King,actor,single,"Come on Down to My Boat, Baby",,
+86,Seth Lepik,Tom Costello,multiple,She's Killing Me,Sleeping Monster,['9']
+87,Billy Linneman,actor,single,Suicide is Painless,,
+88,Brett Loveman,actor,single,Home Again,,
+89,Robert Martin,Curtis Armstrong,multiple,Much too Much,Owner of a Lonely Heart,['2']
+90,Matty,actor,single,It Only Gets Much Worse,,
+91,Griffin McColl,actor,single,Odd Man Out,,
+92,Gretchen McKay,actor,single,"There's a Fine, Fine Line",,
+93,Holden McKee,actor,single,Thanks for the Memories,,
+94,Francesca McNeil,Harley Graham,multiple,You Be Illin',Change of Heart,['10']
+95,Donald Mercer,actor,single,Throwing it All Away,,
+96,Michael,actor,single,One Step Too Far,,
+97,Michelle,Sydney Tamiia Poitier,multiple,Love and Lies,Step One,[]
+98,Timothy Miller,actor,single,These Ties That Bind,,
+99,Dan Mooney,actor,single,Suicide is Painless,,
+100,Gloria Murphy,actor,single,You Break My Heart,,
+101,Reilly Nash,actor,single,"Slow Night, So Long",,
+102,Nate,actor,single,In Which Dell Finds His Fight,,
+103,Phillip Nichols,actor,single,The Time Warp,,
+104,Nick,Jordan Belfi,multiple,Let the Bad Times Roll,Migration,['8']
+105,Benjamin O'Leary,actor,single,I Am a Tree,,
+106,George O'Malley,T.R. Knight,multiple,A Hard Day's Night,Good Mourning,"['1', '2', '3', '4', '5', '6']"
+107,Harold O'Malley,George Dzundza,multiple,Thanks for the Memories,"Six Days, Part 2","['2', '3']"
+108,Bradley Parker,actor,single,Transplant Wasteland,,
+109,William Dell Parker,Chris Lowell,multiple,GA,Grey's Anatomy,['3']
+110,Heather Parker,Agnes Bruckner,multiple,Contamination,Blowups,[]
+111,Charles Percy,Robert Baker,multiple,Invasion,Unbreak My Heart,"['6', '8', '12']"
+112,Michael Perkins,actor,single,Contamination,,
+113,Mr. Peterson,actor,single,I Must Have Lost It on the Wind,,
+114,Thomas Peterson,actor,multiple,Have You Seen Me Lately?,Moment of Truth,['8']
+115,Phillip,actor,single,What You Do for Love,,
+116,Diane Pierce,LaTanya Richardson Jackson,multiple,None of Your Business,"Be Still, My Soul",['13']
+117,Mary Portman,Mandy Moore,multiple,Sanctuary,That's Me Trying,"['6', '7']"
+118,Gladys Pulcher,actor,single,It's a Long Way Back,,
+119,Nikki Ratlin,actor,single,Superstition,,
+120,Marjorie Reed,actor,single,Puzzle With a Piece Missing,,
+121,Robbie Reeves,actor,single,Roar,,
+122,Lily Ann Reilly,actor,single,The World According to Jake,,
+123,Melanie Reynolds,actor,single,Damage Case,,
+124,Oliver Richter,actor,single,Golden Hour,,
+126,Phillip Robinson,Jason O'Mara,multiple,Where the Wild Things Are,Piece of My Heart,['4']
+127,Scott Robinson,actor,single,Where the Wild Things Are,,
+128,Cathy Rogerson,actor,single,My Favorite Mistake,,
+129,Emily Russell,actor,multiple,Much too Much,Owner of a Lonely Heart,['2']
+130,Ruthie Sales,actor,single,The Heart of the Matter,,
+131,Tony Savitch,actor,single,A Hard Day's Night,,
+132,Erin Shandley,actor,single,Haunt You Every Day,,
+133,Unnamed,actor,single,"Gone, Baby, Gone",,
+134,Derek Christopher Shepherd,Patrick Dempsey,multiple,GA,Private Practice,"['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']"
+135,Mr. Shepherd,actor,single,Who We Are,,
+136,Lenny Shulte,actor,single,Seal Our Fate,,
+137,David Simons,actor,single,What a Difference a Day Makes,,
+138,"""Cosmo"" Singh",actor,single,"There's a Fine, Fine Line",,
+139,Mark Everett Sloan,Eric Dane,multiple,GA,Grey's Anatomy,"['2', '3', '4', '5', '6', '7', '8', '9']"
+140,Jessica Smithson,actor,single,Sweet Surrender,,
+141,Drea Spencer,actor,single,And Then There Was One,,
+142,Edward Squire,actor,single,Old Time Rock and Roll,,
+143,Jeremiah Tate,actor,single,"Deny, Deny, Deny",,
+144,Steve Tate,actor,single,Got to Be Real,,
+145,Nancy Temple,actor,single,How Insensitive,,
+146,Craig Thomas,William Daniels,multiple,Let the Bad Times Roll,Beautiful Doom,"['8', '9']"
+147,Kendra Thomas,actor,single,17 Seconds,,
+148,Giselle Toussant,actor,single,Time Has Come Today,,
+149,Stu Vargas,actor,single,Let It Be,,
+150,Blair Vinson,actor,single,Don't Dream It's Over,,
+151,Vivian,actor,single,Sanctuary,,
+152,Erica Warner,A.J. Langer,multiple,Deal With It,It Was Inevitable,[]
+153,Mr. Warren,actor,single,Things We Said Today,,
+154,Jeremy Weaver,actor,single,Don't Let's Start,,
+155,Adele Webber,Loretta Devine,multiple,Enough is Enough,Things We Said Today,"['2', '3', '4', '5', '6', '7', '8', '9']"
+156,Gail Webber,actor,single,The Room Where It Happens,,
+157,Mickey Wenschler,actor,single,Map of You,,
+158,Clark West,actor,single,Love/Addiction,,
+159,Jeremy West,actor,single,"Freedom, Part 1",,
+160,William White,James Morrison,multiple,What You Do for Love,The End of a Beautiful Friendship,[]
+162,Frances Wilder,Louise Fletcher,multiple,Can't Find My Way Back Home,The Hardest Part,[]
+163,Peter Wilder,Tim Daly,multiple,GA,Grey's Anatomy,['3']
+164,Rory Williams,actor,single,You've Got to Hide Your Love Away,,
+165,Ken Wilson,actor,single,"In Which We Meet Addison, a Nice Girl From Somewhere Else",,
+166,Bob Yates,actor,single,Playing God,,
+167,Charlie Yost,Jack Axelrod,multiple,Let the Angels Commit,Let the Truth Sting,"['3', '4']"
+168,Brian Young,actor,single,Who Is He (And What Is He To You)?,,
+169,Dylan Young,Kyle Chandler,multiple,It's the End of the World,Some Kind of Miracle,"['2', '3']"
+170,Yvonne,actor,single,Into You Like a Train,,

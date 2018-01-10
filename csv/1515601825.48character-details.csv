@@ -1,0 +1,68 @@
+counter,name,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
+0,Abraham,123,single,Old Time Rock and Roll,,
+1,Brad Ackles,123,single,17 Seconds,,
+2,Karen Adams,123,single,In Which Addison Finds the Magic,,
+3,Reed Adamson,Nora Zehetner,multiple,Invasion,Sanctuary,['6']
+4,Winnie Adkins,123,single,You Haven't Done Nothin',,
+5,Kim Allen,123,single,Suicide is Painless,,
+6,Grandma Anderson,Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
+7,Holly Anderson,123,single,All By Myself,,
+8,Jessica Anderson,123,single,Suddenly,,
+9,Robert Anderson,Dan Conroy,multiple,Dark Was the Night,Suddenly,['8']
+10,Wallace Anderson,123,single,Invest in Love,,
+11,Harper Avery,Chelcie Ross,multiple,Perfect Little Accident,Go Big or Go Home,"['6', '14']"
+12,Samuel Norbert Avery,123,single,All I Could Do Was Cry,,
+13,Alexander Ball,123,single,Nothing to Fear,,
+14,Joyce Basche,Sarah Lilly,multiple,She's Killing Me,Sleeping Monster,['9']
+15,Cathy Becker,123,single,I Saw What I Saw,,
+16,Ed Beckert,123,single,It's a Long Way Back,,
+17,Grace Bickham,123,single,Break on Through,,
+18,Andrew Billings,123,single,Both Sides Now,,
+19,Charlie Bilson,123,single,All You Need is Love,,
+20,Dr. Bones,123,multiple,Time Has Come Today,,
+21,Heather Brooks,Tina Majorino,multiple,"Going, Going, Gone",I Want You With Me,"['9', '10']"
+22,Teresa Brotherton,123,single,Physical Attraction... Chemical Reaction,,
+23,Rosemary Bullard,123,single,Rise Up,,
+24,Henry Burton,Scott Foley,multiple,Adrift and at Peace,Suddenly,"['7', '8']"
+25,Jake Burton,123,single,Yesterday,,
+26,Rich Campion,123,single,Bad Blood,,
+27,Vivian Carlsmith,123,single,Apron Strings,,
+28,Emma Carroll,123,single,The Lion Sleeps Tonight,,
+29,Casey,123,single,Things We Lost in the Fire,,
+30,Jason Castor,123,single,Do You Know?,,
+31,Alison Clark,123,single,Here's to Future Days,,
+32,Alison Clark,123,single,Sympathy for the Parents,,
+33,Gary Clark,Michael O'Neill,multiple,Sympathy for the Parents,Death and All His Friends,['6']
+34,Elsie Clatch,123,single,Till I Hear It From You,,
+35,Annie Connors,123,single,If Tomorrow Never Comes,,
+36,Liz Cooper,123,single,We Are Never Ever Getting Back Together,,
+37,Louise Cortez,123,single,Something's Gotta Give,,
+38,Darren Covington,123,single,The Becoming,,
+39,Bonnie Crasnoff,Monica Keena,multiple,Into You Like a Train,Some Kind of Miracle,"['2', '3']"
+40,Elyse Cruse,123,single,Can't Fight This Feeling,,
+41,Ray Daniels,123,single,Know When to Fold,,
+42,Danny,123,single,With or Without You,,
+43,Daphne,123,single,My Next Life,,
+44,Kevin Davidson,123,single,"Winning a Battle, Losing the War",,
+45,Troy Davis,123,single,Drifting Back,,
+46,Rachel Dawson,Enid Graham,multiple,Can't Fight This Feeling,Sleeping Monster,['9']
+47,Elena Debray,123,single,Crime and Punishment,,
+48,Kyle Diaz,Wilmer Valderrama,multiple,I Wear the Face,At Last,['12']
+49,Doc,Wilmer Valderrama,multiple,Owner of a Lonely Heart,Some Kind of Miracle,"['2', '3']"
+50,William Dunn,Eric Stoltz,multiple,Wish You Were Here,Stairway to Heaven,['5']
+51,"Dennison Duquette, Jr.",Jeffrey Dean Morgan,multiple,Begin the Begin,Here's to Future Days,"['2', '3', '5']"
+52,James Evans,James Remar,multiple,Puttin' on the Ritz,Take It Back,['10']
+53,Elizabeth Fallon,Anna Maria Horsford,multiple,No Man's Land,Some Kind of Miracle,"['1', '3']"
+54,Jesse Fannon,123,single,Superstition,,
+55,Emile Flores,123,single,Valentine's Day Massacre,,
+56,Eugene Foote,123,single,Blues for Sister Someone,,
+57,Beatrice Bradford Forbes,JoBeth Williams,multiple,Blowups,Home Again,[]
+58,Jordan Franklin,123,single,Who's Zoomin' Who?,,
+59,Peter Gekofsky,123,single,Suicide is Painless,,
+60,Stan Giamatti,Theo Rossi,multiple,"Crash Into Me, Part 1","Crash Into Me, Part 2",['4']
+61,David Gibbs,Michael B. Silver,multiple,God Laughs,Losing Battles,[]
+62,Brett Gibson,123,single,When I Grow Up,,
+63,Peter Gibson,123,single,When I Grow Up,,
+64,Susan Grant,Ann Cusack,multiple,Blowups,Blind Love,[]
+65,Greta,123,single,Losing My Mind,,
+66,Ellis Grey,Kate Burton,multiple,A Hard Day's N
