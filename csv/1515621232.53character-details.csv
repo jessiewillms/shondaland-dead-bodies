@@ -1,0 +1,170 @@
+counter,name,diagnosis,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
+0,Abraham,Contusions,Lou Cutell,single,Old Time Rock and Roll,,
+1,Brad Ackles,"['Lacerations', 'Gunshot wound']",Ken Marino,single,17 Seconds,,
+2,Karen Adams,"['Nosebleed', ""Wegener's disease""]",Molly Hagan,single,In Which Addison Finds the Magic,,
+3,Reed Adamson,"['Nosebleed', ""Wegener's disease""]",Nora Zehetner,multiple,Invasion,Sanctuary,['6']
+4,Winnie Adkins,"['Hemothorax', 'Internal bleeding']",Ruby Jay,single,You Haven't Done Nothin',,
+5,Kim Allen,"['Stage IV large-cell lung cancer', 'Pulmonary edema']",Sara Gilbert,single,Suicide is Painless,,
+6,Grandma Anderson,Car accident injuries,Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
+7,Holly Anderson,"['Basilar skull fracture', 'Hemopericardium', 'Carotid dissection', 'Cerebrovascular accident', 'Brain Death']",Christa B. Allen,single,All By Myself,,
+8,Jessica Anderson,Crash injuries,Christa B. Allen,single,Suddenly,,
+9,Robert Anderson,"['Crushed pelvis', 'Internal bleeding']",Dan Conroy,multiple,Dark Was the Night,Suddenly,['8']
+10,Wallace Anderson,"['Short Gut Syndrome', 'Bowel Obstruction', 'Sepsis']",Khamani Griffin,single,Invest in Love,,
+11,Harper Avery,"['Short Gut Syndrome', 'Bowel Obstruction', 'Sepsis']",Chelcie Ross,multiple,Perfect Little Accident,Go Big or Go Home,"['6', '14']"
+12,Samuel Norbert Avery,"['Short Gut Syndrome', 'Bowel Obstruction', 'Sepsis']",Chelcie Ross,single,All I Could Do Was Cry,,
+13,Alexander Ball,Stage IV-B pancreatic cancer,Joel Grey,single,Nothing to Fear,,
+14,Joyce Basche,"['MRSA', 'Abscess']",Sarah Lilly,multiple,She's Killing Me,Sleeping Monster,['9']
+15,Cathy Becker,"['Burns', 'Second-degree burn', 'Tension pneumothorax', 'Pulmonary edema', 'Acute respiratory distress syndrome', 'Fulminant rhabdomyolysis', 'Multi-system organ failure', 'Disseminated intravascular coagulation']",Erinn Hayes,single,I Saw What I Saw,,
+16,Ed Beckert,"[""Alzheimer's disease"", 'Heart condition', 'Myocardial infarction']",Newell Alexander,single,It's a Long Way Back,,
+17,Grace Bickham,End-stage COPD,Dona Hardy,single,Break on Through,,
+18,Andrew Billings,"['Cardiac myxoma', 'Brain death']",Don R. Williams,single,Both Sides Now,,
+19,Charlie Bilson,"['Crush injuries', 'Internal bleeding', 'Broken nose']",John Pollono,single,All You Need is Love,,
+20,Dr. Bones,"['Crush injuries', 'Internal bleeding', 'Broken nose']",John Pollono,multiple,Time Has Come Today,,
+21,Heather Brooks,"['Crush injuries', 'Internal bleeding', 'Broken nose']",Tina Majorino,multiple,"Going, Going, Gone",I Want You With Me,"['9', '10']"
+22,Teresa Brotherton,"['Tension pneumothorax', 'Fracture ribs', 'Hemothorax', 'Punctured lung']",Enuka Okuma,single,Physical Attraction... Chemical Reaction,,
+23,Rosemary Bullard,"['Cancer', 'Brain Tumor']",Bonnie Bartlett,single,Rise Up,,
+24,Henry Burton,"['Cancer', 'Brain Tumor']",Scott Foley,multiple,Adrift and at Peace,Suddenly,"['7', '8']"
+25,Jake Burton,Advanced craniodiaphyseal dysplasia,Jesse Plemons,single,Yesterday,,
+26,Rich Campion,"['Mediastinal hematoma', 'Aortic transection']",Jordan Holland,single,Bad Blood,,
+27,Vivian Carlsmith,Stage IV Gastrocarcinoma,Deanna Dunagan,single,Apron Strings,,
+28,Emma Carroll,No Diagnosis,Elizabeth Franz,single,The Lion Sleeps Tonight,,
+29,Casey,"['Burns', 'Severe lung damage', 'Smoke inhalation', 'Partially-collapsed lung', 'Heart failure', 'Rhabdomyolysis']",Casey Sander,single,Things We Lost in the Fire,,
+30,Jason Castor,"['Hole in his pericardium', 'C3/C4 break', 'Severed Spinal Cord/Paralysis']",Charlie Hofheimer,single,Do You Know?,,
+31,Alison Clark,Stage 4 Cancer,Liza Weil,single,Here's to Future Days,,
+32,Alison Clark,"['Anemia', 'Internal bleeding', 'Abdominal tumor', 'Acute hemorrhagic stroke', 'Temporal hemorrhage', 'Brain death']",Caroline Williams,single,Sympathy for the Parents,,
+33,Gary Clark,Gunshot wound,Michael O'Neill,multiple,Sympathy for the Parents,Death and All His Friends,['6']
+34,Elsie Clatch,"['Syncope', 'Loculated acute on chronic subdural hematoma']",June Squibb,single,Till I Hear It From You,,
+35,Annie Connors,"['Tumor', 'Difficulty breathing']",Alex S. Alexander,single,If Tomorrow Never Comes,,
+36,Liz Cooper,"['High output cardiac failure', 'Blood clot', 'Brain death']",Megan Stier,single,We Are Never Ever Getting Back Together,,
+37,Louise Cortez,"['Chronic pancreatitis', 'Pancreatic fistula', 'Ruptured splenic artery']",Bridget Sienna,single,Something's Gotta Give,,
+38,Darren Covington,"['Malignant glioma', 'Encephalitis']",Benny Ciaramello,single,The Becoming,,
+39,Bonnie Crasnoff,Massive internal injuries,Monica Keena,multiple,Into You Like a Train,Some Kind of Miracle,"['2', '3']"
+40,Elyse Cruse,"['Abdominal bruising', 'Second-degree burns', 'Prolapsed cord']",Kate Rene Gleason,single,Can't Fight This Feeling,,
+41,Ray Daniels,"['Knee injury', 'Hypertrophic cardiomyopathy']",Jeffrey Pierce,single,Know When to Fold,,
+42,Danny,"['Biliary atresia', 'Chronic liver rejection', 'Cholangitis']",Alexander Walsh,single,With or Without You,,
+43,Daphne,"['Infection', 'Septicemia', 'Pseudomonas']",Meredith Salenger,single,My Next Life,,
+44,Kevin Davidson,"['Cerebral edema', 'Traumatic aortic injury', 'Brain Death']",Meredith Salenger,single,"Winning a Battle, Losing the War",,
+45,Troy Davis,"['Cardiomyopathy', 'Florid pulmonary edema', 'End-stage heart failure']",Doug Simpson,single,Drifting Back,,
+46,Rachel Dawson,"['Frontal lobe hemorrhage', 'Temporal lobe hemorrhage', 'Capgras syndrome', 'Seizure', 'Brain hemorrhage']",Enid Graham,multiple,Can't Fight This Feeling,Sleeping Monster,['9']
+47,Elena Debray,Coma,Enid Graham,single,Crime and Punishment,,
+48,Kyle Diaz,"['Multiple sclerosis', 'Hand tremor', 'Brain bleed', 'Meningitis', 'Sepsis', 'Periventricular abscess']",Wilmer Valderrama,multiple,I Wear the Face,At Last,['12']
+49,Doc,"['Multiple sclerosis', 'Hand tremor', 'Brain bleed', 'Meningitis', 'Sepsis', 'Periventricular abscess']",Wilmer Valderrama,multiple,Owner of a Lonely Heart,Some Kind of Miracle,"['2', '3']"
+50,William Dunn,"['Stab wounds', 'Beating injuries', 'Scalp laceration', 'Foreign body in spine', 'Brain contusions', 'Seizure']",Eric Stoltz,multiple,Wish You Were Here,Stairway to Heaven,['5']
+51,"Dennison Duquette, Jr.",Congestive Heart Failure,Jeffrey Dean Morgan,multiple,Begin the Begin,Here's to Future Days,"['2', '3', '5']"
+52,James Evans,Congestive Heart Failure,James Remar,multiple,Puttin' on the Ritz,Take It Back,['10']
+53,Elizabeth Fallon,Pancreatic Cancer,Anna Maria Horsford,multiple,No Man's Land,Some Kind of Miracle,"['1', '3']"
+54,Jesse Fannon,"['Obsessive-compulsive disorder', 'Blunt head trauma', 'Brain bleed']",Omar Metwally,single,Superstition,,
+55,Emile Flores,"['Broken ankle', 'Epidural bleed']",Brian George,single,Valentine's Day Massacre,,
+56,Eugene Foote,No Diagnosis,Albert Hall,single,Blues for Sister Someone,,
+57,Beatrice Bradford Forbes,No Diagnosis,JoBeth Williams,multiple,Blowups,Home Again,[]
+58,Jordan Franklin,"['Ascites', 'Liver disease', 'Hemochromatosis']",Jack Shearer,single,Who's Zoomin' Who?,,
+59,Peter Gekofsky,"['Ascites', 'Liver disease', 'Hemochromatosis']",Aaron Perilo,single,Suicide is Painless,,
+60,Stan Giamatti,"['Severe bleeding', 'Paralysis']",Theo Rossi,multiple,"Crash Into Me, Part 1","Crash Into Me, Part 2",['4']
+61,David Gibbs,"['Severe bleeding', 'Paralysis']",Michael B. Silver,multiple,God Laughs,Losing Battles,[]
+62,Brett Gibson,"['Gunshot wounds', 'Stroke', 'Brain death']",William Nicol,single,When I Grow Up,,
+63,Peter Gibson,"['Gunshot wounds', 'Traumatic arrest', 'Brain death']",Jake Green,single,When I Grow Up,,
+64,Susan Grant,"['Gunshot wounds', 'Traumatic arrest', 'Brain death']",Ann Cusack,multiple,Blowups,Blind Love,[]
+65,Greta,Inoperable Glioma,Regina Taylor,single,Losing My Mind,,
+66,Ellis Grey,Inoperable Glioma,Kate Burton,multiple,A Hard Day's Night,"Who Lives, Who Dies, Who Tells Your Story","['1', '2', '3', '6', '8', '11', '14']"
+67,Alexandra Caroline Grey,Inoperable Glioma,Chyler Leigh,multiple,GA,Grey's Anatomy,"['3', '4', '5', '6', '7', '8']"
+68,Susan Grey,Inoperable Glioma,Mare Winningham,multiple,The Name of the Game,"The Other Side of This Life, Part 2","['2', '3']"
+69,Nick Hanscom,"['Carotid tumor', 'Blown artery', 'Carotid bleed', 'Stroke']",Seth Green,multiple,"Crash Into Me, Part 1","Crash Into Me, Part 2",['4']
+70,Jen Harmon,"['Pregnancy', 'Pregnancy-induced hypertension', 'Seizure', 'Aneurysm', 'Mirror Syndrome', 'Congestive heart failure', 'Hemolysis', 'Fetal anemia', 'Aphasia', 'Mini-strokes', 'Pre-eclampsia']",Jennifer Westfeldt,multiple,GA,Grey's Anatomy,['5']
+71,Randy Helsby,Abdominal sarcoma,Jocko Sims,single,Tainted Obligation,,
+72,Emily Jensen,"['Pregnancy', 'Placenta Percreta']",Luciana Faulhaber,single,"Could We Start Again, Please?",,
+73,Kirk Jensen,Bronchiolitis obliterans,Ian Nelson,single,Equal and Opposite,,
+74,JJ,Severe burns,Nicole Sullivan,single,She's Leaving Home,,
+75,Jordan,No Diagnosis,Roberto Urbina,single,What a Difference a Day Makes,,
+76,Lillie Jordan,Stage IV ovarian cancer,Rosalind Chao,single,Slip Slidin' Away,,
+77,Kathleen Kane,"[""Colles' fracture"", 'Puncture wounds', 'Coagulation disorder', 'Stroke']",Molly Leland,single,Everybody's Crying Mercy,,
+78,Kara,"['Pregnancy', 'Dehydration', 'Broken rib', 'Arm injury']",Ever Carradine,single,The Hard Part,,
+79,Veronica Kays,"['Contact dermatitis', 'Pregnancy', 'Advanced pancreatic cancer', 'Spinal met', 'Pulmonary embolus']",Brigid Brannagh,multiple,Roar,Don't Stop Me Now,['13']
+80,Keith,"['Bruising', 'Head laceration', 'Skull fracture', 'Grade III liver laceration']",Casey Thomas Brown,single,True Colors (Grey's Anatomy),,
+81,Jordan Kenley,"['Bruising', 'Head laceration', 'Skull fracture', 'Grade III liver laceration']",John Sloman,single,Wish You Were Here,,
+82,Vincent Kenner,"['Scalp laceration', 'Depressed skull fracture', 'Abdominal bleed', 'Crush injuries', 'Aortic tear']",John Sloman,multiple,"Dream a Little Dream of Me, Part 1","Dream a Little Dream of Me, Part 2",['5']
+83,Ryan Kerrigan,"['Scalp laceration', 'Depressed skull fracture', 'Abdominal bleed', 'Crush injuries', 'Aortic tear']",Wes Brown,multiple,If I Hadn't Forgotten...,Who We Are,[]
+84,Daniel Kiefer,"['Hepatoblastoma', 'Jaundice', 'Heart failure', 'Pulmonary failure']",Wes Brown,single,I Choose You,,
+85,Jeffrey King,"['Stage 4A colon cancer', 'Liver metastasis']",David Chisum,single,"Come on Down to My Boat, Baby",,
+86,Seth Lepik,MRSA,Tom Costello,multiple,She's Killing Me,Sleeping Monster,['9']
+87,Billy Linneman,Gunshot wounds,Kinsey McLean,single,Suicide is Painless,,
+88,Brett Loveman,No Diagnosis,Todd Stashwick,single,Home Again,,
+89,Robert Martin,"['Subdural hemorrhage', 'Delirium', ""Rathke's cleft cyst"", 'Hyponatremia', 'Seizure']",Curtis Armstrong,multiple,Much too Much,Owner of a Lonely Heart,['2']
+90,Matty,Gallstones,Edgar Salas,single,It Only Gets Much Worse,,
+91,Griffin McColl,"['Electrocution', 'Intracranial bleed', 'Re-bleed', 'Memory loss']",Lance Henriksen,single,Odd Man Out,,
+92,Gretchen McKay,"['Pregnancy', 'Delayed abruption']",Linara Washington,single,"There's a Fine, Fine Line",,
+93,Holden McKee,"['Minimal consciousness', 'Temporal parietal scalp laceration', 'Epidural hematoma']",Brian Kerwin,single,Thanks for the Memories,,
+94,Francesca McNeil,"['Cardiomyopathy', 'Heart failure', 'RAF 1 Mutation']",Harley Graham,multiple,You Be Illin',Change of Heart,['10']
+95,Donald Mercer,"['Skull fracture', 'MVC Injuries']",Harley Graham,single,Throwing it All Away,,
+96,Michael,Car accident injuries,Harley Graham,single,One Step Too Far,,
+97,Michelle,"[""Huntington's disease"", 'Respiratory distress']",Sydney Tamiia Poitier,multiple,Love and Lies,Step One,[]
+98,Timothy Miller,"['Crush injuries', 'Open fractures', 'Open femur fracture', 'Posterior hip dislocation']",Ed Lauter,single,These Ties That Bind,,
+99,Dan Mooney,"['Arm injury', 'Neck laceration']",Richard T. Jones,single,Suicide is Painless,,
+100,Gloria Murphy,"['Congestive heart failure', 'Pregnancy']",Dahlia Salem,single,You Break My Heart,,
+101,Reilly Nash,Traumatic crash injuries,Masam Holden,single,"Slow Night, So Long",,
+102,Nate,"['Liver spots', 'Bruises', 'Heart attack']",John Brandon,single,In Which Dell Finds His Fight,,
+103,Phillip Nichols,"['Hernia', 'Cryptococcus', 'AIDS', ""Kaposi's sarcoma"", 'Intussusception', 'Pneumocystis pneumonia']",Ian Jensen,single,The Time Warp,,
+104,Nick,"['Osteosarcoma', 'Intradural mets', 'Cardiac tumor']",Jordan Belfi,multiple,Let the Bad Times Roll,Migration,['8']
+105,Benjamin O'Leary,Brain tumor,Peter Paige,single,I Am a Tree,,
+106,George O'Malley,Brain tumor,T.R. Knight,multiple,A Hard Day's Night,Good Mourning,"['1', '2', '3', '4', '5', '6']"
+107,Harold O'Malley,Brain tumor,George Dzundza,multiple,Thanks for the Memories,"Six Days, Part 2","['2', '3']"
+108,Bradley Parker,"['Amyotrophic lateral sclerosis', 'Hematochezia']",Logan Fahey,single,Transplant Wasteland,,
+109,William Dell Parker,"['Amyotrophic lateral sclerosis', 'Hematochezia']",Chris Lowell,multiple,GA,Grey's Anatomy,['3']
+110,Heather Parker,"['Amyotrophic lateral sclerosis', 'Hematochezia']",Agnes Bruckner,multiple,Contamination,Blowups,[]
+111,Charles Percy,"['Amyotrophic lateral sclerosis', 'Hematochezia']",Robert Baker,multiple,Invasion,Unbreak My Heart,"['6', '8', '12']"
+112,Michael Perkins,Measles,Jackson Lee Wurth,single,Contamination,,
+113,Mr. Peterson,Head injury,Jackson Lee Wurth,single,I Must Have Lost It on the Wind,,
+114,Thomas Peterson,"['Intestinal perforation', 'Patent ductus ateriosis', 'Necrotizing enterocolitis', 'Congestive heart failure', 'Brain bleed', 'Pericardial tumor', 'Hip displasia', 'Sepsis', 'Ileocolic fistula', 'Post-hemorrhagic hydrocephalus', 'Retinopathy of prematurity']",Jackson Lee Wurth,multiple,Have You Seen Me Lately?,Moment of Truth,['8']
+115,Phillip,"['Type II diabetes', 'Insulin overdose', 'Brain death']",Adam Lazarre-White,single,What You Do for Love,,
+116,Diane Pierce,"['Type II diabetes', 'Insulin overdose', 'Brain death']",LaTanya Richardson Jackson,multiple,None of Your Business,"Be Still, My Soul",['13']
+117,Mary Portman,Coma,Mandy Moore,multiple,Sanctuary,That's Me Trying,"['6', '7']"
+118,Gladys Pulcher,"['Lung cancer', 'Post-op infection', 'Bed sores']",Doris Roberts,single,It's a Long Way Back,,
+119,Nikki Ratlin,"['Broken leg', 'Splenic laceration']",Michaela Watkins,single,Superstition,,
+120,Marjorie Reed,Stage IV small-cell lung cancer,Eileen Ryan,single,Puzzle With a Piece Missing,,
+121,Robbie Reeves,"['Scalp laceration', 'Congenital AVM', 'Brain bleed']",Micah Nelson,single,Roar,,
+122,Lily Ann Reilly,"['Scalp laceration', 'Congenital AVM', 'Brain bleed']",Marisol Nichols,single,The World According to Jake,,
+123,Melanie Reynolds,Catastrophic internal injuries,Sarah LaFleur,single,Damage Case,,
+124,Oliver Richter,Aortic dissection,Dondré T. Whitfield,single,Golden Hour,,
+126,Phillip Robinson,"['Hand injury', 'Malignant glioma']",Jason O'Mara,multiple,Where the Wild Things Are,Piece of My Heart,['4']
+127,Scott Robinson,"['Bowel evisceration', 'Mauling injuries']",Steven Flynn,single,Where the Wild Things Are,,
+128,Cathy Rogerson,"['Fibrodysplasia ossificans progressiva', 'Internal bleeding']",Catherine Dent,single,My Favorite Mistake,,
+129,Emily Russell,"['Hypoplastic left heart syndrome', 'Prematurity', 'Restricted atrial septum']",Catherine Dent,multiple,Much too Much,Owner of a Lonely Heart,['2']
+130,Ruthie Sales,"['Crushed ankle', 'Osteoporosis', 'Bleeding duodenal ulcer']",Maggie Siff,single,The Heart of the Matter,,
+131,Tony Savitch,No Diagnosis,David Vegh,single,A Hard Day's Night,,
+132,Erin Shandley,Brain death,Bhama Roget,single,Haunt You Every Day,,
+133,Unnamed,Brain death,Bhama Roget,single,"Gone, Baby, Gone",,
+134,Derek Christopher Shepherd,Brain death,Patrick Dempsey,multiple,GA,Private Practice,"['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']"
+135,Mr. Shepherd,Brain death,Brice Williams,single,Who We Are,,
+136,Lenny Shulte,"['Mud aspiration', 'Decreased breath sounds', 'Tachypnea', 'Diaphragmatic rupture']",Josh Clark,single,Seal Our Fate,,
+137,David Simons,"['Chest contusion', 'Cardiac contusion']",Trent Gill,single,What a Difference a Day Makes,,
+138,"""Cosmo"" Singh","['Prematurity', 'Respiratory failure']",Trent Gill,single,"There's a Fine, Fine Line",,
+139,Mark Everett Sloan,"['Prematurity', 'Respiratory failure']",Eric Dane,multiple,GA,Grey's Anatomy,"['2', '3', '4', '5', '6', '7', '8', '9']"
+140,Jessica Smithson,"['Tay-Sachs', 'Seizure']",Mary-Charles Jones,single,Sweet Surrender,,
+141,Drea Spencer,"['Stab wounds', 'Brain death']",Mary-Charles Jones,single,And Then There Was One,,
+142,Edward Squire,"['High blood pressure', 'Diabetes', 'Arthritis', 'High cholesterol', 'Erectile dysfunction', 'Scalp laceration', 'Myocardial infarction']",Al White,single,Old Time Rock and Roll,,
+143,Jeremiah Tate,"['Cystic fibrosis', 'Pancreatitis', 'Mass']",Thomas Ian Nicholas,single,"Deny, Deny, Deny",,
+144,Steve Tate,"['Depressed skull fracture', 'Subdural bleed', 'Aneurysm', 'Brain death']",Shawn-Caulin Young,single,Got to Be Real,,
+145,Nancy Temple,"['Myocardial infarction', 'Ventricular wall rupture']",Amy Benedict,single,How Insensitive,,
+146,Craig Thomas,"['Myocardial infarction', 'Ventricular wall rupture']",William Daniels,multiple,Let the Bad Times Roll,Beautiful Doom,"['8', '9']"
+147,Kendra Thomas,"['Gunshot wound', 'Hematoma', 'Pregnancy']",Jennifer Nyholm,single,17 Seconds,,
+148,Giselle Toussant,"['Car accident injuries', 'Plague', 'Dural laceration']",Elizabeth Goldstein,single,Time Has Come Today,,
+149,Stu Vargas,Open tibia/fibula fracture,Geoffrey Rivas,single,Let It Be,,
+150,Blair Vinson,"['Pregnancy', 'Scalp laceration', 'Seizure', 'Extradural hematoma']",Mekia Cox,single,Don't Dream It's Over,,
+151,Vivian,"['Pregnancy', 'Scalp laceration', 'Seizure', 'Extradural hematoma']",Ingrid Walters,single,Sanctuary,,
+152,Erica Warner,"['Pregnancy', 'Scalp laceration', 'Seizure', 'Extradural hematoma']",A.J. Langer,multiple,Deal With It,It Was Inevitable,[]
+153,Mr. Warren,"['Pregnancy', 'Scalp laceration', 'Seizure', 'Extradural hematoma']",Kelly LaMarr,single,Things We Said Today,,
+154,Jeremy Weaver,Adenocarcinoma,James McCauley,single,Don't Let's Start,,
+155,Adele Webber,Adenocarcinoma,Loretta Devine,multiple,Enough is Enough,Things We Said Today,"['2', '3', '4', '5', '6', '7', '8', '9']"
+156,Gail Webber,Adenocarcinoma,Monique Cash,single,The Room Where It Happens,,
+157,Mickey Wenschler,"['Quadriplegia', 'Glioma']",Jay Cramer,single,Map of You,,
+158,Clark West,"['Meth withdrawal', 'Internal bleeding', 'Cardiomyopathy']",Nicholas Gonzalez,single,Love/Addiction,,
+159,Jeremy West,"['Malignant glioma', 'Seizure']",Marshall Allman,single,"Freedom, Part 1",,
+160,William White,"['Malignant glioma', 'Seizure']",James Morrison,multiple,What You Do for Love,The End of a Beautiful Friendship,[]
+162,Frances Wilder,"['Malignant glioma', 'Seizure']",Louise Fletcher,multiple,Can't Find My Way Back Home,The Hardest Part,[]
+163,Peter Wilder,"['Malignant glioma', 'Seizure']",Tim Daly,multiple,GA,Grey's Anatomy,['3']
+164,Rory Williams,"['Li-Fraumeni Syndrome', 'Osteosarcoma']",Hayley McFarland,single,You've Got to Hide Your Love Away,,
+165,Ken Wilson,Stroke,Matt Riedy,single,"In Which We Meet Addison, a Nice Girl From Somewhere Else",,
+166,Bob Yates,"['Acute myocardial infarction', 'Dissecting aneurysm']",Greg Ainsworth,single,Playing God,,
+167,Charlie Yost,Semi-comatose state,Jack Axelrod,multiple,Let the Angels Commit,Let the Truth Sting,"['3', '4']"
+168,Brian Young,"['Brain death', 'Throat lesion']",Jack Axelrod,single,Who Is He (And What Is He To You)?,,
+169,Dylan Young,"['Brain death', 'Throat lesion']",Kyle Chandler,multiple,It's the End of the World,Some Kind of Miracle,"['2', '3']"
+170,Yvonne,Massive internal bleeding,Kym Whitley,single,Into You Like a Train,,
