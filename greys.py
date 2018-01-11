@@ -6,7 +6,6 @@ import csv
 
 date = time.time()
 
-
 # ------------------------------------------------------------------------------------------------------------------- # 
 # TODO:
 # -- update the structure of the ep. title information to first loop over the data instead of first checking for First/Only
@@ -24,15 +23,34 @@ CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel'
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
-# For the CSV of *each character's name, cause of death, etc.*)
-# top_columns_character_details = ['character','date_of_death', 'episode_title', 'season_number', 'diagnosis', 'first_ep', 'last_ep', 'seasons_array']
+# Make the headers for each column
+
 top_columns_character_details =  ['counter', 'name', 'diagnosis', 'actor', 'single_or_multiple_episodes', 'episode_numbers', 'first_ep', 'last_ep', 'seasons_array']
+# top_columns_character_details =  [counter, name, diagnosis, actor, single_or_multiple_episodes, episode_numbers, first_ep, last_ep, seasons_array]
 
 filename = str(date) + 'character-details.csv'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
+
+# ------------------------------------------------------------------------------------------------------------------- # 
+# Create top-level variable to go into the spreadsheet as the column headers
+def set_up_variables():
+	# print 'counter'
+	
+	# -----------------------------------------------------------------------------
+	# Build some empty variables 
+	# -----------------------------------------------------------------------------
+
+	name = ""
+	diagnosis = ""
+	actor = ""
+	single_or_multiple_episodes = ""
+	episode_numbers = []
+	first_ep = ""
+	last_ep = ""
+	seasons_array = []
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Loop over every page
@@ -45,22 +63,10 @@ def scrape_character_pages(url_array):
 		print '-----------------------------------------------------------------------------------'
 		# print url
 		if counter <= 22:
-			
-			# -----------------------------------------------------------------------------
-			# Build some empty variables 
-			# -----------------------------------------------------------------------------
-			name = ""
-			diagnosis = ""
-			actor = ""
-			single_or_multiple_episodes = ""
-			
-			episode_numbers = []
-			
-			first_ep = ""
-			last_ep = ""
-			seasons_array = []
 
-			# Open each page
+			set_up_variables()
+
+			# Open each page and get the contents
 			url_page = urllib.urlopen(url).read()
 
 			# -----------------------------------------------------------------------------
@@ -127,6 +133,7 @@ def scrape_character_pages(url_array):
 
 					check_only_or_first = check_appearances.group(2)
 
+
 					if check_only_or_first == "Only":
 						get_only_appearance = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>', get_appearances_content, re.S|re.DOTALL)
 						
@@ -134,8 +141,8 @@ def scrape_character_pages(url_array):
 						last_ep = get_only_appearance.group(5)
 
 						# Go get the page for the episode to then find the episode number 
-						# print get_only_appearance.group(4)
 						make_url = 'http://greysanatomy.wikia.com/wiki/' + get_only_appearance.group(4)
+						
 						# Go open the URL + then get the content 
 						episode_page_url = urllib.urlopen(make_url).read()
 
@@ -148,9 +155,6 @@ def scrape_character_pages(url_array):
 						print 'code', code
 						
 						episode_numbers = [code]
-						# print 'episode_numbers', episode_numbers
-
-						# get_ep_number.groups()
 
 						get_guts = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 
