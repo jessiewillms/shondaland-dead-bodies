@@ -53,28 +53,32 @@ def scrape_character_pages(url_array):
 			# Open each page
 			url_page = urllib.urlopen(url).read()
 
+			# -----------------------------------------------------------------------------
 			# Go into the url_page guts and find the aside div
-			# portable-infobox pi-background pi-theme-attending pi-layout-default
 			get_aside = re.search('<aside class="portable-infobox pi-background (.+?) pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
 			get_aside_content = get_aside.group(2)
 
 			# If the aside is not empty, print the content (ie., what is in the .group())
+			# -----------------------------------------------------------------------------
 			if get_aside_content is not None:
 				get_aside = get_aside_content
 				# print get_aside, 'get_aside'
 				
+				# -----------------------------------------------------------------------------
+				# Get the name of the character
+				# -----------------------------------------------------------------------------
+				get_name_box = re.search('<h2 class="pi-item pi-item-spacing pi-title">(.+?)</h2>', get_aside, re.S|re.DOTALL)
+				name = get_name_box.group(1)
+
+				# -----------------------------------------------------------------------------
 				character_died = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Died</h3>(.+?)<div class="pi-data-value pi-font">(.+?) <a href="/wiki/(.+?)" title="(.+?)">(.+?)</div>(.+?)</div>', get_aside, re.S|re.DOTALL)
 				
 				# Character medical information
 				character_medical_info = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Medical Information</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
 				
-				if character_medical_info:
-					print 'yes has character_medical_info'
-				else: 
-					print 'does not have character_medical_info'
-
-
-				# If there is medical information
+				# -----------------------------------------------------------------------------
+				# Medical information
+				# -----------------------------------------------------------------------------
 				if character_medical_info:
 					get_full_medical_info = character_medical_info.group(1)
 					get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', character_medical_info.group(1), re.S|re.DOTALL)
@@ -94,29 +98,26 @@ def scrape_character_pages(url_array):
 				else: 
 					diagnosis = ["No Diagnosis"]
 				
-				# Get the name of the character
-				get_name_box = re.search('<h2 class="pi-item pi-item-spacing pi-title">(.+?)</h2>', get_aside, re.S|re.DOTALL)
-				name = get_name_box.group(1)
-
+				# -----------------------------------------------------------------------------
 				# Get the ep/season information - season number + episode title
+				# -----------------------------------------------------------------------------
 				get_appearances_box = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Appearances</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
+				
 				if get_appearances_box is not None:
 					get_appearances_content = get_appearances_box.group(1)
 					# print get_appearances_content
 
 					# Appearances box
-					# -----------------------------------------------------------------------------
 					check_appearances = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 
 					check_only_or_first = check_appearances.group(2)
 
-
 					if check_only_or_first == "Only":
 						get_only_appearance = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>', get_appearances_content, re.S|re.DOTALL)
+						
 						first_ep = get_only_appearance.group(5)
 
 						get_guts = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
-						# get_actor_name = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Portrayed by</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>(.+?)</div>', get_appearances_content, re.S|re.DOTALL)
 
 						# Get actor name
 						for single in get_guts:
@@ -194,11 +195,7 @@ def scrape_character_pages(url_array):
 						single_or_multiple_episodes = "error"
 						print single_or_multiple_episodes
 
-					# Make the array to push into the spreadsheet
-					# print 'print single_or_multiple_episodes'
-					# print single_or_multiple_episodes
-					# print 'print actor'
-					# print actor
+					
 					character_data = [counter, name, diagnosis, actor, single_or_multiple_episodes, first_ep, last_ep, seasons_array]
 					print character_data
 					CharacterDeatils.writerow(character_data)
