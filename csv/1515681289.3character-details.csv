@@ -1,9 +1,0 @@
-counter,name,diagnosis,actor,single_or_multiple_episodes,first_ep,last_ep,seasons_array
-0,Abraham,['Contusions'],Lou Cutell,single,Old Time Rock and Roll,,['12']
-1,Brad Ackles,"['Lacerations', 'Gunshot wound']",Ken Marino,single,17 Seconds,,['2']
-2,Karen Adams,"['Nosebleed', ""Wegener's disease""]",Molly Hagan,single,In Which Addison Finds the Magic,,[]
-3,Reed Adamson,['No Diagnosis'],Nora Zehetner,multiple,Invasion,Sanctuary,['6']
-4,Winnie Adkins,"['Hemothorax', 'Internal bleeding']",Ruby Jay,single,You Haven't Done Nothin',,['13']
-5,Kim Allen,"['Stage IV large-cell lung cancer', 'Pulmonary edema']",Sara Gilbert,single,Suicide is Painless,,['6']
-6,Grandma Anderson,['Car accident injuries'],Evelyn Reese,multiple,Dark Was the Night,Suddenly,['8']
-7,Holly Anderson,"['Basilar skull fracture', 'Hemopericardium', 'Carotid dissection', 'Cerebrovascular accident', 'Brain Death']",Christa B. Allen,single,All By Myself,,['5']
