@@ -152,8 +152,8 @@ def scrape_character_pages(url_array):
 					# print get_ep_number.group(1)
 				
 					code = 'S-' + get_season_number.group(1) + '-EP-' + get_ep_number.group(1)
-					print 'code', code
 					episode_numbers = [code]
+					print 'code', code
 					
 					# --------------------------------------------------------------------------------------------
 					# Check if appear in one or many
