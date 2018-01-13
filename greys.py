@@ -17,17 +17,18 @@ date = time.time()
 top_columns = ['name', 'url']
 
 filename = str(date) + 'character-name-url.csv'
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+
+directory = '/Users/jessiewillms/Dropbox/shonda-dead-people/shonda/dead-bodies-2/shondaland-dead-bodies/csv/'
 
 CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'diagnosis', 'actor', 'single_or_multiple_episodes', 'episode_numbers', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'last_ep', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'diagnosis', 'actor', 'single_or_multiple_episodes', 'episode_numbers', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+directory = '/Users/jessiewillms/Dropbox/shonda-dead-people/shonda/dead-bodies-2/shondaland-dead-bodies/csv/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
@@ -53,7 +54,6 @@ def scrape_character_pages(url_array):
 	last_episode_title_underscore = ""
 	last_episode_title_text = ""
 
-	last_ep = ""
 	seasons_array = []
 
 	# -----------------------------------------------------------------------------
@@ -63,10 +63,13 @@ def scrape_character_pages(url_array):
 		print '-----------------------------------------------------------------------------------'
 		
 		# Only get 
-		if counter <= 25:
+		counter_test = 20
+		counter_prod = 250
+		if counter <= counter_prod:
 			
 			# Open each page and get the contents
 			url_page = urllib.urlopen(url).read()
+			# print url_page
 
 			# -----------------------------------------------------------------------------
 			# Get the sidebar markup
@@ -89,11 +92,12 @@ def scrape_character_pages(url_array):
 					# print single.group(0)
 
 					get_single = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>(.+?)</div>', single.group(0), re.S|re.DOTALL)
-					print '--', get_single.group(3)
+					# print '--', get_single.group(3)
 					
 					# -----------------------------------------------------------------------------
 					# Is it the only character appearance or first of a multi-episode arc
 					is_first_or_only = single.group(2)
+					# print is_first_or_only
 					if is_first_or_only == "Only":
 						single_or_multiple_episodes = "single"
 
@@ -104,13 +108,13 @@ def scrape_character_pages(url_array):
 						last_episode_title_text = single.group(5)
 
 					elif is_first_or_only == "First":
+
+						# print 'first - therefor, multiple episode arc'.
 						single_or_multiple_episodes = "multiple"
 
 						first_episode_title_underscore = single.group(4)
 						first_episode_title_text = single.group(5)
 
-						last_episode_title_underscore = single.group(4)
-						last_episode_title_text = single.group(5)
 
 						# print first_episode_title_underscore
 						# print first_episode_title_text
@@ -128,6 +132,16 @@ def scrape_character_pages(url_array):
 
 					elif is_first_or_only == "Last":
 						is_first_or_only == "Last"
+						
+						last_episode_title_underscore = single.group(4)
+						last_episode_title_text = single.group(5)
+
+						print 'there is a last ep - should also have a first ep.'
+						# print single.group(0)
+						# print '4', single.group(4)
+						last_episode_title_underscore = single.group(4)
+						last_episode_title_text = single.group(5)
+						# print 'last_episode_title_text', last_episode_title_text
 					
 			else: 
 				single_or_multiple_episodes = "no information available"
@@ -187,7 +201,7 @@ def scrape_character_pages(url_array):
 			# ***Last step***) Write the rows for each variable
 			# -----------------------------------------------------------------------------
 			
-			character_data = [counter, character_name, diagnosis, actor, single_or_multiple_episodes, episode_numbers, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, last_ep, seasons_array]
+			character_data = [counter, character_name, diagnosis, actor, single_or_multiple_episodes, episode_numbers, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 			CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------
