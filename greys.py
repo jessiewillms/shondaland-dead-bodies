@@ -61,18 +61,16 @@ def scrape_character_pages(url_array):
 	# -----------------------------------------------------------------------------
 	for url in url_array:
 		# Only get 
-		counter_test = 20
+		counter_test = 70
 		counter_prod = 170
-		if counter <= counter_prod:
+		if counter <= counter_test:
 			
 			# print url
 			print '-----------------------------------------------------------------------------------'
 			print url
 			
-			
 			# Open each page and get the contents
 			url_page = urllib.urlopen(url).read()
-			# print url_page
 
 			# -----------------------------------------------------------------------------
 			# Get the sidebar markup
@@ -84,9 +82,7 @@ def scrape_character_pages(url_array):
 			# Character's name -- variable 1
 			get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
 			# get_character_name_box = re.search('', get_aside, re.S|re.DOTALL)
-			character_name = '1',
-			# get_character_name_box.group(1)
-			print get_title_of_page.group(1)
+			character_name = get_title_of_page.group(1)
 			# -----------------------------------------------------------------------------
 			# 
 			# -----------------------------------------------------------------------------
@@ -96,60 +92,127 @@ def scrape_character_pages(url_array):
 				# check_appearances = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 				# check_appearances = check_appearances.group(0)
 
-				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
+				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 				
+				# for single in get_appearances_content:
+				# 	print single.group(0)
+
+
 				ep_loop = []
 				for single in get_appearances_content:
-					get_single = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font"><a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></div>(.+?)</div>', single.group(0), re.S|re.DOTALL)
-					# print '--', get_single.group(3)
+					# print 'this shoud be the h3 content ', single.group(2)
+
+					# Get the each left-side label
+					get_something = re.search('<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>', single.group(0), re.S|re.DOTALL)
 					
+					# this is where the anchor tag containing the 'first - pp' will show up
+					# need to check here that we are only getting greys-related content
+					# and not a character's single appearance on private practise 
+					# that would fuck up the data :( 
+					is_it_pp = re.search('<b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b>', single.group(0), re.S|re.DOTALL )
+					
+					if is_it_pp is not None:
+						is_it_pp = 'yes' 
+						# print 'pp found'
+					else:
+						is_it_pp = 'no'
+
 					# -----------------------------------------------------------------------------
 					# Is it the only character appearance or first of a multi-episode arc
-					is_first_or_only = single.group(2)
-					# print is_first_or_only
-					if is_first_or_only == "Only":
-						single_or_multiple_episodes = "single"
+					is_first_or_only = get_something.group(1)
+					# print 'is_first_or_only', is_first_or_only
 
-						first_episode_title_underscore = single.group(4)
-						first_episode_title_text = single.group(5)
+					# print get_something.group(1)
+					if is_first_or_only == "Only" and is_it_pp == 'yes':
+						print "only + contains pp - do not do anything with this content"
+						# pass 
+						# ~taylor swift voice~ this is exhausting 
+					
+					else: 
+						# print 'big ELSE', is_first_or_only
+						if is_first_or_only == "Only":
+							single_or_multiple_episodes = "single"
+							# print 'only'
+							
+							get_1 = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(4), re.S|re.DOTALL )
 
-						last_episode_title_underscore = single.group(4)
-						last_episode_title_text = single.group(5)
 
-						ep_loop = [first_episode_title_underscore]
+							first_episode_title_underscore = get_1.group(1)
+							first_episode_title_text = get_1.group(2)
 
-					elif is_first_or_only == "First":
+							last_episode_title_underscore = get_1.group(1)
+							last_episode_title_text = get_1.group(2)
 
-						# print 'first - therefor, multiple episode arc'.
-						single_or_multiple_episodes = "multiple"
-
-						first_episode_title_underscore = single.group(4)
-						first_episode_title_text = single.group(5)
-
-						if character_name == "Alexandra Caroline Grey":
-							print 'lexie first name'
-
-						ep_loop.append(first_episode_title_underscore)
-
-					elif is_first_or_only == "Last":
-						is_first_or_only == "Last"
+							ep_loop = [first_episode_title_underscore]
+							print first_episode_title_underscore
 						
-						last_episode_title_underscore = single.group(4)
-						last_episode_title_text = single.group(5)
+						elif is_first_or_only == "First":
+							print is_first_or_only
+						
+						elif is_first_or_only == "Last":
+							print is_first_or_only
+						
+						# else:
+							# print 'some nonsense is happening'
 
-						ep_loop.append(last_episode_title_underscore)
-					# print 'ep_loop', ep_loop
-						# print 'last_episode_title_text', last_episode_title_text
+
+					# else is_first_or_only == "Only"
+					# 	print 'greys'
+					# 	if is_first_or_only == "Only":
+					# 		single_or_multiple_episodes = "single"
+							
+					# 		else:
+					# 			get_1 = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(4), re.S|re.DOTALL )
+
+					# 			print get_1.group(0)
+
+					# 			first_episode_title_underscore = get_1.group(1)
+					# 			first_episode_title_text = get_1.group(2)
+
+					# 			last_episode_title_underscore = get_1.group(1)
+					# 			last_episode_title_text = get_1.group(2)
+
+					# 			ep_loop = [first_episode_title_underscore]
+
+					# 	elif is_first_or_only == "First":
+					# 		get_1 = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(4), re.S|re.DOTALL )
+
+					# 		# print 'multi - first'
+					# 		single_or_multiple_episodes = "multiple"
+
+					# 		first_episode_title_underscore = get_1.group(1)
+					# 		first_episode_title_text = get_1.group(2)
+
+					# 		# if character_name == "Alexandra Caroline Grey":
+					# 		# 	print 'lexie first name'
+							
+					# 		# if character_name == "Lexie Grey":
+					# 		# 	print 'it\s lexie'
+					# 		ep_loop.append(first_episode_title_underscore)
+
+					# 	elif is_first_or_only == "Last":
+					# 		get_1 = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(4), re.S|re.DOTALL )
+
+					# 		# print 'multi - last'
+					# 		is_first_or_only == "Last"
+							
+					# 		last_episode_title_underscore = get_1.group(1)
+					# 		last_episode_title_text = get_1.group(2)
+
+					# 		ep_loop.append(last_episode_title_underscore)
+						# else:
+							# print 'Other ----------------------------'
+							# print single.group(0)
+						# print 'ep_loop', ep_loop
 				
 				# -----------------------------------------------------------------------------
 				# Now go get the ep + season numbers, create the code
-				# print 'ep_loop after for sinlge in appearance', ep_loop
 				season_episode_code = []
 				for single in ep_loop:
 					make_url = 'http://greysanatomy.wikia.com/wiki/' + single
 					episode_page_url = urllib.urlopen(make_url).read()
 					
-					print make_url
+					# print make_url
 					# Find the ep title
 					get_ep_number = re.search('<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>', episode_page_url, re.S|re.DOTALL)
 					get_season_number = re.search('<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>', episode_page_url, re.S|re.DOTALL)
@@ -229,7 +292,7 @@ def scrape_character_pages(url_array):
 		counter = counter + 1
 
 		# Reduce calls to the site to every one (1) second
-		time.sleep(1)
+		# time.sleep(1)
 		# -----------------------------------------------------------------------------
 
 
