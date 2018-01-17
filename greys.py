@@ -139,6 +139,7 @@ def scrape_character_pages(url_array):
 							ep_loop = [first_episode_title_underscore, last_episode_title_underscore]
 							print 'ep_loop for only - not including pp: ', ep_loop
 					
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "First":
 						
 						first_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
@@ -166,12 +167,31 @@ def scrape_character_pages(url_array):
 
 								print 'first episode title underscore', first_episode_title_underscore
 								ep_loop.append(first_episode_title_underscore)
-
-
 					
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
+					if title_sdf == "Last":
+						last_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
 
+						if last_appearence_in_pp is not None:
+							print 'LAST time in L.A.: ', last_appearence_in_pp.group(0)
+							pass
+						else:
+							single_or_multiple_episodes = "multiple"
 
+							does_it_have_a_bold_tag = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+							
+							if does_it_have_a_bold_tag is not None:
+								last_episode_title_underscore = does_it_have_a_bold_tag.group(2)
+								last_episode_title_text = does_it_have_a_bold_tag.group(3)
+								ep_loop.append(last_episode_title_underscore)
+							else:
+								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
 
+								last_episode_title_underscore = get_h3_title_text.group(1)
+								last_episode_title_text = get_h3_title_text.group(2)
+
+								print 'first episode title underscore', last_episode_title_underscore
+								ep_loop.append(last_episode_title_underscore)
 
 
 
