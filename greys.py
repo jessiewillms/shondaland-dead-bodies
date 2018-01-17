@@ -65,11 +65,11 @@ def scrape_character_pages(url_array):
 		# Only get 
 		counter_test = 70
 		counter_prod = 170
-		if counter <= counter_test:
+		if counter <= counter_prod:
 			
 			# print url
-			# print '-----------------------------------------------------------------------------------'
-			# print url
+			print '-----------------------------------------------------------------------------------'
+			print url
 			
 			# Open each page and get the contents
 			url_page = urllib.urlopen(url).read()
@@ -79,36 +79,23 @@ def scrape_character_pages(url_array):
 			get_aside = re.search('<aside class="portable-infobox pi-background (.+?) pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
 			get_aside = get_aside.group(0)
 			# -----------------------------------------------------------------------------
+			# get_character_name_box = re.search('', get_aside, re.S|re.DOTALL)
 
 			# -----------------------------------------------------------------------------
 			# Character's name -- variable 1
 			get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
-			# get_character_name_box = re.search('', get_aside, re.S|re.DOTALL)
 			character_name = get_title_of_page.group(1)
 			# -----------------------------------------------------------------------------
-			# 
-			# -----------------------------------------------------------------------------
 			# Episode title for first episode
+			# -----------------------------------------------------------------------------
 			get_appearances_box = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Appearances</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
 			if get_appearances_box is not None:
-				# check_appearances = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
-				# check_appearances = check_appearances.group(0)
-
-				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 				
-				# for single in get_appearances_content:
-				# 	print single.group(0)
-
+				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 
 				ep_loop = []
-
-				print '-----------------------------------------------------------------------------------'
-				print url
 				for single in get_appearances_content:
-					print '-----------------------------------------------------------------------------------'
-
-					# print single.group(0)
-
+					
 					# -----------------------------------------------------------------------------
 					# Is it the only character appearance or first of a multi-episode arc
 					title_sdf = single.group(2)
@@ -145,7 +132,7 @@ def scrape_character_pages(url_array):
 						first_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
 						
 						if first_appearence_in_pp is not None:
-							print 'First time in L.A. getting tan with new doctors: ', first_appearence_in_pp.group(0)
+							# print 'First time in L.A. getting tan with new doctors: ', first_appearence_in_pp.group(0)
 							pass
 						else:
 							single_or_multiple_episodes = "multiple"
@@ -193,17 +180,6 @@ def scrape_character_pages(url_array):
 								print 'first episode title underscore', last_episode_title_underscore
 								ep_loop.append(last_episode_title_underscore)
 
-
-
-
-
-
-
-
-
-					
-				
-				# print 'ep_loop', ep_loop
 				# -----------------------------------------------------------------------------
 				# Now go get the ep + season numbers, create the code
 				season_episode_code = []
@@ -239,24 +215,6 @@ def scrape_character_pages(url_array):
 			else: 
 				single_or_multiple_episodes = "no information available"
 			# -----------------------------------------------------------------------------
-
-
-
-				
-			# -----------------------------------------------------------------------------
-
-			
-
-
-
-
-
-
-
-
-
-
-
 			
 
 			# -----------------------------------------------------------------------------
@@ -284,11 +242,8 @@ def scrape_character_pages(url_array):
 			# -----------------------------------------------------------------------------
 			# ***Last step***  Write the rows for each variable
 			# -----------------------------------------------------------------------------
-			
 			character_data = [counter, character_name, diagnosis, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 			CharacterDeatils.writerow(character_data)
-
-			# print 'lexiepedia', lexiepedia
 
 		# -----------------------------------------------------------------------------
 		# Increment the number in the counter
@@ -298,28 +253,26 @@ def scrape_character_pages(url_array):
 		# time.sleep(1)
 		# -----------------------------------------------------------------------------
 
-
-
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Get initial page - get all names
 # ------------------------------------------------------------------------------------------------------------------- # 
-
 def scrape_page(html_page):
 
 	wrapper = re.search('<table width="100%">(.+?)</table>', html_page, re.S|re.DOTALL)
 	table_content = wrapper.group(0)
-	
+
 	url_array = []
 
 	for single in re.finditer('<li><a href="/wiki/(.+?)</li>', table_content, re.S|re.DOTALL):
 		get_character_names = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(0), re.S|re.DOTALL)
 
-		url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
-		url_array.append(url)
-		character = get_character_names.group(3)
+		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepard' and get_character_names.group(1) != 'Pete_Wilder':
+			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
+			url_array.append(url)
+			character = get_character_names.group(3)
 
-		# print url
-		CharacterNameAndURL.writerow([character, url])
+			# print url
+			CharacterNameAndURL.writerow([character, url])
 
 	scrape_character_pages(url_array)
 

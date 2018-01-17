@@ -1,4 +1,0 @@
-counter,name,diagnosis,actor,single_or_multiple_episodes,season_episode_code,first_episode_title_underscore,first_episode_title_text,last_episode_title_underscore,last_episode_title_text,seasons_array
-0,Abraham,['Contusions'],,single,"['S-12-EP-4', 'S-12-EP-4']",Old_Time_Rock_and_Roll,Old Time Rock and Roll,Old_Time_Rock_and_Roll,Old Time Rock and Roll,[]
-1,Brad Ackles,"['Lacerations', 'Gunshot wound']",,single,"['S-2-EP-25', 'S-2-EP-25']",17_Seconds,17 Seconds,17_Seconds,17 Seconds,[]
-2,Karen Adams,"['Nosebleed', ""Wegener's disease""]",,single,"['S-1-EP-3', 'S-1-EP-3']",In_Which_Addison_Finds_the_Magic,In Which Addison Finds the Magic,In_Which_Addison_Finds_the_Magic,In Which Addison Finds the Magic,[]
