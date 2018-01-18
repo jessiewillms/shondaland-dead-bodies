@@ -20,3 +20,8 @@ counter,name,diagnosis,actor,single_or_multiple_episodes,season_episode_code,fir
 18,Andrew Billings,"['Cardiac myxoma', 'Brain death']",,single,"['S-13-EP-5', 'S-13-EP-5']",Both_Sides_Now,Both Sides Now,Both_Sides_Now,Both Sides Now,['13']
 19,Charlie Bilson,"['Crush injuries', 'Internal bleeding', 'Broken nose']",,single,"['S-8-EP-14', 'S-8-EP-14']",All_You_Need_is_Love,All You Need is Love,All_You_Need_is_Love,All You Need is Love,['8']
 20,Dr. Bones,['No diagnosis available'],,multiple,['S-3-EP-1'],Time_Has_Come_Today,Time Has Come Today,All_You_Need_is_Love,All You Need is Love,['3']
+21,Heather Brooks,['No diagnosis available'],,multiple,"['S-9-EP-1', 'S-10-EP-2']","Going,_Going,_Gone","Going, Going, Gone",I_Want_You_With_Me,I Want You With Me,"['9', '10']"
+22,Teresa Brotherton,"['Tension pneumothorax', 'Fracture ribs', 'Hemothorax', 'Punctured lung']",,single,"['S-4-EP-7', 'S-4-EP-7']",Physical_Attraction..._Chemical_Reaction,Physical Attraction... Chemical Reaction,Physical_Attraction..._Chemical_Reaction,Physical Attraction... Chemical Reaction,['4']
+23,Rosemary Bullard,"['Cancer', 'Brain Tumor']",,single,"['S-5-EP-7', 'S-5-EP-7']",Rise_Up,Rise Up,Rise_Up,Rise Up,['5']
+24,Henry Burton,['No diagnosis available'],,multiple,"['S-7-EP-10', 'S-8-EP-10']",Adrift_and_at_Peace,Adrift and at Peace,Suddenly,Suddenly,"['7', '8']"
+25,Jake Burton,['Advanced craniodiaphyseal dysplasia'],,single,"['S-2-EP-18', 'S-2-EP-18']",Yesterday,Yesterday,Yesterday,Yesterday,['2']

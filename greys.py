@@ -8,8 +8,8 @@ date = time.time()
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # TODO:
-# -- update the structure of the ep. title information to first loop over the data instead of first checking for First/Only
-# 	-- move *if single_we.group(2) == "First":* to inside the loop
+# -- make new column that gets the *range* of episodes and seasons.
+	# ie., Mark Sloan's season/episode code array should include every episode from every season
 # ------------------------------------------------------------------------------------------------------------------- # 
 
 # ------------------------------------------------------------------------------------------------------------------- # 
@@ -46,7 +46,7 @@ def scrape_character_pages(url_array):
 	counter = 0
 	character_name = "" # variable 1
 	diagnosis = ""
-	actor = ""
+	# actor = ""
 	single_or_multiple_episodes = ""
 	# season_episode_code = []
 
@@ -63,7 +63,7 @@ def scrape_character_pages(url_array):
 		# Only get 
 		counter_test = 50
 		counter_prod = 170
-		if counter <= counter_test:
+		if counter <= counter_prod:
 			
 			# print url
 			print '-----------------------------------------------------------------------------------'
@@ -92,8 +92,9 @@ def scrape_character_pages(url_array):
 				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 
 				ep_loop = []
+
 				for single in get_appearances_content:
-					
+
 					# -----------------------------------------------------------------------------
 					# Is it the only character appearance or first of a multi-episode arc
 					title_sdf = single.group(2)
@@ -101,6 +102,24 @@ def scrape_character_pages(url_array):
 					
 					# print 'title: ', title_sdf, '| content: ', content_sdf
 
+					actor = ""
+					if title_sdf == "Portrayed by":
+						
+						print 'checking for actor name: ', content_sdf
+						
+						if '<a href=' not in content_sdf:
+							actor = content_sdf
+							print 'no link avail - actor', actor
+						else:
+							get_actor_name = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+							actor = get_actor_name.group(3)
+							print 'actor has url', actor
+					else:
+						actor = "No actor listed."
+					
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
+					# Only appearance 
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "Only":
 						only_appearence_in_pp = re.search('<b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
 						
@@ -124,6 +143,8 @@ def scrape_character_pages(url_array):
 							ep_loop = [first_episode_title_underscore, last_episode_title_underscore]
 							# print 'ep_loop for only - not including pp: ', ep_loop
 					
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
+					# First
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "First":
 						
@@ -153,6 +174,8 @@ def scrape_character_pages(url_array):
 								# print 'first episode title underscore', first_episode_title_underscore
 								ep_loop.append(first_episode_title_underscore)
 					
+					# ---------------------------------------------------------------------------------------------------------------------------------------------
+					# Last
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "Last":
 						last_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
@@ -197,8 +220,8 @@ def scrape_character_pages(url_array):
 					if get_season_number is not None:
 						get_season_number = get_season_number.group(1)
 
-						print 'get_season_number', get_season_number
-						print 'seasons_array', seasons_array
+						# print 'get_season_number', get_season_number
+						# print 'seasons_array', seasons_array
 
 						if get_season_number in seasons_array:
 							pass
@@ -213,7 +236,7 @@ def scrape_character_pages(url_array):
 					else:
 						get_ep_number = "ERROR"
 
-					print 'seasons_array', seasons_array
+					# print 'seasons_array', seasons_array
 					code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
 					season_episode_code.append(code_season_number_episode_number)
 
@@ -274,6 +297,7 @@ def scrape_page(html_page):
 	for single in re.finditer('<li><a href="/wiki/(.+?)</li>', table_content, re.S|re.DOTALL):
 		get_character_names = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(0), re.S|re.DOTALL)
 
+		# Skip all the PP characters
 		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepard' and get_character_names.group(1) != 'Pete_Wilder':
 			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
 			url_array.append(url)
