@@ -61,8 +61,8 @@ def scrape_character_pages(url_array):
 		counter_prod = 170
 		# print counter
 		
-		if counter >= 60 and counter <= 131:
-		# if counter < counter_prod:
+		# if counter >= 60 and counter <= 70:
+		if counter < counter_prod:
 			
 			# print url
 			print '-----------------------------------------------------------------------------------'
@@ -196,27 +196,20 @@ def scrape_character_pages(url_array):
 								# print 'first appearance in greys not none', first_appearence_in_ga.group(0)
 
 								fist_ep_ga = re.search('<b><a href="/wiki/(.+?)" title="(.+?)">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
-
-								# print fist_ep_ga.group(4)
-								# print fist_ep_ga.group(5)
 								
 								first_episode_title_underscore = fist_ep_ga.group(4)
 								first_episode_title_text = fist_ep_ga.group(5)
 
 								ep_loop.append(first_episode_title_underscore)
 
-								# LEXIE
-								# <b><a href="/wiki/Grey%27s_Anatomy" title="Grey's Anatomy">GA</a>:</b> <a href="/wiki/A_Hard_Day%27s_Night" title="A Hard Day's Night">A Hard Day's Night</a>
-
-							else:
-								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
-								first_episode_title_underscore = 'this is your error'
-								# get_h3_title_text.group(1)
+						else:
+							get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+							if get_h3_title_text is not None:
+								first_episode_title_underscore = get_h3_title_text.group(1)
 								first_episode_title_text = get_h3_title_text.group(2)
 
-								# print 'first episode title underscore', first_episode_title_underscore
+								print 'first episode title underscore', first_episode_title_text
 								ep_loop.append(first_episode_title_underscore)
-					
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					# Last
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -286,7 +279,9 @@ def scrape_character_pages(url_array):
 
 					# print 'seasons_array', seasons_array
 					code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
-					season_episode_code.append(code_season_number_episode_number)
+					
+					if code_season_number_episode_number not in season_episode_code:
+						season_episode_code.append(code_season_number_episode_number)
 
 					# print 'season_episode_code', season_episode_code
 					# -----------------------------------------------------------------------------
@@ -372,7 +367,7 @@ def scrape_page(html_page):
 		get_character_names = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(0), re.S|re.DOTALL)
 
 		# Skip all the PP characters
-		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
+		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Timothy_Robbins' and get_character_names.group(1) != 'Susan_Grant' and get_character_names.group(1) != 'David_Gibbs' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
 			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
 			url_array.append(url)
 			character = get_character_names.group(3)
