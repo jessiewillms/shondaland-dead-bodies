@@ -1,0 +1,4 @@
+counter,name,character_type,diagnosis,treatment,actor,single_or_multiple_episodes,season_episode_code,first_episode_title_underscore,first_episode_title_text,last_episode_title_underscore,last_episode_title_text,seasons_array
+129,Tony Savitch,patient,['No diagnosis available'],"['Coronary artery bypass surgery', 'Attempted resuscitation']",David Vegh,single,"['S-1-EP-1', 'S-1-EP-1']",A_Hard_Day%27s_Night,A Hard Day's Night,A_Hard_Day%27s_Night,A Hard Day's Night,['1']
+130,Erin Shandley,patient,['Brain death'],['Organ harvesting'],Bhama Roget,single,"['S-4-EP-5', 'S-4-EP-5']",Haunt_You_Every_Day,Haunt You Every Day,Haunt_You_Every_Day,Haunt You Every Day,['4']
+131,Derek Shepherd,attending,['No diagnosis available'],['No treatment available'],Patrick Dempsey,multiple,['S-1-EP-1'],A_Hard_Day%27s_Night,A Hard Day's Night,,,['1']

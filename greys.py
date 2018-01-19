@@ -25,7 +25,7 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'diagnosis', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'character_type','diagnosis', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
@@ -38,51 +38,85 @@ CharacterDeatils.writerow(top_columns_character_details)
 # ------------------------------------------------------------------------------------------------------------------- # 
 
 def scrape_character_pages(url_array):
+	
+	# num = 28 + 1.79 + 29 + 29 + 1.73 + 8.15 + 6.53 + 5.00 + 7.89 + 1.49 + 1.73 + 13.50 + 2.59 + 21.45 + 3.99 + 3.78 + 14 + 11.32 + 4.00 + 5.91 + 14 + 6.73 + 1.73 + 2.10 + 28.19 + 2.30 + 1.65 + 8 + 1.85 + 2.30
+	# num2 = 11.73 + 0.64 + 20.14 + 19.05
+	# num3 = 26.20 + 14.52 + 5.00 + 3.05
+	#  # + 175.79 + 165.46
+
+	# total = num2 + num + num3
+	# print total
 	# -----------------------------------------------------------------------------
 	# Set up empty variables -- top level variables 
 	# -----------------------------------------------------------------------------
-	lexiepedia = 0
-
 	counter = 0
-	character_name = "" # variable 1
-	diagnosis = ""
-	# actor = ""
-	single_or_multiple_episodes = ""
-	# season_episode_code = []
-
-	first_episode_title_underscore  = ""
-	first_episode_title_text  = ""
-	
-	last_episode_title_underscore = ""
-	last_episode_title_text = ""
 
 	# -----------------------------------------------------------------------------
 	# Loop over every URL in the URL array
 	# -----------------------------------------------------------------------------
+	character_type_array = []
 	for url in url_array:
 		# Only get 
 		counter_test = 50
 		counter_prod = 170
-		if counter <= counter_prod:
+		# print counter
+		
+		if counter >= 60 and counter <= 131:
+		# if counter < counter_prod:
 			
 			# print url
 			print '-----------------------------------------------------------------------------------'
 			print url
 			
+			character_name = "" # variable 1
+			diagnosis = []
+			treatment = []
+			actor = ""
+			single_or_multiple_episodes = ""
+			season_episode_code = []
+
+			first_episode_title_underscore  = ""
+			first_episode_title_text  = ""
+			
+			last_episode_title_underscore = ""
+			last_episode_title_text = ""
+			ep_loop = []
+
+			season_episode_code = []
+			seasons_array = []
+
+			# -----------------------------------------------------------------------------
 			# Open each page and get the contents
+			# -----------------------------------------------------------------------------
 			url_page = urllib.urlopen(url).read()
+			# -----------------------------------------------------------------------------
 
 			# -----------------------------------------------------------------------------
 			# Get the sidebar markup
+			# -----------------------------------------------------------------------------
 			get_aside = re.search('<aside class="portable-infobox pi-background (.+?) pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
+			get_character_type = get_aside.group(1)
 			get_aside = get_aside.group(0)
 			# -----------------------------------------------------------------------------
-			# get_character_name_box = re.search('', get_aside, re.S|re.DOTALL)
-
+			
 			# -----------------------------------------------------------------------------
 			# Character's name -- variable 1
+			# -----------------------------------------------------------------------------
 			get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
 			character_name = get_title_of_page.group(1)
+			# -----------------------------------------------------------------------------
+			
+			# -----------------------------------------------------------------------------
+			# Get the type of character - a doctor (attending, resident, intern), a dog, a skeleton
+			# -----------------------------------------------------------------------------
+			character_type = get_character_type.split('pi-theme-')[1]
+			if character_type not in character_type_array:
+				if character_type == 'internresident':
+					character_type = "intern resident"
+				
+				character_type_array.append(character_type)
+			# -----------------------------------------------------------------------------
+
 			# -----------------------------------------------------------------------------
 			# Episode title for first episode
 			# -----------------------------------------------------------------------------
@@ -91,29 +125,24 @@ def scrape_character_pages(url_array):
 				
 				get_appearances_content = re.finditer('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">(.+?)</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_appearances_box.group(1), re.S|re.DOTALL)
 
-				ep_loop = []
-
 				for single in get_appearances_content:
 
 					# -----------------------------------------------------------------------------
 					# Is it the only character appearance or first of a multi-episode arc
 					title_sdf = single.group(2)
 					content_sdf = single.group(4)
-					
-					# print 'title: ', title_sdf, '| content: ', content_sdf
 
-					actor = ""
 					if title_sdf == "Portrayed by":
 						
-						print 'checking for actor name: ', content_sdf
+						# print 'checking for actor name: ', content_sdf
 						
 						if '<a href=' not in content_sdf:
 							actor = content_sdf
-							print 'no link avail - actor', actor
+							# print 'no link avail - actor', actor
 						else:
 							get_actor_name = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
 							actor = get_actor_name.group(3)
-							print 'actor has url', actor
+							# print 'actor has url', actor
 					else:
 						actor = "No actor listed."
 					
@@ -144,31 +173,45 @@ def scrape_character_pages(url_array):
 							# print 'ep_loop for only - not including pp: ', ep_loop
 					
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
-					# First
+					# First section - "First" h3 tag found
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "First":
 						
+						# ---------------------------------------------------------------------------------------------------------------------------------------------
+						# It's PP -- skip it
+						# ---------------------------------------------------------------------------------------------------------------------------------------------
 						first_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
-						
 						if first_appearence_in_pp is not None:
-							# print 'First time in L.A. getting tan with new doctors: ', first_appearence_in_pp.group(0)
+							print 'first pp not none - ', first_appearence_in_pp.group(0)
 							pass
-						else:
+						
+						# ---------------------------------------------------------------------------------------------------------------------------------------------
+						# It's GA
+						# ---------------------------------------------------------------------------------------------------------------------------------------------
+						first_appearence_in_ga = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>', content_sdf, re.S|re.DOTALL)
+						if first_appearence_in_ga is not None:
 							single_or_multiple_episodes = "multiple"
 							
-							does_it_have_a_bold_tag = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
-							
-							if does_it_have_a_bold_tag is not None:
-								first_episode_title_underscore = does_it_have_a_bold_tag.group(2)
-								first_episode_title_text = does_it_have_a_bold_tag.group(3)
-								# print 'bold TAG ', first_episode_title_underscore, first_episode_title_text
+							if first_appearence_in_ga is not None:
+								# print 'first appearance in greys not none', first_appearence_in_ga.group(0)
+
+								fist_ep_ga = re.search('<b><a href="/wiki/(.+?)" title="(.+?)">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+
+								# print fist_ep_ga.group(4)
+								# print fist_ep_ga.group(5)
+								
+								first_episode_title_underscore = fist_ep_ga.group(4)
+								first_episode_title_text = fist_ep_ga.group(5)
 
 								ep_loop.append(first_episode_title_underscore)
 
+								# LEXIE
+								# <b><a href="/wiki/Grey%27s_Anatomy" title="Grey's Anatomy">GA</a>:</b> <a href="/wiki/A_Hard_Day%27s_Night" title="A Hard Day's Night">A Hard Day's Night</a>
+
 							else:
 								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
-
-								first_episode_title_underscore = get_h3_title_text.group(1)
+								first_episode_title_underscore = 'this is your error'
+								# get_h3_title_text.group(1)
 								first_episode_title_text = get_h3_title_text.group(2)
 
 								# print 'first episode title underscore', first_episode_title_underscore
@@ -178,33 +221,38 @@ def scrape_character_pages(url_array):
 					# Last
 					# ---------------------------------------------------------------------------------------------------------------------------------------------
 					if title_sdf == "Last":
+						
 						last_appearence_in_pp = re.search('<li><b><a href="/wiki/Private_Practice" title="Private Practice">PP</a>:</b> <a href="/wiki/(.+?)" title="(.+?)">(.+?)</a></li>', content_sdf, re.S|re.DOTALL)
 
 						if last_appearence_in_pp is not None:
 							# print 'LAST time in L.A.: ', last_appearence_in_pp.group(0)
 							pass
+
+						last_appearence_in_ga = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>', content_sdf, re.S|re.DOTALL)
+
+						if last_appearence_in_ga is not None:
+							single_or_multiple_episodes = "multiple"
+							
+							last_ep = re.search('<b><a href="/wiki/(.+?)" title="(.+?)">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+							# print 'last_ep', last_ep.group(1)
+							
+							last_episode_title_underscore = last_ep.group(4)
+							last_episode_title_text = last_ep.group(5)
+							ep_loop.append(last_episode_title_underscore)
+
 						else:
 							single_or_multiple_episodes = "multiple"
+							get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
 
-							does_it_have_a_bold_tag = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>(.+?)<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
-							
-							if does_it_have_a_bold_tag is not None:
-								last_episode_title_underscore = does_it_have_a_bold_tag.group(2)
-								last_episode_title_text = does_it_have_a_bold_tag.group(3)
-								ep_loop.append(last_episode_title_underscore)
-							else:
-								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
+							last_episode_title_underscore = get_h3_title_text.group(1)
+							last_episode_title_text = get_h3_title_text.group(2)
 
-								last_episode_title_underscore = get_h3_title_text.group(1)
-								last_episode_title_text = get_h3_title_text.group(2)
-
-								# print 'first episode title underscore', last_episode_title_underscore
-								ep_loop.append(last_episode_title_underscore)
+							# print 'first episode title underscore', last_episode_title_underscore
+							ep_loop.append(last_episode_title_underscore)
 
 				# -----------------------------------------------------------------------------
 				# Now go get the ep + season numbers, create the code
-				season_episode_code = []
-				seasons_array = []
+				
 				for single in ep_loop:
 					# print 'single in ep_loop', single
 					
@@ -251,29 +299,55 @@ def scrape_character_pages(url_array):
 			# -----------------------------------------------------------------------------
 			# Character's diagnosis -- variable 3
 			# -----------------------------------------------------------------------------
-			get_character_diagnosis = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Medical Information</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
-			if get_character_diagnosis is not None:
-				get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_character_diagnosis.group(1), re.S|re.DOTALL)
+			get_medical_information = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Medical Information</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
 
+			if get_medical_information is not None:
+				
+				get_treatment = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Treatment</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_medical_information.group(1), re.S|re.DOTALL)
+				
+				if get_treatment is not None:
+					get_treatment = get_treatment.group(3)
+					check_single_or_multiple_treatment = re.search('<ul><li>(.+?)</li></ul>', get_treatment, re.S|re.DOTALL)
+					
+					if check_single_or_multiple_treatment is not None:
+						split_treatment_on_list_item = check_single_or_multiple_treatment.group(1).split('</li><li>')
+						treatment = split_treatment_on_list_item
+					else:
+						treatment = [get_treatment]
+					# print 'get_treatment', get_treatment
+				else: 
+					get_treatment = ["No treatment available."]
+
+				# -----------------------------------------------------------------------------
+				get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_medical_information.group(1), re.S|re.DOTALL)
 				# Multiple diagnosis -- 
 				if get_diagnosis is not None:
 					get_diagnosis = get_diagnosis.group(3)
 					check_for_single_multiple = re.search('<ul><li>(.+?)</li></ul>', get_diagnosis, re.S|re.DOTALL)
+					
 					if check_for_single_multiple is not None:
 						split_diagnosis_on_list_item = check_for_single_multiple.group(1).split('</li><li>')
 						diagnosis = split_diagnosis_on_list_item
 					# Single diagnosis --
 					else:
 						diagnosis = [get_diagnosis]
-			else:
+				else:
+					diagnosis = ["No diagnosis available"]
+				
+			
+			if len(diagnosis) == 0:
 				diagnosis = ["No diagnosis available"]
+
+			if len(treatment) == 0:
+				treatment = ["No treatment available"]
+			# print 'treatment', treatment
 			# -----------------------------------------------------------------------------
 
 
 			# -----------------------------------------------------------------------------
 			# ***Last step***  Write the rows for each variable
 			# -----------------------------------------------------------------------------
-			character_data = [counter, character_name, diagnosis, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+			character_data = [counter, character_name, character_type, diagnosis, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 			CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------
@@ -298,7 +372,7 @@ def scrape_page(html_page):
 		get_character_names = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(0), re.S|re.DOTALL)
 
 		# Skip all the PP characters
-		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepard' and get_character_names.group(1) != 'Pete_Wilder':
+		if get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
 			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
 			url_array.append(url)
 			character = get_character_names.group(3)
