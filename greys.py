@@ -60,14 +60,15 @@ def scrape_character_pages(url_array):
 			# Open each page and get the contents
 			# -----------------------------------------------------------------------------
 			url_page = urllib.urlopen(url).read()
+			# print '-----------------------------------------------------------------------------------', url
+
 			# -----------------------------------------------------------------------------
-				
 			check_character_is_greys_character = re.search('<div class="page-header__categories-links">(.+?)<a href="/wiki/Category:Characters" data-tracking="categories-top-0">Characters</a>,(.+?)<a href="/wiki/Category:GA_Characters" data-tracking="categories-top-1">GA Characters</a>(.+?)</div>', url_page, re.S|re.DOTALL)
 			if check_character_is_greys_character is not None:
-				print 'check_character_is_greys_character', check_character_is_greys_character.group(0)
+				# print 'check_character_is_greys_character', check_character_is_greys_character.group(0)
 				# print url
-				print 'ga: -----------------------------------------------------------------------------------'
-				print url
+				# print 'ga: -----------------------------------------------------------------------------------'
+				# print url
 
 				character_name = "" # variable 1
 				diagnosis = []
@@ -93,7 +94,7 @@ def scrape_character_pages(url_array):
 				get_character_type = get_aside.group(1)
 				get_aside = get_aside.group(0)
 				# -----------------------------------------------------------------------------
-				
+
 				# -----------------------------------------------------------------------------
 				# Character's name -- variable 1
 				# -----------------------------------------------------------------------------
@@ -334,10 +335,25 @@ def scrape_character_pages(url_array):
 							diagnosis = [get_diagnosis]
 					else:
 						diagnosis = ["No diagnosis available"]
-					
-				
-				if len(diagnosis) == 0:
-					diagnosis = ["No diagnosis available"]
+						print 'diagnosis', diagnosis
+						# -----------------------------------------------------------------------------
+						# Get the main body content markup
+						# -----------------------------------------------------------------------------
+						# <div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr mw-content-text">
+						
+						get_body_content = re.search('<article id="WikiaMainContent" class="WikiaMainContent">(.+?)</article>', url_page, re.S|re.DOTALL)
+						
+						if get_body_content is not None:
+							# print 'get_body_content', 
+							get_body_content = get_body_content.group(0)
+							find_h3_with_death = re.finditer('<h3><span class="mw-headline" id="(.+?)">(.+?)</span>(.+?)</h3>', get_body_content, re.S|re.DOTALL)
+							for single_h3 in find_h3_with_death:
+								if single_h3 is not None:
+									print 'find_h3_with_death', single_h3.group(2)
+
+								# <h3><span class="mw-headline" id="(.+?)">(.+?)</span><span class="editsection">(.+?)</h3>
+				# if len(diagnosis) == 0:
+				# 	diagnosis = ["No diagnosis available"]
 
 				if len(treatment) == 0:
 					treatment = ["No treatment available"]
@@ -352,14 +368,11 @@ def scrape_character_pages(url_array):
 				CharacterDeatils.writerow(character_data)
 
 
-			else: 
-				print 'this is a pp character'
+			# else: 
+				# print 'this is a pp character'
 				# print url
-				print 'pp -----------------------------------------------------------------------------------'
-				print url
-
-			
-			
+				# print 'pp -----------------------------------------------------------------------------------'
+				# print url
 
 		# -----------------------------------------------------------------------------
 		# Increment the number in the counter
@@ -383,8 +396,8 @@ def scrape_page(html_page):
 		get_character_names = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', single.group(0), re.S|re.DOTALL)
 
 		# Skip all the PP characters
-		# if get_character_names.group(1) != 'Lillie_Jordan' and get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Timothy_Robbins' and get_character_names.group(1) != 'Susan_Grant' and get_character_names.group(1) != 'David_Gibbs' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
-		if get_character_names.group(1) != 'Nonesense!!!!!!!':
+		if get_character_names.group(1) != 'Lillie_Jordan' and get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Timothy_Robbins' and get_character_names.group(1) != 'Susan_Grant' and get_character_names.group(1) != 'David_Gibbs' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
+		# if get_character_names.group(1) != 'Nonesense!!!!!!!':
 			
 			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
 			url_array.append(url)
