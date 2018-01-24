@@ -63,6 +63,15 @@ def scrape_character_pages(url_array):
 			url_page = urllib.urlopen(url).read()
 			# print '-----------------------------------------------------------------------------------', url
 
+			print '123', url
+			# -----------------------------------------------------------------------------
+			# Get all the episodes a character appeared in
+			# -----------------------------------------------------------------------------
+			for every_table in re.finditer('<table class="mw-collapsible collapsed mw-made-collapsible mw-collapsed" border="0" style="width: 100%; margin: 1em 1em 1em 0; border: 2px #003366 solid; border-collapse: collapse; text-align: center; font-size:12px; color:black;">(.+?)</table>', url_page, re.S|re.DOTALL):
+
+				print every_table.group(2)
+				# each_table = re.search('<span class="result-price">(.+?)</span>', every_apt.group(0))
+			
 			# -----------------------------------------------------------------------------
 			check_character_is_greys_character = re.search('<div class="page-header__categories-links">(.+?)<a href="/wiki/Category:Characters" data-tracking="categories-top-0">Characters</a>,(.+?)<a href="/wiki/Category:GA_Characters" data-tracking="categories-top-1">GA Characters</a>(.+?)</div>', url_page, re.S|re.DOTALL)
 			if check_character_is_greys_character is not None:
@@ -79,6 +88,8 @@ def scrape_character_pages(url_array):
 				single_or_multiple_episodes = ""
 				season_episode_code = []
 
+				appearances = []
+
 				first_episode_title_underscore  = ""
 				first_episode_title_text  = ""
 				
@@ -88,7 +99,9 @@ def scrape_character_pages(url_array):
 
 				season_episode_code = []
 				seasons_array = []
-				
+
+
+
 				# -----------------------------------------------------------------------------
 				# Get the sidebar markup
 				# -----------------------------------------------------------------------------
