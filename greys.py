@@ -1,3 +1,4 @@
+
 # import libraries 
 import time # wait commands (space out)
 import re # regular expressions (text parser)
@@ -25,7 +26,7 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'character_type','diagnosis', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
@@ -72,6 +73,7 @@ def scrape_character_pages(url_array):
 
 				character_name = "" # variable 1
 				diagnosis = []
+				cause_of_death = []
 				treatment = []
 				actor = ""
 				single_or_multiple_episodes = ""
@@ -321,9 +323,11 @@ def scrape_character_pages(url_array):
 						get_treatment = ["No treatment available."]
 
 					# -----------------------------------------------------------------------------
-					get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_medical_information.group(1), re.S|re.DOTALL)
 					# Multiple diagnosis -- 
+					get_diagnosis = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Diagnosis</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_medical_information.group(1), re.S|re.DOTALL)
+					
 					if get_diagnosis is not None:
+						# cause_of_death = "Has diagnosis"
 						get_diagnosis = get_diagnosis.group(3)
 						check_for_single_multiple = re.search('<ul><li>(.+?)</li></ul>', get_diagnosis, re.S|re.DOTALL)
 						
@@ -333,28 +337,43 @@ def scrape_character_pages(url_array):
 						# Single diagnosis --
 						else:
 							diagnosis = [get_diagnosis]
-					else:
-						diagnosis = ["No diagnosis available"]
-						print 'diagnosis', diagnosis
-						# -----------------------------------------------------------------------------
-						# Get the main body content markup
-						# -----------------------------------------------------------------------------
-						# <div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr mw-content-text">
-						
-						get_body_content = re.search('<article id="WikiaMainContent" class="WikiaMainContent">(.+?)</article>', url_page, re.S|re.DOTALL)
-						
-						if get_body_content is not None:
-							# print 'get_body_content', 
-							get_body_content = get_body_content.group(0)
-							find_h3_with_death = re.finditer('<h3><span class="mw-headline" id="(.+?)">(.+?)</span>(.+?)</h3>', get_body_content, re.S|re.DOTALL)
-							for single_h3 in find_h3_with_death:
-								if single_h3 is not None:
-									print 'find_h3_with_death', single_h3.group(0)
 
-								# <h3><span class="mw-headline" id="(.+?)">(.+?)</span><span class="editsection">(.+?)</h3>
-				# if len(diagnosis) == 0:
-				# 	diagnosis = ["No diagnosis available"]
+				# -----------------------------------------------------------------------------
+				# Really painful way to ensure every character has content in the cause of death column. 
+				# To be edited by hand later.
+				# -----------------------------------------------------------------------------
+				get_main_content = re.search('<article id="WikiaMainContent" class="WikiaMainContent">(.+?)</article>', url_page, re.S|re.DOTALL)
+				get_main_content = get_main_content.group(0)
+				for every_h3 in re.finditer('<h3><span class="mw-headline" id="(.+?)">(.+?)</span><span class="editsection">(.+?)</span></h3>', get_main_content, re.S|re.DOTALL):
+					
+					h3_text = every_h3.group(2)
+					h3_id = every_h3.group(1)
 
+					if "Death" in h3_text: 
+
+						get_section_para = re.search('<h3><span class="mw-headline" id="' + h3_id + '">' + every_h3.group(2) + '</span><span class="editsection">(.+?)</span></h3>(.+?)</p>(.+?)</p>', get_main_content, re.S|re.DOTALL)
+						cause_of_death = [get_section_para.group(0)]
+						# print get_section_para.group(3)
+					# else: 
+					# 	cause_of_death = h3_text
+						# print 'h3_text', h3_text
+					
+					# print 'cause_of_death', cause_of_death
+				# else:
+				# 	get_body_content = re.search('<article id="WikiaMainContent" class="WikiaMainContent">(.+?)</article>', url_page, re.S|re.DOTALL)
+					
+				# 	if get_body_content is not None:
+				# 		get_body_content = get_body_content.group(0)
+				# 		find_h3_with_death = re.finditer('<h3><span class="mw-headline" id="(.+?)">(.+?)</span>(.+?)</h3>', get_body_content, re.S|re.DOTALL)
+				# 		for single_h3 in find_h3_with_death:
+				# 			if single_h3 is not None:
+				# 				print 'find_h3_with_death', single_h3.group(0)
+
+				# 			<h3><span class="mw-headline" id="(.+?)">(.+?)</span><span class="editsection">(.+?)</h3>
+
+				if len(diagnosis) == 0:
+					diagnosis = ["No diagnosis available"]
+				
 				if len(treatment) == 0:
 					treatment = ["No treatment available"]
 				# print 'treatment', treatment
@@ -364,7 +383,7 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				# ***Last step***  Write the rows for each variable
 				# -----------------------------------------------------------------------------
-				character_data = [counter, character_name, character_type, diagnosis, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+				character_data = [counter, character_name, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
 
