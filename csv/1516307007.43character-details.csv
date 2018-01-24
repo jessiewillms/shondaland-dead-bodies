@@ -1,7 +1,0 @@
-counter,name,character_type,diagnosis,treatment,actor,single_or_multiple_episodes,season_episode_code,first_episode_title_underscore,first_episode_title_text,last_episode_title_underscore,last_episode_title_text,seasons_array
-60,David Gibbs,patient,['No diagnosis available'],['No treatment available'],Michael B. Silver,multiple,['S-5-EP-12'],,,Losing_Battles,Losing Battles,['5']
-61,Brett Gibson,patient,"['Gunshot wounds', 'Stroke', 'Brain death']","['Cricothyrotomy', 'Surgery', 'Tracheal repair', 'Organ harvest']",William Nicol,single,"['S-11-EP-18', 'S-11-EP-18']",When_I_Grow_Up,When I Grow Up,When_I_Grow_Up,When I Grow Up,['11']
-62,Peter Gibson,patient,"['Gunshot wounds', 'Traumatic arrest', 'Brain death']","['Subclavian line', 'Chest tubes', 'Organ harvest']",Jake Green,single,"['S-11-EP-18', 'S-11-EP-18']",When_I_Grow_Up,When I Grow Up,When_I_Grow_Up,When I Grow Up,['11']
-63,Susan Grant,family,['No diagnosis available'],['No treatment available'],Ann Cusack,multiple,['S-4-EP-13'],,,Blind_Love,Blind Love,['4']
-64,Greta,patient,['Inoperable Glioma'],['Clinical Trial'],Regina Taylor,single,"['S-4-EP-15', 'S-4-EP-15']",Losing_My_Mind,Losing My Mind,Losing_My_Mind,Losing My Mind,['4']
-65,Ellis Grey,family,['No diagnosis available'],['No treatment available'],Kate Burton,multiple,['S-14-EP-7'],,,"Who_Lives,_Who_Dies,_Who_Tells_Your_Story","Who Lives, Who Dies, Who Tells Your Story",['14']

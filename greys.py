@@ -294,7 +294,7 @@ def scrape_character_pages(url_array):
 						# -----------------------------------------------------------------------------
 					
 				else: 
-					single_or_multiple_episodes = "no information available"
+					single_or_multiple_episodes = "No information available"
 				# -----------------------------------------------------------------------------
 				
 
@@ -349,7 +349,7 @@ def scrape_character_pages(url_array):
 							find_h3_with_death = re.finditer('<h3><span class="mw-headline" id="(.+?)">(.+?)</span>(.+?)</h3>', get_body_content, re.S|re.DOTALL)
 							for single_h3 in find_h3_with_death:
 								if single_h3 is not None:
-									print 'find_h3_with_death', single_h3.group(2)
+									print 'find_h3_with_death', single_h3.group(0)
 
 								# <h3><span class="mw-headline" id="(.+?)">(.+?)</span><span class="editsection">(.+?)</h3>
 				# if len(diagnosis) == 0:
