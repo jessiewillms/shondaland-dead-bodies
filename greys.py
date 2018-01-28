@@ -7,13 +7,7 @@ import csv
 
 date = time.time()
 
-# ------------------------------------------------------------------------------------------------------------------- # 
-# TODO:
-# -- make new column that gets the *range* of episodes and seasons.
-	# ie., Mark Sloan's season/episode code array should include every episode from every season
-# ------------------------------------------------------------------------------------------------------------------- # 
-
-# ------------------------------------------------------------------------------------------------------------------- # 
+# ------------------------------------------------------------------------------------------------------------------- 
 # For the CSV of character names + URLs
 top_columns = ['name', 'url']
 
@@ -55,7 +49,7 @@ def scrape_character_pages(url_array):
 		
 		# if counter >= 60 and counter <= 70:
 		if counter < counter_prod:
-			# print '-----.------------------------------------------------------------------------------', url
+			print '-----------------------------------------------------------------------------------', url
 			
 			# -----------------------------------------------------------------------------
 			# Open each page and get the contents
@@ -109,8 +103,8 @@ def scrape_character_pages(url_array):
 								get_ep_number = get_ep_season_nums.group(4)
 
 							code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
-							# print code_season_number_episode_number
 							season_episode_code.append(code_season_number_episode_number)
+							# print code_season_number_episode_number
 
 				# -----------------------------------------------------------------------------
 				# Get the sidebar markup
@@ -191,6 +185,19 @@ def scrape_character_pages(url_array):
 								last_episode_title_underscore = get_h3_title_text.group(1)
 								last_episode_title_text = get_h3_title_text.group(2)
 
+								ep_url = 'http://greysanatomy.wikia.com/' + first_episode_title_underscore
+
+								get_ep_page = urllib.urlopen(ep_url).read()
+
+								get_ep_season_nums = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+									
+								if get_ep_season_nums.group(0) is not None:
+									get_season_number = get_ep_season_nums.group(2)
+									get_ep_number = get_ep_season_nums.group(4)
+
+								code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
+								season_episode_code.append(code_season_number_episode_number)
+								
 								ep_loop = [first_episode_title_underscore, last_episode_title_underscore]
 						
 						# ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -220,6 +227,20 @@ def scrape_character_pages(url_array):
 
 									ep_loop.append(first_episode_title_underscore)
 
+
+									ep_url = 'http://greysanatomy.wikia.com/' + first_episode_title_underscore
+									get_ep_page = urllib.urlopen(ep_url).read()
+									get_ep_season_nums = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+										
+									if get_ep_season_nums.group(0) is not None:
+										get_season_number = get_ep_season_nums.group(2)
+										get_ep_number = get_ep_season_nums.group(4)
+
+									code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
+									season_episode_code.append(code_season_number_episode_number)
+
+
+
 							else:
 								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
 								if get_h3_title_text is not None:
@@ -247,6 +268,18 @@ def scrape_character_pages(url_array):
 								last_episode_title_text = last_ep.group(5)
 								ep_loop.append(last_episode_title_underscore)
 
+								ep_url = 'http://greysanatomy.wikia.com/' + last_episode_title_underscore
+								get_ep_page = urllib.urlopen(ep_url).read()
+								
+								get_ep_season_nums = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+										
+								if get_ep_season_nums.group(0) is not None:
+									get_season_number = get_ep_season_nums.group(2)
+									get_ep_number = get_ep_season_nums.group(4)
+
+								code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
+								season_episode_code.append(code_season_number_episode_number)
+
 							else:
 								single_or_multiple_episodes = "multiple"
 								get_h3_title_text = re.search('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', content_sdf, re.S|re.DOTALL)
@@ -256,6 +289,18 @@ def scrape_character_pages(url_array):
 
 								# print 'first episode title underscore', last_episode_title_underscore
 								ep_loop.append(last_episode_title_underscore)
+
+
+								ep_url = 'http://greysanatomy.wikia.com/' + last_episode_title_underscore
+								get_ep_page = urllib.urlopen(ep_url).read()
+								get_ep_season_nums = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+										
+								if get_ep_season_nums.group(0) is not None:
+									get_season_number = get_ep_season_nums.group(2)
+									get_ep_number = get_ep_season_nums.group(4)
+
+								code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
+								season_episode_code.append(code_season_number_episode_number)
 
 						# ---------------------------------------------------------------------------------------------------------------------------------------------
 						# Seasons
