@@ -79,7 +79,7 @@ def scrape_character_pages(url_array):
 
 				if season is not None:
 					season = season.group(4)
-					print season
+					# print season
 				# THIS WORKS
 				# for every_tr in re.finditer('<td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
 				# 	print 'tbls', every_tr.group(0)
@@ -87,7 +87,7 @@ def scrape_character_pages(url_array):
 
 
 				# for every_td in re.finditer('<td><b>#(.+?)</b></td><td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
-				# 	title = every_td.group(4)
+					# title = every_td.group(4)
 				# 	number = re.search('<b>#(.+?)</b>', every_td.group(0), re.S|re.DOTALL)
 				# 	number = number.group(1)
 					
@@ -103,11 +103,12 @@ def scrape_character_pages(url_array):
 						ep_url = 'http://greysanatomy.wikia.com' + every_td.group(1)
 						
 						get_ep_page = urllib.urlopen(ep_url).read()
-						print 'ep_url', get_ep_page
+						# print 'ep_url', get_ep_page
 
-						# ep_code = re.search('<tr>(.+?)<td class="(.+?)">Season (.+?)</td>(.+?)<td class="(.+?)">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
-						# 	if ep_code is not None:
-						# 		print ep_code.group(0)
+						ep_code = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+							
+						if ep_code.group(0) is not None:
+								print every_td.group(3), ' season', ep_code.group(2), ' ep', ep_code.group(4)
 								# print 'ep_code', ep_code.group(3)
 								# print 'ep_code', ep_code.group(6)
 				
