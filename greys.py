@@ -13,7 +13,7 @@ top_columns = ['name', 'url']
 
 filename = str(date) + 'character-name-url.csv'
 
-directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/'
+directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
 # directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
 
 CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel')
@@ -24,7 +24,7 @@ CharacterNameAndURL.writerow(top_columns)
 top_columns_character_details =  ['counter', 'name', 'image', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
-# directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
