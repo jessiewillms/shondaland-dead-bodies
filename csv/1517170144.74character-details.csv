@@ -1,0 +1,3 @@
+counter,name,character_type,diagnosis,cause_of_death,treatment,actor,single_or_multiple_episodes,season_episode_code,first_episode_title_underscore,first_episode_title_text,last_episode_title_underscore,last_episode_title_text,seasons_array
+0,Abraham,patient,['Contusions'],[],['No treatment available'],Lou Cutell,single,['S-12-EP-4'],Old_Time_Rock_and_Roll,Old Time Rock and Roll,Old_Time_Rock_and_Roll,Old Time Rock and Roll,['12']
+1,Brad Ackles,patient,"['Lacerations', 'Gunshot wound']",[],['Debridement'],Ken Marino,single,['S-2-EP-25'],17_Seconds,17 Seconds,17_Seconds,17 Seconds,['2']
