@@ -19,7 +19,8 @@ top_columns = ['name', 'url']
 
 filename = str(date) + 'character-name-url.csv'
 
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/'
+# directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
 
 CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
@@ -29,7 +30,7 @@ CharacterNameAndURL.writerow(top_columns)
 top_columns_character_details =  ['counter', 'name', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+# directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
@@ -66,15 +67,53 @@ def scrape_character_pages(url_array):
 			# Get all the episodes a character appeared in
 			# -----------------------------------------------------------------------------
 			header_season = ""
-			for every_table in re.finditer('<table class="(.+?)" border="0" style="(.+?)">(.+?)<tbody>(.+?)</tbody>(.+?)</table>', url_page, re.S|re.DOTALL):
+			# for every_table in re.finditer('<table class="(.+?)" border="0" style="(.+?)">(.+?)<tbody>(.+?)</tbody>(.+?)</table>', url_page, re.S|re.DOTALL):
 
-				print 'every_table', every_table
-				# for every_tr in re.finditer('<tr>(.+?)</tr>', every_table.group(3), re.S|re.DOTALL):
-				# 	print every_tr.group(0)
+				# print 'every_table', every_table
+			
+
+			for every_apt in re.finditer('<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL):
+				tbls = every_apt.group(2)
+
+				
+				get_season = re.search('<a href="/wiki/Season_(.+?)"(.+?)"><span(.+?)>Season (.+?)</span></a>', tbls, re.S|re.DOTALL)
+
+				if get_season is not None:
+					get_season = get_season.group(4)
+				
+				# print '-----------------------------------------------------------------------------------'
+				# THIS WORKS
+				# for every_tr in re.finditer('<td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
+				# 	print 'tbls', every_tr.group(0)
+				# 	THIS WORKS
+
+				for every_tr in re.finditer('<td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
+					print 'tbls', every_tr.group(0)
 
 
-					
+	
+				# for every_tr in re.finditer('<td><b>(.+?)</b></td><td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
+				# for every_link in re.finditer('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', tbls, re.S|re.DOTALL):
+				# 	print '-----------------------------------------------------------------------------------'
+				# 	print 'every_tr', every_link.group(0)
 
+				
+
+
+				# apt_price = re.search('<span class="result-price">(.+?)</span>', every_apt.group(0))
+
+
+			# for every_tbl in re.finditer('', every_table.group(3), re.S|re.DOTALL):
+			# 	print every_tbl.group(2)
+
+			
+
+			# first_tbl = re.search('<h2><span class="mw-headline" id="(.+?)">Appearances</span>(.+?)</h2>(.+?)<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL)
+
+			# if first_tbl is not None:
+			# 	print first_tbl.group(5)
+			# else:
+			# 	print "notihng"
 
 
 
