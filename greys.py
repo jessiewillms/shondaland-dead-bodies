@@ -27,7 +27,7 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'image', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
 # directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
@@ -38,7 +38,6 @@ CharacterDeatils.writerow(top_columns_character_details)
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Loop over every page
 # ------------------------------------------------------------------------------------------------------------------- # 
-
 def scrape_character_pages(url_array):
 	# -----------------------------------------------------------------------------
 	# Set up empty variables -- top level variables 
@@ -56,7 +55,7 @@ def scrape_character_pages(url_array):
 		
 		# if counter >= 60 and counter <= 70:
 		if counter < counter_prod:
-			print '-----------------------------------------------------------------------------------', url
+			# print '-----.------------------------------------------------------------------------------', url
 			
 			# -----------------------------------------------------------------------------
 			# Open each page and get the contents
@@ -64,125 +63,16 @@ def scrape_character_pages(url_array):
 			url_page = urllib.urlopen(url).read()
 
 			# -----------------------------------------------------------------------------
-			# Get all the episodes a character appeared in
-			# -----------------------------------------------------------------------------
-			header_season = ""
-			# for every_table in re.finditer('<table class="(.+?)" border="0" style="(.+?)">(.+?)<tbody>(.+?)</tbody>(.+?)</table>', url_page, re.S|re.DOTALL):
-
-				# print 'every_table', every_table
-			
-
-			for every_apt in re.finditer('<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL):
-				tbls = every_apt.group(2)
-
-				season = re.search('<a href="/wiki/Season_(.+?)"(.+?)"><span(.+?)>Season (.+?)</span></a>', tbls, re.S|re.DOTALL)
-
-				if season is not None:
-					season = season.group(4)
-					# print season
-				# THIS WORKS
-				# for every_tr in re.finditer('<td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
-				# 	print 'tbls', every_tr.group(0)
-				# 	THIS WORKS
-
-
-				# for every_td in re.finditer('<td><b>#(.+?)</b></td><td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
-					# title = every_td.group(4)
-				# 	number = re.search('<b>#(.+?)</b>', every_td.group(0), re.S|re.DOTALL)
-				# 	number = number.group(1)
-					
-				# 	print season,'-',number,'-', title
-				# 	
-				# 	
-				for every_tr in re.finditer('<tr valign="top" (.+?)>(.+?)</tr>', tbls, re.S|re.DOTALL):
-					every_tr = every_tr.group(2)
-					
-					for every_td in re.finditer('<td>"<a href="(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', every_tr, re.S|re.DOTALL):
-						# print 'every_td', every_td.group(0)
-
-						ep_url = 'http://greysanatomy.wikia.com' + every_td.group(1)
-						
-						get_ep_page = urllib.urlopen(ep_url).read()
-						# print 'ep_url', get_ep_page
-
-						ep_code = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
-							
-						if ep_code.group(0) is not None:
-								print every_td.group(3), ' season', ep_code.group(2), ' ep', ep_code.group(4)
-								# print 'ep_code', ep_code.group(3)
-								# print 'ep_code', ep_code.group(6)
-				
-				
-				# 	title = every_td.group(4)
-				# 	number = re.search('<b>#(.+?)</b>', every_td.group(0), re.S|re.DOTALL)
-				# 	number = number.group(1)
-					
-				# 	print season,'-',number,'-', title
-
-
-	
-				# for every_tr in re.finditer('<td><b>(.+?)</b></td><td>"<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', tbls, re.S|re.DOTALL):
-				# for every_link in re.finditer('<a href="/wiki/(.+?)" title="(.+?)">(.+?)</a>', tbls, re.S|re.DOTALL):
-				# 	print '-----------------------------------------------------------------------------------'
-				# 	print 'every_tr', every_link.group(0)
-
-				
-
-
-				# apt_price = re.search('<span class="result-price">(.+?)</span>', every_apt.group(0))
-
-
-			# for every_tbl in re.finditer('', every_table.group(3), re.S|re.DOTALL):
-			# 	print every_tbl.group(2)
-
-			
-
-			# first_tbl = re.search('<h2><span class="mw-headline" id="(.+?)">Appearances</span>(.+?)</h2>(.+?)<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL)
-
-			# if first_tbl is not None:
-			# 	print first_tbl.group(5)
-			# else:
-			# 	print "notihng"
-
-
-
-
-
-
-
-
-
-
-
-				# for every_header in re.finditer('<td colspan="6" style="color:white; font-size:larger;"><b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy"><span style="color:white;">Grey\'s Anatomy</span></a></b>,(.+?)<a href="/wiki/(.+?)" title="(.+?)"><span style="color:white">Season (.+?)</span></a>(.+?)</td>', every_table.group(3), re.S|re.DOTALL):
-				# 	header_season = every_header.group(4)
-				# 	# print 'season', header_season
-
-					# get_ep_num = re.search('<b>#(.+?)</b></td><td>"<a href="/wiki/New_History" title="New History">New History</a>"', every_tr.group(0), re.S|re.DOTALL)
-
-					# if get_ep_num is not None:
-					# 	print 'bang', get_ep_num.group(0)
-					# 	print '----'
-
-					# get_season_number = header_season
-					# get_ep_number = every_tr.group(1)
-					# get_ep_title = every_tr.group(4)
-
-					# code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
-					# print code_season_number_episode_number
-					# print 'S-', header_season
-					# print 'title', get_ep_title
-
-			# -----------------------------------------------------------------------------
 			check_character_is_greys_character = re.search('<div class="page-header__categories-links">(.+?)<a href="/wiki/Category:Characters" data-tracking="categories-top-0">Characters</a>,(.+?)<a href="/wiki/Category:GA_Characters" data-tracking="categories-top-1">GA Characters</a>(.+?)</div>', url_page, re.S|re.DOTALL)
+			
 			if check_character_is_greys_character is not None:
 				character_name = "" # variable 1
 				diagnosis = []
 				cause_of_death = []
 				treatment = []
 				actor = ""
+				image = ""
 				single_or_multiple_episodes = ""
-				season_episode_code = []
 
 				appearances = []
 
@@ -197,6 +87,32 @@ def scrape_character_pages(url_array):
 				seasons_array = []
 
 				# -----------------------------------------------------------------------------
+				# For each character, get every episode they appeared in 
+				# -----------------------------------------------------------------------------
+				for every_apt in re.finditer('<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL):
+					tbls = every_apt.group(2)
+					
+					for every_tr in re.finditer('<tr valign="top" (.+?)>(.+?)</tr>', tbls, re.S|re.DOTALL):
+						every_tr = every_tr.group(2)
+						
+						for every_td in re.finditer('<td>"<a href="(.+?)" title="(.+?)">(.+?)</a>"(.+?)</td>', every_tr, re.S|re.DOTALL):
+
+							episode_title = every_td.group(3)
+
+							ep_url = 'http://greysanatomy.wikia.com' + every_td.group(1)
+							get_ep_page = urllib.urlopen(ep_url).read()
+
+							get_ep_season_nums = re.search('<tr>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>(.+?)<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>(.+?)</tr>', get_ep_page, re.S|re.DOTALL)
+								
+							if get_ep_season_nums.group(0) is not None:
+								get_season_number = get_ep_season_nums.group(2)
+								get_ep_number = get_ep_season_nums.group(4)
+
+							code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
+							# print code_season_number_episode_number
+							season_episode_code.append(code_season_number_episode_number)
+
+				# -----------------------------------------------------------------------------
 				# Get the sidebar markup
 				# -----------------------------------------------------------------------------
 				get_aside = re.search('<aside class="portable-infobox pi-background (.+?) pi-layout-default">(.+?)</aside>', url_page, re.S|re.DOTALL)
@@ -205,7 +121,14 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 
 				# -----------------------------------------------------------------------------
-				# Character's name -- variable 1
+				# Character's photo
+				# -----------------------------------------------------------------------------
+				get_image_url = re.search('<img src="(.+?)" (.+?) class="pi-image-thumbnail" (.+?)>', get_aside, re.S|re.DOTALL)
+				if get_image_url is not None:
+					image = get_image_url.group(1)
+
+				# -----------------------------------------------------------------------------
+				# Character's name
 				# -----------------------------------------------------------------------------
 				get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
 				character_name = get_title_of_page.group(1)
@@ -343,7 +266,6 @@ def scrape_character_pages(url_array):
 								pass
 
 							# ---------------------------------------------------------------------------------------------------------------------------------------------
-							# <b><a href="/wiki/Grey%27s_Anatomy" title="Grey's Anatomy">GA</a>:</b>
 							seasons_on_ga = re.search('<b><a href="/wiki/Grey%27s_Anatomy" title="Grey\'s Anatomy">GA</a>:</b>(.+?)', content_sdf, re.S|re.DOTALL)
 							if seasons_on_ga is not None:
 								
@@ -351,34 +273,7 @@ def scrape_character_pages(url_array):
 								for single_season in get_appearances_content:
 									single_season = single_season.group(3)
 									if single_season not in seasons_array:
-										seasons_array.append(single_season)	
-
-					# -----------------------------------------------------------------------------
-					# Now go get the ep + season numbers, create the code
-					for single in ep_loop:
-						make_url = 'http://greysanatomy.wikia.com/wiki/' + single
-						episode_page_url = urllib.urlopen(make_url).read()
-						
-						# Find the ep title
-						get_ep_number = re.search('<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Episode (.+?)</td>', episode_page_url, re.S|re.DOTALL)
-						get_season_number = re.search('<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing">Season (.+?)</td>', episode_page_url, re.S|re.DOTALL)
-
-						# Check that the season number is available
-						if get_season_number is not None:
-							get_season_number = get_season_number.group(1)
-						else:
-							get_season_number = "ERROR"
-
-						# Check that the episode number is available
-						if get_ep_number is not None:
-							get_ep_number = get_ep_number.group(1)
-						else:
-							get_ep_number = "ERROR"
-
-						code_season_number_episode_number = 'S-' + get_season_number + '-EP-' + get_ep_number
-						
-						if code_season_number_episode_number not in season_episode_code:
-							season_episode_code.append(code_season_number_episode_number)
+										seasons_array.append(single_season)
 
 						# -----------------------------------------------------------------------------
 					
@@ -465,7 +360,7 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				# ***Last step***  Write the rows for each variable
 				# -----------------------------------------------------------------------------
-				character_data = [counter, character_name, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+				character_data = [counter, character_name, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------
