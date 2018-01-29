@@ -5,6 +5,10 @@ import re # regular expressions (text parser)
 import urllib # Internet connection (socket connections, https)
 import csv
 
+# gender analysis
+import sexmachine.detector as gender
+d = gender.Detector()
+
 date = time.time()
 
 # ------------------------------------------------------------------------------------------------------------------- 
@@ -13,18 +17,19 @@ top_columns = ['name', 'url']
 
 filename = str(date) + 'character-name-url.csv'
 
-directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
-# directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/'
+# directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
+directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
 
 CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'image', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'image', 'character_gender', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = str(date) + 'character-details.csv'
-directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+# directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
@@ -61,6 +66,7 @@ def scrape_character_pages(url_array):
 			
 			if check_character_is_greys_character is not None:
 				character_name = "" # variable 1
+				character_gender = "" # variable 1
 				diagnosis = []
 				cause_of_death = []
 				treatment = []
@@ -126,6 +132,26 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
 				character_name = get_title_of_page.group(1)
+
+				if "Dr" in character_name.split(" ")[0]:
+					character_first_name = character_name.split(" ")[1]
+					character_gender = d.get_gender(character_first_name, u'usa')
+					print 'character_first_name', character_first_name, character_gender
+
+				elif "Mr" in character_name.split(" ")[0]:
+					character_first_name = character_name.split(" ")[1]
+					character_gender = d.get_gender(character_first_name, u'usa')
+					print 'character_first_name', character_first_name, character_gender
+
+				else: 
+					character_first_name = character_name.split(" ")[0]
+					character_gender = d.get_gender(character_first_name, u'usa')
+					print 'character_first_name', character_first_name, character_gender
+
+				
+
+				# print d.get_gender(character_name)
+				
 				# -----------------------------------------------------------------------------
 				
 				# -----------------------------------------------------------------------------
@@ -405,7 +431,7 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				# ***Last step***  Write the rows for each variable
 				# -----------------------------------------------------------------------------
-				character_data = [counter, character_name, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+				character_data = [counter, character_name, character_gender, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------

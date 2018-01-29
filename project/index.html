@@ -14,10 +14,40 @@
 			border: 1px solid darkgrey;
 			margin: 0 1px;
 		}
+
+		.wrap--full-height {
+			height: 100vh;
+		}
 	</style>
 </head>
 <body>
+	
+	<header class="wrap--full-height">
+		<p class="highlight">Get your person. And some tissues.</p>
+		<h1>The great Grey's Anatomy body count.</h1>
+		<p class="intro">"The human life is made up of choices. Yes or no. In or out. Up or down. And then there are the choices that matter. Love or hate. To be a hero or to be a coward. To fight or to give in. To live or die. Live or die, that’s the important choice. And it’s not always in our hands."</p>
 
+		<div class="credits">
+			<p class="by"><a href="https://twitter.com/jessiewillms"><strong>By:</strong> Jessie Willms</a></p>
+			<p><a href="http://greysanatomy.wikia.com/wiki/Grey%27s_Anatomy_Universe_Wiki">Information pulled from Grey's Anatomy Universe Wiki</a></p>
+			<p class="by">And thanks to 👑 Shonda Rhimes 👑 for fourteen excellent, weepy years.</p>
+		</div>
+	</header>
+
+	<section class="wrap--full-height">
+		<h3>Gender breakdown</h3>
+
+		<div id="js-gender-wrap">
+			<p>All characters</p>
+			<div id="js-gender-wrap--all"></div>
+			
+			<p>Major characters</p>
+			<div id="js-gender-wrap--major"></div>
+			
+			<p>Minor characters</p>
+			<div id="js-gender-wrap--minor"></div>
+		</div>
+	</section>
 	<!-- Calendar -->
 	<div id="js_ep_calendar"></div>
 
@@ -30,7 +60,6 @@
 	const process_details = function(details_data) {
 		console.log(details_data);
 	}
-	
 
 	// Work with the data now
 	const process_episodes = function(episode_data) {
