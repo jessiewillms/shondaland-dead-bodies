@@ -1,4 +1,3 @@
-
 # import libraries 
 import time # wait commands (space out)
 import re # regular expressions (text parser)
@@ -13,14 +12,13 @@ date = time.time()
 
 # ------------------------------------------------------------------------------------------------------------------- 
 # For the CSV of character names + URLs
-top_columns = ['name', 'url']
-
-filename = str(date) + 'character-name-url.csv'
+top_columns = ['name', 'url',]
+filename = 'character-name-url.csv'
 
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
 
-CharacterNameAndURL = csv.writer(file(directory + filename, 'a'),dialect='excel')
+CharacterNameAndURL = csv.writer(file(directory + filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
@@ -31,7 +29,7 @@ filename = str(date) + 'character-details.csv'
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
 
-CharacterDeatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
+CharacterDeatils = csv.writer(file(directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
@@ -148,9 +146,6 @@ def scrape_character_pages(url_array):
 					character_gender = d.get_gender(character_first_name, u'usa')
 					print 'character_first_name', character_first_name, character_gender
 
-				
-
-				# print d.get_gender(character_name)
 				
 				# -----------------------------------------------------------------------------
 				
