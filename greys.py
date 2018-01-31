@@ -4,16 +4,35 @@ import re # regular expressions (text parser)
 import urllib # Internet connection (socket connections, https)
 import csv
 
+# This is a test #
+import json
+import os
+import shutil 
+import sys
+import urllib2
+import zipfile
+
+
+if len(sys.argv) > 1:
+	counter_total = 3
+else:
+	counter_total = 170
+
 # gender analysis
 import sexmachine.detector as gender
 d = gender.Detector()
 
+# Store time in variable
 date = time.time()
+
+# https://pudding.cool/2017/09/this-american-life/
+# https://github.com/propublica/weepeople
+# http://papaparse.com/docs#local-files
 
 # ------------------------------------------------------------------------------------------------------------------- 
 # For the CSV of character names + URLs
 top_columns = ['name', 'url',]
-filename = 'character-name-url.csv'
+filename = 'character-list.csv'
 
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
@@ -23,36 +42,33 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'image', 'character_gender', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'name', 'image', 'character_gender', 'character_major_or_minor', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
-filename = str(date) + 'character-details.csv'
+filename = 'character-details.csv'
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
 directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
 
-# ------------------------------------------------------------------------------------------------------------------- # 
+major_characters = ['Derek Shepherd', 'Mark Sloan', 'Henry Burton', 'Ellis Grey', 'Susan Grey', 'Adele Webber', 'Reed Adamson', 'Heather Brooks', 'Lexie Grey', 'George O\'Malley', 'Charles Percy']
+
+# --------------------------------------------------------------------------------------------# 
 # Loop over every page
-# ------------------------------------------------------------------------------------------------------------------- # 
+# ------------------------------------------------------------------------------------------- # 
 def scrape_character_pages(url_array):
 	# -----------------------------------------------------------------------------
 	# Set up empty variables -- top level variables 
 	# -----------------------------------------------------------------------------
 	counter = 0
-
 	# -----------------------------------------------------------------------------
 	# Loop over every URL in the URL array
 	# -----------------------------------------------------------------------------
 	character_type_array = []
 	for url in url_array:
 		# Only get 
-		counter_test = 50
-		counter_prod = 170
-		
-		# if counter >= 60 and counter <= 70:
-		if counter < counter_prod:
-			print '-----------------------------------------------------------------------------------', url
+		if counter <= counter_total:
+			print '---------------------------------------------------', url
 			
 			# -----------------------------------------------------------------------------
 			# Open each page and get the contents
@@ -65,6 +81,7 @@ def scrape_character_pages(url_array):
 			if check_character_is_greys_character is not None:
 				character_name = "" # variable 1
 				character_gender = "" # variable 1
+				character_major_or_minor = ""
 				diagnosis = []
 				cause_of_death = []
 				treatment = []
@@ -134,19 +151,19 @@ def scrape_character_pages(url_array):
 				if "Dr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = d.get_gender(character_first_name, u'usa')
-					print 'character_first_name', character_first_name, character_gender
 
 				elif "Mr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = d.get_gender(character_first_name, u'usa')
-					print 'character_first_name', character_first_name, character_gender
-
 				else: 
 					character_first_name = character_name.split(" ")[0]
 					character_gender = d.get_gender(character_first_name, u'usa')
-					print 'character_first_name', character_first_name, character_gender
 
-				
+				if character_name in major_characters:
+					character_major_or_minor = 'major'
+				else:
+					character_major_or_minor = 'minor'
+
 				# -----------------------------------------------------------------------------
 				
 				# -----------------------------------------------------------------------------
@@ -156,8 +173,8 @@ def scrape_character_pages(url_array):
 				if character_type not in character_type_array:
 					if character_type == 'internresident':
 						character_type = "intern resident"
-					
-					character_type_array.append(character_type)
+				
+				character_type_array.append(character_type)
 				# -----------------------------------------------------------------------------
 
 				# -----------------------------------------------------------------------------
@@ -426,7 +443,7 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				# ***Last step***  Write the rows for each variable
 				# -----------------------------------------------------------------------------
-				character_data = [counter, character_name, character_gender, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+				character_data = [counter, character_name, character_gender, character_major_or_minor, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------
@@ -452,7 +469,6 @@ def scrape_page(html_page):
 
 		# Skip all the PP characters
 		if get_character_names.group(1) != 'Lillie_Jordan' and get_character_names.group(1) != 'Bizzy_Forbes' and get_character_names.group(1) != 'Timothy_Robbins' and get_character_names.group(1) != 'Susan_Grant' and get_character_names.group(1) != 'David_Gibbs' and get_character_names.group(1) != 'Frances_Wilder' and get_character_names.group(1) != 'Dell_Parker' and get_character_names.group(1) != 'Anna_Wilder' and get_character_names.group(1) != 'Baby_Shepherd' and get_character_names.group(1) != 'Pete_Wilder':
-		# if get_character_names.group(1) != 'Nonesense!!!!!!!':
 			
 			url = 'http://greysanatomy.wikia.com/wiki/' + get_character_names.group(1)
 			url_array.append(url)
@@ -467,4 +483,9 @@ base_url = 'http://greysanatomy.wikia.com/wiki/Category:Deceased_Characters'
 full_url = base_url
 
 html_page = urllib.urlopen(base_url).read() # .urlopen() takes one value, the URL to open # .read() as a method to read returns
-scrape_page(html_page)
+
+def start_scrape():
+	scrape_page(html_page)
+
+if __name__ == '__main__':
+	start_scrape()

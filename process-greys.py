@@ -26,15 +26,40 @@ female = 0
 male = 0
 unknown = 0
 
+female_major = 0
+male_major = 0
+unknown_major = 0
+
+female_minor = 0
+male_minor = 0
+unknown_minor = 0
+
 for row in reader:
 	# Get gender breakdown
 	gender = row[2]
-	# print gender
+	major_minor = row[x]
+	print row[9]
 	
 	if gender == "female" or gender == "mostly_female":
 		female = female + 1
+
+		if major_minor == "major":
+			female_major = female_major + 1
+		else:
+			female_minor = female_minor + 1
+	
+
+
+
 	elif gender == "male" or gender == "mostly_male":
 		male = male + 2
+
+		# Is it a major or minor male 
+		if major_minor == "major":
+			male_major = male_major + 1
+		else:
+			male_minor = male_minor + 1
+	
 	else:
 		unknown = unknown + 1
 
@@ -45,5 +70,3 @@ print 'male', male
 print 'unknown', unknown
 
 DataAnalysis.writerow([female, male, unknown])
-
-
