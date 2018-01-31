@@ -30,16 +30,17 @@ date = time.time()
 # https://github.com/propublica/weepeople
 # http://papaparse.com/docs#local-files
 
+base_dir = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/'
 # ------------------------------------------------------------------------------------------------------------------- 
 # For the CSV of character names + URLs
 top_columns = ['name', 'url',]
-filename = 'character-list.csv'
+character_list_filename = 'character-list.csv'
 
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
 character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
 character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
 
-CharacterNameAndURL = csv.writer(file(character_list_directory + filename, 'w'),dialect='excel')
+CharacterNameAndURL = csv.writer(file(character_list_directory + character_list_filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
@@ -110,8 +111,6 @@ def scrape_character_pages(url_array):
 				for every_apt in re.finditer('<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL):
 					tbls = every_apt.group(2)
 
-					print 'character_name', character_name
-					
 					for every_tr in re.finditer('<tr valign="top" (.+?)>(.+?)</tr>', tbls, re.S|re.DOTALL):
 						every_tr = every_tr.group(2)
 						
@@ -458,8 +457,18 @@ def scrape_character_pages(url_array):
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
 		# -----------------------------------------------------------------------------
-	print "done"
-	shutil.copy(character_list_directory, character_list_destination)
+	
+	list_path = os.path.dirname(os.path.realpath(__file__)) + '/project/csv/character_list'
+	if os.path.isdir(list_path):
+		print "EXISTS: ", list_path
+	else:
+		print os.path.dirname(os.path.realpath(__file__))
+
+		# /Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/character-list.csv
+		# /Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/
+	
+	# shutil.copytree(character_list_directory, character_list_destination)
+	# os.chdir(base_dir)
 	# shutil.move(character_details_directory, character_details_destination)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
