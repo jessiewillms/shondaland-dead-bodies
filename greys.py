@@ -457,19 +457,14 @@ def scrape_character_pages(url_array):
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
 		# -----------------------------------------------------------------------------
-	
-	list_path = os.path.dirname(os.path.realpath(__file__)) + '/project/csv/character_list'
-	if os.path.isdir(list_path):
-		print "EXISTS: ", list_path
-	else:
-		print os.path.dirname(os.path.realpath(__file__))
 
-		# /Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/character-list.csv
-		# /Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/
-	
-	# shutil.copytree(character_list_directory, character_list_destination)
-	# os.chdir(base_dir)
-	# shutil.move(character_details_directory, character_details_destination)
+	# Remove the destination folder, then copy the list character list + its folder
+	shutil.rmtree(character_list_destination)
+	shutil.copytree(character_list_directory, character_list_destination)
+
+	# Remove the destination folder, then copy the details folder + csv
+	shutil.rmtree(character_details_destination)
+	shutil.copytree(character_details_directory, character_details_destination)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Get initial page - get all names
