@@ -12,9 +12,10 @@ import sys
 import urllib2
 import zipfile
 
-
+counter_total = 0
 if len(sys.argv) > 1:
-	counter_total = 3
+	counter_total = sys.argv[1].split('-')[1]
+	counter_total = int(counter_total) #convert to integer
 else:
 	counter_total = 170
 
@@ -35,9 +36,10 @@ top_columns = ['name', 'url',]
 filename = 'character-list.csv'
 
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
+character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
+character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
 
-CharacterNameAndURL = csv.writer(file(directory + filename, 'w'),dialect='excel')
+CharacterNameAndURL = csv.writer(file(character_list_directory + filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
@@ -46,9 +48,10 @@ top_columns_character_details =  ['counter', 'name', 'image', 'character_gender'
 
 filename = 'character-details.csv'
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
-directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
+character_details_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
+character_details_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_details/'
 
-CharacterDeatils = csv.writer(file(directory + filename, 'w'),dialect='excel')
+CharacterDeatils = csv.writer(file(character_details_directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
 
 major_characters = ['Derek Shepherd', 'Mark Sloan', 'Henry Burton', 'Ellis Grey', 'Susan Grey', 'Adele Webber', 'Reed Adamson', 'Heather Brooks', 'Lexie Grey', 'George O\'Malley', 'Charles Percy']
@@ -106,6 +109,8 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				for every_apt in re.finditer('<table(.+?)>(.+?)</table>', url_page, re.S|re.DOTALL):
 					tbls = every_apt.group(2)
+
+					print 'character_name', character_name
 					
 					for every_tr in re.finditer('<tr valign="top" (.+?)>(.+?)</tr>', tbls, re.S|re.DOTALL):
 						every_tr = every_tr.group(2)
@@ -453,6 +458,9 @@ def scrape_character_pages(url_array):
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
 		# -----------------------------------------------------------------------------
+	print "done"
+	shutil.copy(character_list_directory, character_list_destination)
+	# shutil.move(character_details_directory, character_details_destination)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Get initial page - get all names
