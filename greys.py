@@ -45,7 +45,7 @@ CharacterNameAndURL.writerow(top_columns)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Make the headers for each column
-top_columns_character_details =  ['counter', 'name', 'image', 'character_gender', 'character_major_or_minor', 'character_type','diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
+top_columns_character_details =  ['counter', 'character_name', 'character_gender', 'character_major_or_minor', 'image', 'character_type', 'diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = 'character-details.csv'
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
@@ -55,8 +55,27 @@ character_details_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intr
 CharacterDeatils = csv.writer(file(character_details_directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
 
-major_characters = ['Derek Shepherd', 'Mark Sloan', 'Henry Burton', 'Ellis Grey', 'Susan Grey', 'Adele Webber', 'Reed Adamson', 'Heather Brooks', 'Lexie Grey', 'George O\'Malley', 'Charles Percy']
+		
+# --------------------------------------------------------------------------------------------# 
+# *********************************************************************************************
+# This section is for the issues with the data. Fixing them here instead of the CSV
+#  so the script can be run multiple times, etc., without having to by hand 
+#  make those changes again. Super fun. 
+# *********************************************************************************************
+# ------------------------------------------------------------------------------------------- # 
+class define_some_major_character_details:
+    Reed_Adamson = ['Gunshot wound']
+    Derek_Shepherd = ['Gunshot wound!!']
 
+    def function(self):
+        print("This is a message inside the class.")
+
+defined_deaths = define_some_major_character_details()
+
+print(defined_deaths.Derek_Shepherd)
+
+major_characters = ['Derek Shepherd', 'Mark Sloan', 'Denny Duquette, Jr.', 'Henry Burton', 'Ellis Grey', 'Susan Grey', 'Adele Webber', 'Reed Adamson', 'Heather Brooks', 'Lexie Grey', 'George O\'Malley', 'Charles Percy']
+		
 # --------------------------------------------------------------------------------------------# 
 # Loop over every page
 # ------------------------------------------------------------------------------------------- # 
@@ -152,17 +171,30 @@ def scrape_character_pages(url_array):
 				get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
 				character_name = get_title_of_page.group(1)
 
+				set_gender_male = ['Charlie Bilson', 'Dr. Bones', 'Billy Linneman', 'Rich Campion', 'Kyle Diaz', 'Jordan', 'Jordan Kenley', 'Emile Flores', 'Casey', 'Jesse Fannon', 'Mr. Peterson', 'Mr. Peterson', 'Doc', 'Dr. Bones', '"Cosmo" Singh', 'Mr. Shepherd', 'Robbie Reeves', 'Reilly Nash', 'Randy Helsby', 'Jordan Franklin', 'Charlie Bilson']
+				
+				set_gender_female = ['Francesca McNeil', 'JJ', 'Erin Shandley', 'Grandma Anderson', 'Mary Portman', 'Winnie Adkins', 'Bonnie Crasnoff', 'Kim Allen']
+
+				
 				if "Dr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = d.get_gender(character_first_name, u'usa')
-
 				elif "Mr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
-					character_gender = d.get_gender(character_first_name, u'usa')
+					character_gender = 'male'
+				elif "Grandma" in character_name.split(" ")[0]:
+					character_first_name = character_name.split(" ")[1]
+					character_gender = 'female'
 				else: 
-					character_first_name = character_name.split(" ")[0]
-					character_gender = d.get_gender(character_first_name, u'usa')
+					if character_name in set_gender_male:
+						character_gender = 'male'
+					elif character_name in set_gender_female:
+						character_gender = 'female'
+					else:
+						character_first_name = character_name.split(" ")[0]
+						character_gender = d.get_gender(character_first_name, u'usa')
 
+				# Check for major/minor characters
 				if character_name in major_characters:
 					character_major_or_minor = 'major'
 				else:
