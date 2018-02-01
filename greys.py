@@ -63,18 +63,163 @@ CharacterDeatils.writerow(top_columns_character_details)
 #  make those changes again. Super fun. 
 # *********************************************************************************************
 # ------------------------------------------------------------------------------------------- # 
-class define_some_major_character_details:
-    Reed_Adamson = ['Gunshot wound']
-    Derek_Shepherd = ['Gunshot wound!!']
 
-    def function(self):
-        print("This is a message inside the class.")
+define_list_of_characters = {
+		1: {
+			"character_name": "Derek Shepherd",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ['Car accident injuries', 'Brain death'],
+			"treatment": ["Surgery"],
+		},
+		2: {
+			"character_name": "Mark Sloan",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Plane crash injuries", "cardiac tamponade", "Coma"],
+			"treatment": ['No treatment available'],
+		},
+		3: {
+			"character_name": "Denny Duquette, Jr.",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ['Congestive Heart Failure'],
+			"treatment": ['LVAD', 'Heart Transplant'],
+		},
+		4: {
+			"character_name": "Henry Burton",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Internal bleeding", "Tumor", "Diabetes"],
+			"treatment": ["Surgery"],
+		},
+		5: {
+			"character_name": "Ellis Grey",
+			"character_gender": "female",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Alzheimer's disease", "Heart condition"],
+			"treatment": ["Surgery"],
+		},
+		6: {
+			"character_name": "Susan Grey",
+			"character_gender": "female",
+			"character_major_or_minor": "major",
+			"diagnosis": ["septic","toxic megacolon", "hiccups"],
+			"treatment": ["Surgery"],
+		},
+		7: {
+			"character_name": "Adele Webber",
+			"character_gender": "female",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Alzheimer's disease"],
+			"treatment": ["Surgery"],
+		},
+		8: {
+			"character_name": "Reed Adamson",
+			"character_gender": "female",
+			"character_major_or_minor": "major",
+			"diagnosis": ['Gunshot wound'],
+			"treatment": ["No treatment available."],
+		},
+		9: {
+			"character_name": "Heather Brooks",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Electrocution", "Brain bleed"],
+			"treatment": ["Surgery"],
+		},
+		10: {
+			"character_name": "Lexie Grey",
+			"character_gender": "female",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Plane Crash injuries"],
+			"treatment": ["No treatment available."],
+		},
+		11: {
+			"character_name": "George O'Malley",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Bus crash injuries", "Brain death", "Internal injuries"],
+			"treatment": ["Surgery"],
+		},
+		12: {
+			"character_name": "Charles Percy",
+			"character_gender": "male",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Gunshot wound"],
+			"treatment": ["No treatment available."],
+		},
+		13: {
+			"character_name": "Doc",
+			"character_gender": "Male",
+			"character_major_or_minor": "major",
+			"diagnosis": ["Cancer"],
+			"treatment": ["Surgery"],
+		},
+		14: {
+			"character_name": "Paul Stadler",
+			"character_gender": "Male",
+			"character_major_or_minor": "minor",
+			"diagnosis": ["Brain injuries", "Brain death"],
+			"treatment": ["No treatment available."],
+		},
+		15: {
+			"character_name": "Dylan Young",
+			"diagnosis": ["Bomb explosion"]
+		},
+		16: {
+			"character_name": "Gail Webber",
+			"diagnosis": ["Pancreatic cancer"]
+		},
+		17: {
+			"character_name": "Craig Thomas",
+			"diagnosis": ["Heart attack"]
+		},
+		18: {
+			"character_name": "Mr. Shepherd",
+			"diagnosis": ["Gunshot wound"]
+		},
+		19: {
+			"character_name": "Diane Pierce",
+			"diagnosis": ["Breast cancer", "Cancer"],
+			"treatment": ["Chemotherapy"]
+		},
+		20: {
+			"character_name": "Harold O'Malley",
+			"diagnosis": ["Esophageal Cancer", "Cancer"],
+			"treatment": ["Chemotherapy", "Surgery"]
+		},
+		21: {
+			"character_name": "James Evans",
+			"diagnosis": ["mitral regurgitation","Cancer"],
+			"treatment": ["Surgery"]
+		},
+		22: {
+			"character_name": "Samuel Norbert Avery",
+			"diagnosis": ["Type II osteogenesis imperfecta"],
+			"treatment": ["No treatment available."]
+		},
+		23: {
+			"character_name": "Eugene Foote",
+			"treatment": ["Surgery"]
+		},
+		24: {
+			"character_name": "Peter Gekofsky",
+			"treatment": ["IED explosion"]
+		},
+		25: {
+			"character_name": "Jordan",
+			"treatment": ["Car crash injuries"]
+		},
+		26: {
+			"character_name": "Jordan Kenley",
+			"treatment": ["Heart attack"]
+		},
+		27: {
+			"character_name": "Mr. Warren",
+			"treatment": ["Colon cancer."]
+		},
 
-defined_deaths = define_some_major_character_details()
-
-print(defined_deaths.Derek_Shepherd)
-
-major_characters = ['Derek Shepherd', 'Mark Sloan', 'Denny Duquette, Jr.', 'Henry Burton', 'Ellis Grey', 'Susan Grey', 'Adele Webber', 'Reed Adamson', 'Heather Brooks', 'Lexie Grey', 'George O\'Malley', 'Charles Percy']
+	}
 		
 # --------------------------------------------------------------------------------------------# 
 # Loop over every page
@@ -123,6 +268,9 @@ def scrape_character_pages(url_array):
 
 				season_episode_code = []
 				seasons_array = []
+
+				
+
 
 				# -----------------------------------------------------------------------------
 				# For each character, get every episode they appeared in 
@@ -174,7 +322,6 @@ def scrape_character_pages(url_array):
 				set_gender_male = ['Charlie Bilson', 'Dr. Bones', 'Billy Linneman', 'Rich Campion', 'Kyle Diaz', 'Jordan', 'Jordan Kenley', 'Emile Flores', 'Casey', 'Jesse Fannon', 'Mr. Peterson', 'Mr. Peterson', 'Doc', 'Dr. Bones', '"Cosmo" Singh', 'Mr. Shepherd', 'Robbie Reeves', 'Reilly Nash', 'Randy Helsby', 'Jordan Franklin', 'Charlie Bilson']
 				
 				set_gender_female = ['Francesca McNeil', 'JJ', 'Erin Shandley', 'Grandma Anderson', 'Mary Portman', 'Winnie Adkins', 'Bonnie Crasnoff', 'Kim Allen']
-
 				
 				if "Dr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
@@ -195,13 +342,20 @@ def scrape_character_pages(url_array):
 						character_gender = d.get_gender(character_first_name, u'usa')
 
 				# Check for major/minor characters
-				if character_name in major_characters:
-					character_major_or_minor = 'major'
-				else:
-					character_major_or_minor = 'minor'
+				for counter in define_list_of_characters:
 
+					if character_name in define_list_of_characters[counter]["character_name"]:
+						# Check gender in dictionary 
+						if define_list_of_characters[counter].has_key("character_gender"):
+							character_gender = define_list_of_characters[counter]["character_gender"]
+						
+						# Check if it is major/minor
+						if define_list_of_characters[counter].has_key("character_major_or_minor"):
+							character_major_or_minor = define_list_of_characters[counter]["character_major_or_minor"]
+
+					else:
+						character_major_or_minor = "minor"
 				# -----------------------------------------------------------------------------
-				
 				# -----------------------------------------------------------------------------
 				# Get the type of character - a doctor (attending, resident, intern), a dog, a skeleton
 				# -----------------------------------------------------------------------------
@@ -407,7 +561,6 @@ def scrape_character_pages(url_array):
 				get_medical_information = re.search('<section class="pi-item pi-group pi-border-color"><h2 class="pi-item pi-header pi-secondary-font pi-item-spacing pi-secondary-background">Medical Information</h2>(.+?)</section>', get_aside, re.S|re.DOTALL)
 
 				if get_medical_information is not None:
-					
 					get_treatment = re.search('<div class="pi-item pi-data pi-item-spacing pi-border-color">(.+?)<h3 class="pi-data-label pi-secondary-font">Treatment</h3>(.+?)<div class="pi-data-value pi-font">(.+?)</div>(.+?)</div>', get_medical_information.group(1), re.S|re.DOTALL)
 					
 					if get_treatment is not None:
@@ -438,9 +591,24 @@ def scrape_character_pages(url_array):
 						else:
 							diagnosis = [get_diagnosis]
 
+				for counter in define_list_of_characters:
+					if character_name in define_list_of_characters[counter]["character_name"]:
+						print "Yes, the character ", character_name, " is in the big list of characters."
+
+						if define_list_of_characters[counter].has_key("diagnosis"):
+							diagnosis = define_list_of_characters[counter]["diagnosis"]
+						# 	print 'diagnosis >>>>', diagnosis
+						# 	print 'character name >>>>', character_name
+						
+						# Check gender in dictionary 
+						if define_list_of_characters[counter].has_key("treatment"):
+							treatment = define_list_of_characters[counter]["treatment"]
+
 				# -----------------------------------------------------------------------------
 				# Really painful way to ensure every character has content in the cause of death column. 
-				# To be edited by hand later.
+				# To be edited by hand later. 
+				# This is the data that is used by the dictionary at the top.
+				# This code could be removed or commented out
 				# -----------------------------------------------------------------------------
 				get_main_content = re.search('<article id="WikiaMainContent" class="WikiaMainContent">(.+?)</article>', url_page, re.S|re.DOTALL)
 				get_main_content = get_main_content.group(0)
