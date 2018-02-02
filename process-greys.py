@@ -18,7 +18,7 @@ DataAnalysis.writerow(top_columns)
 # ------------------------------------------------------------------------------------------------------------------- 
 # Get the data + process it
 # ------------------------------------------------------------------------------------------------------------------- 
-get_data = open('/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/1517269996.48character-details.csv')
+get_data = open('/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_details/character-details.csv')
 reader = csv.reader(get_data)
 
 # Gender counters
@@ -36,20 +36,19 @@ unknown_minor = 0
 
 for row in reader:
 	# Get gender breakdown
+	print 'row', row
+
 	gender = row[2]
-	major_minor = row[x]
+	# major_minor = row[x]
 	print row[9]
 	
-	if gender == "female" or gender == "mostly_female":
+	if gender == "female":
 		female = female + 1
 
 		if major_minor == "major":
 			female_major = female_major + 1
 		else:
 			female_minor = female_minor + 1
-	
-
-
 
 	elif gender == "male" or gender == "mostly_male":
 		male = male + 2

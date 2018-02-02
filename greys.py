@@ -65,162 +65,244 @@ CharacterDeatils.writerow(top_columns_character_details)
 # ------------------------------------------------------------------------------------------- # 
 
 define_list_of_characters = {
-		1: {
-			"character_name": "Derek Shepherd",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ['Car accident injuries', 'Brain death'],
-			"treatment": ["Surgery"],
-		},
-		2: {
-			"character_name": "Mark Sloan",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Plane crash injuries", "cardiac tamponade", "Coma"],
-			"treatment": ['No treatment available'],
-		},
-		3: {
-			"character_name": "Denny Duquette, Jr.",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ['Congestive Heart Failure'],
-			"treatment": ['LVAD', 'Heart Transplant'],
-		},
-		4: {
-			"character_name": "Henry Burton",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Internal bleeding", "Tumor", "Diabetes"],
-			"treatment": ["Surgery"],
-		},
-		5: {
-			"character_name": "Ellis Grey",
-			"character_gender": "female",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Alzheimer's disease", "Heart condition"],
-			"treatment": ["Surgery"],
-		},
-		6: {
-			"character_name": "Susan Grey",
-			"character_gender": "female",
-			"character_major_or_minor": "major",
-			"diagnosis": ["septic","toxic megacolon", "hiccups"],
-			"treatment": ["Surgery"],
-		},
-		7: {
-			"character_name": "Adele Webber",
-			"character_gender": "female",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Alzheimer's disease"],
-			"treatment": ["Surgery"],
-		},
-		8: {
-			"character_name": "Reed Adamson",
-			"character_gender": "female",
-			"character_major_or_minor": "major",
-			"diagnosis": ['Gunshot wound'],
-			"treatment": ["No treatment available."],
-		},
-		9: {
-			"character_name": "Heather Brooks",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Electrocution", "Brain bleed"],
-			"treatment": ["Surgery"],
-		},
-		10: {
-			"character_name": "Lexie Grey",
-			"character_gender": "female",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Plane Crash injuries"],
-			"treatment": ["No treatment available."],
-		},
-		11: {
-			"character_name": "George O'Malley",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Bus crash injuries", "Brain death", "Internal injuries"],
-			"treatment": ["Surgery"],
-		},
-		12: {
-			"character_name": "Charles Percy",
-			"character_gender": "male",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Gunshot wound"],
-			"treatment": ["No treatment available."],
-		},
-		13: {
-			"character_name": "Doc",
-			"character_gender": "Male",
-			"character_major_or_minor": "major",
-			"diagnosis": ["Cancer"],
-			"treatment": ["Surgery"],
-		},
-		14: {
-			"character_name": "Paul Stadler",
-			"character_gender": "Male",
-			"character_major_or_minor": "minor",
-			"diagnosis": ["Brain injuries", "Brain death"],
-			"treatment": ["No treatment available."],
-		},
-		15: {
-			"character_name": "Dylan Young",
-			"diagnosis": ["Bomb explosion"]
-		},
-		16: {
-			"character_name": "Gail Webber",
-			"diagnosis": ["Pancreatic cancer"]
-		},
-		17: {
-			"character_name": "Craig Thomas",
-			"diagnosis": ["Heart attack"]
-		},
-		18: {
-			"character_name": "Mr. Shepherd",
-			"diagnosis": ["Gunshot wound"]
-		},
-		19: {
-			"character_name": "Diane Pierce",
-			"diagnosis": ["Breast cancer", "Cancer"],
-			"treatment": ["Chemotherapy"]
-		},
-		20: {
-			"character_name": "Harold O'Malley",
-			"diagnosis": ["Esophageal Cancer", "Cancer"],
-			"treatment": ["Chemotherapy", "Surgery"]
-		},
-		21: {
-			"character_name": "James Evans",
-			"diagnosis": ["mitral regurgitation","Cancer"],
-			"treatment": ["Surgery"]
-		},
-		22: {
-			"character_name": "Samuel Norbert Avery",
-			"diagnosis": ["Type II osteogenesis imperfecta"],
-			"treatment": ["No treatment available."]
-		},
-		23: {
-			"character_name": "Eugene Foote",
-			"treatment": ["Surgery"]
-		},
-		24: {
-			"character_name": "Peter Gekofsky",
-			"treatment": ["IED explosion"]
-		},
-		25: {
-			"character_name": "Jordan",
-			"treatment": ["Car crash injuries"]
-		},
-		26: {
-			"character_name": "Jordan Kenley",
-			"treatment": ["Heart attack"]
-		},
-		27: {
-			"character_name": "Mr. Warren",
-			"treatment": ["Colon cancer."]
-		},
-
+	1: {
+		"character_name": "Derek Shepherd",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ['Car accident injuries', 'Brain death'],
+		"treatment": ["Surgery"],
+	},
+	2: {
+		"character_name": "Mark Sloan",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Plane crash injuries", "cardiac tamponade", "Coma"],
+		"treatment": ['No treatment available'],
+	},
+	3: {
+		"character_name": "Denny Duquette, Jr.",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ['Congestive Heart Failure'],
+		"treatment": ['LVAD', 'Heart Transplant'],
+	},
+	4: {
+		"character_name": "Henry Burton",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Internal bleeding", "Tumor", "Diabetes"],
+		"treatment": ["Surgery"],
+	},
+	5: {
+		"character_name": "Ellis Grey",
+		"character_gender": "female",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Alzheimer's disease", "Heart condition"],
+		"treatment": ["Surgery"],
+	},
+	6: {
+		"character_name": "Susan Grey",
+		"character_gender": "female",
+		"character_major_or_minor": "major",
+		"diagnosis": ["septic","toxic megacolon", "hiccups"],
+		"treatment": ["Surgery"],
+	},
+	7: {
+		"character_name": "Adele Webber",
+		"character_gender": "female",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Alzheimer's disease"],
+		"treatment": ["Surgery"],
+	},
+	8: {
+		"character_name": "Reed Adamson",
+		"character_gender": "female",
+		"character_major_or_minor": "major",
+		"diagnosis": ['Gunshot wound'],
+		"treatment": ["No treatment available."],
+	},
+	9: {
+		"character_name": "Heather Brooks",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Electrocution", "Brain bleed"],
+		"treatment": ["Surgery"],
+	},
+	10: {
+		"character_name": "Lexie Grey",
+		"character_gender": "female",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Plane Crash injuries"],
+		"treatment": ["No treatment available."],
+	},
+	11: {
+		"character_name": "George O'Malley",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Bus crash injuries", "Brain death", "Internal injuries"],
+		"treatment": ["Surgery"],
+	},
+	12: {
+		"character_name": "Charles Percy",
+		"character_gender": "male",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Gunshot wound"],
+		"treatment": ["No treatment available."],
+	},
+	13: {
+		"character_name": "Doc",
+		"character_gender": "Male",
+		"character_major_or_minor": "major",
+		"diagnosis": ["Cancer"],
+		"treatment": ["Surgery"],
+	},
+	14: {
+		"character_name": "Paul Stadler",
+		"character_gender": "Male",
+		"character_major_or_minor": "minor",
+		"diagnosis": ["Brain injuries", "Brain death"],
+		"treatment": ["No treatment available."],
+	},
+	15: {
+		"character_name": "Dylan Young",
+		"diagnosis": ["Bomb explosion"]
+	},
+	16: {
+		"character_name": "Gail Webber",
+		"diagnosis": ["Pancreatic cancer"]
+	},
+	17: {
+		"character_name": "Craig Thomas",
+		"diagnosis": ["Heart attack"]
+	},
+	18: {
+		"character_name": "Mr. Shepherd",
+		"diagnosis": ["Gunshot wound"]
+	},
+	19: {
+		"character_name": "Diane Pierce",
+		"diagnosis": ["Breast cancer", "Cancer"],
+		"treatment": ["Chemotherapy"]
+	},
+	20: {
+		"character_name": "Harold O'Malley",
+		"diagnosis": ["Esophageal Cancer", "Cancer"],
+		"treatment": ["Chemotherapy", "Surgery"]
+	},
+	21: {
+		"character_name": "James Evans",
+		"diagnosis": ["mitral regurgitation","Cancer"],
+		"treatment": ["Surgery"]
+	},
+	22: {
+		"character_name": "Samuel Norbert Avery",
+		"diagnosis": ["Type II osteogenesis imperfecta"],
+		"treatment": ["No treatment available."]
+	},
+	23: {
+		"character_name": "Eugene Foote",
+		"treatment": ["Surgery"]
+	},
+	24: {
+		"character_name": "Peter Gekofsky",
+		"treatment": ["IED explosion"]
+	},
+	25: {
+		"character_name": "Jordan",
+		"treatment": ["Car crash injuries"]
+	},
+	26: {
+		"character_name": "Jordan Kenley",
+		"treatment": ["Heart attack"]
+	},
+	27: {
+		"character_name": "Mr. Warren",
+		"treatment": ["Colon cancer."]
+	},
+	28: {
+		"character_name": "Francesca McNeil",
+		"character_gender": "female"
+	},
+	29: {
+		"character_name": "JJ",
+		"character_gender": "female"
+	},
+	30: {
+		"character_name": "Erin Shandley",
+		"character_gender": "female"
+	},
+	31: {
+		"character_name": "Mary Portman",
+		"character_gender": "female"
+	},
+	32: {
+		"character_name": "Winnie Adkins",
+		"character_gender": "female"
+	},
+	33: {
+		"character_name": "Bonnie Crasnoff",
+		"character_gender": "female"
+	},
+	34: {
+		"character_name": "Kim Allen",
+		"character_gender": "female"
+	},
+	35: {
+		"character_name": "Charlie Bilson",
+		"character_gender": "male"
+	},
+	36: {
+		"character_name": "Billy Linneman",
+		"character_gender": "male"
+	},
+	37: {
+		"character_name": "Rich Campion",
+		"character_gender": "male"
+	},
+	38: {
+		"character_name": "Kyle Diaz",
+		"character_gender": "male"
+	},
+	39: {
+		"character_name": "Jordan",
+		"character_gender": "male"
+	},
+	40: {
+		"character_name": "Jordan Kenley",
+		"character_gender": "male"
+	},
+	41: {
+		"character_name": "Emile Flores",
+		"character_gender": "male"
+	},
+	42: {
+		"character_name": "Casey",
+		"character_gender": "male"
+	},
+	43: {
+		"character_name": "Jesse Fannon",
+		"character_gender": "male"
+	},
+	44: {
+		"character_name": "Cosmo Singh",
+		"character_gender": "male"
+	},
+	45: {
+		"character_name": "Robbie Reeves",
+		"character_gender": "male"
+	},
+	46: {
+		"character_name": "Reilly Nash",
+		"character_gender": "male"
+	},
+	47: {
+		"character_name": "Randy Helsby",
+		"character_gender": "male"
+	},
+	47: {
+		"character_name": "Jordan Franklin",
+		"character_gender": "male"
 	}
-		
+}
 # --------------------------------------------------------------------------------------------# 
 # Loop over every page
 # ------------------------------------------------------------------------------------------- # 
@@ -228,14 +310,15 @@ def scrape_character_pages(url_array):
 	# -----------------------------------------------------------------------------
 	# Set up empty variables -- top level variables 
 	# -----------------------------------------------------------------------------
-	counter = 0
+	count = 0
+	print 'counter - counter ', count
 	# -----------------------------------------------------------------------------
 	# Loop over every URL in the URL array
 	# -----------------------------------------------------------------------------
 	character_type_array = []
 	for url in url_array:
 		# Only get 
-		if counter <= counter_total:
+		if count <= counter_total:
 			print '---------------------------------------------------', url
 			
 			# -----------------------------------------------------------------------------
@@ -268,9 +351,6 @@ def scrape_character_pages(url_array):
 
 				season_episode_code = []
 				seasons_array = []
-
-				
-
 
 				# -----------------------------------------------------------------------------
 				# For each character, get every episode they appeared in 
@@ -329,6 +409,8 @@ def scrape_character_pages(url_array):
 				elif "Mr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = 'male'
+				elif "Bones" in character_name:
+					character_gender = 'skeleton'
 				elif "Grandma" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = 'female'
@@ -342,16 +424,16 @@ def scrape_character_pages(url_array):
 						character_gender = d.get_gender(character_first_name, u'usa')
 
 				# Check for major/minor characters
-				for counter in define_list_of_characters:
-
-					if character_name in define_list_of_characters[counter]["character_name"]:
+				character_counter = 0
+				for character_counter in define_list_of_characters:
+					if character_name in define_list_of_characters[character_counter]["character_name"]:
 						# Check gender in dictionary 
-						if define_list_of_characters[counter].has_key("character_gender"):
-							character_gender = define_list_of_characters[counter]["character_gender"]
+						if define_list_of_characters[character_counter].has_key("character_gender"):
+							character_gender = define_list_of_characters[character_counter]["character_gender"]
 						
 						# Check if it is major/minor
-						if define_list_of_characters[counter].has_key("character_major_or_minor"):
-							character_major_or_minor = define_list_of_characters[counter]["character_major_or_minor"]
+						if define_list_of_characters[character_counter].has_key("character_major_or_minor"):
+							character_major_or_minor = define_list_of_characters[character_counter]["character_major_or_minor"]
 
 					else:
 						character_major_or_minor = "minor"
@@ -590,19 +672,20 @@ def scrape_character_pages(url_array):
 						# Single diagnosis --
 						else:
 							diagnosis = [get_diagnosis]
-
-				for counter in define_list_of_characters:
-					if character_name in define_list_of_characters[counter]["character_name"]:
+				
+				character_counter = 0			
+				for character_counter in define_list_of_characters:
+					if character_name in define_list_of_characters[character_counter]["character_name"]:
 						print "Yes, the character ", character_name, " is in the big list of characters."
 
-						if define_list_of_characters[counter].has_key("diagnosis"):
-							diagnosis = define_list_of_characters[counter]["diagnosis"]
+						if define_list_of_characters[character_counter].has_key("diagnosis"):
+							diagnosis = define_list_of_characters[character_counter]["diagnosis"]
 						# 	print 'diagnosis >>>>', diagnosis
 						# 	print 'character name >>>>', character_name
 						
 						# Check gender in dictionary 
-						if define_list_of_characters[counter].has_key("treatment"):
-							treatment = define_list_of_characters[counter]["treatment"]
+						if define_list_of_characters[character_counter].has_key("treatment"):
+							treatment = define_list_of_characters[character_counter]["treatment"]
 
 				# -----------------------------------------------------------------------------
 				# Really painful way to ensure every character has content in the cause of death column. 
@@ -647,12 +730,13 @@ def scrape_character_pages(url_array):
 				# -----------------------------------------------------------------------------
 				# ***Last step***  Write the rows for each variable
 				# -----------------------------------------------------------------------------
-				character_data = [counter, character_name, character_gender, character_major_or_minor, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
+				character_data = [count, character_name, character_gender, character_major_or_minor, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
 		# -----------------------------------------------------------------------------
 		# Increment the number in the counter
-		counter = counter + 1
+		count = count + 1
+		print 'count', count
 
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
