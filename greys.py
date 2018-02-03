@@ -36,9 +36,13 @@ base_dir = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/'
 top_columns = ['name', 'url',]
 character_list_filename = 'character-list.csv'
 
-# directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
-character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
-character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
+# My computer
+character_list_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
+character_list_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_list/'
+
+# CBC
+# character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
+# character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
 
 CharacterNameAndURL = csv.writer(file(character_list_directory + character_list_filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
@@ -48,13 +52,16 @@ CharacterNameAndURL.writerow(top_columns)
 top_columns_character_details =  ['counter', 'character_name', 'character_gender', 'character_major_or_minor', 'image', 'character_type', 'diagnosis', 'cause_of_death', 'treatment', 'actor', 'single_or_multiple_episodes', 'season_episode_code', 'first_episode_title_underscore', 'first_episode_title_text', 'last_episode_title_underscore', 'last_episode_title_text', 'seasons_array']
 
 filename = 'character-details.csv'
+
+# CBC computer
 # directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
-character_details_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
-character_details_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_details/'
+
+# My computer
+character_details_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+character_details_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(character_details_directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
-
 		
 # --------------------------------------------------------------------------------------------# 
 # *********************************************************************************************
@@ -150,25 +157,27 @@ define_list_of_characters = {
 	},
 	13: {
 		"character_name": "Doc",
-		"character_gender": "Male",
+		"character_gender": "male",
 		"character_major_or_minor": "major",
 		"diagnosis": ["Cancer"],
 		"treatment": ["Surgery"],
 	},
 	14: {
 		"character_name": "Paul Stadler",
-		"character_gender": "Male",
+		"character_gender": "male",
 		"character_major_or_minor": "minor",
 		"diagnosis": ["Brain injuries", "Brain death"],
 		"treatment": ["No treatment available."],
 	},
 	15: {
 		"character_name": "Dylan Young",
-		"diagnosis": ["Bomb explosion"]
+		"diagnosis": ["Bomb explosion"],
+		"gender": "male"
 	},
 	16: {
 		"character_name": "Gail Webber",
-		"diagnosis": ["Pancreatic cancer"]
+		"diagnosis": ["Pancreatic cancer"],
+		"gender": "female"
 	},
 	17: {
 		"character_name": "Craig Thomas",
@@ -301,6 +310,18 @@ define_list_of_characters = {
 	47: {
 		"character_name": "Jordan Franklin",
 		"character_gender": "male"
+	},
+	48: {
+		"character_name": "Mickey Wenschler",
+		"character_gender": "male"
+	},
+	49: {
+		"character_name": "Karin Taylor",
+		"character_gender": "female"
+	},
+	50: {
+		"character_name": "Blair Vinson",
+		"character_gender": "female"
 	}
 }
 # --------------------------------------------------------------------------------------------# 
@@ -311,7 +332,6 @@ def scrape_character_pages(url_array):
 	# Set up empty variables -- top level variables 
 	# -----------------------------------------------------------------------------
 	count = 0
-	print 'counter - counter ', count
 	# -----------------------------------------------------------------------------
 	# Loop over every URL in the URL array
 	# -----------------------------------------------------------------------------
@@ -332,7 +352,7 @@ def scrape_character_pages(url_array):
 			if check_character_is_greys_character is not None:
 				character_name = "" # variable 1
 				character_gender = "" # variable 1
-				character_major_or_minor = ""
+				character_major_or_minor = "minor"
 				diagnosis = []
 				cause_of_death = []
 				treatment = []
@@ -352,6 +372,28 @@ def scrape_character_pages(url_array):
 				season_episode_code = []
 				seasons_array = []
 
+				# -----------------------------------------------------------------------------
+				# Character's name
+				# -----------------------------------------------------------------------------
+				get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
+				character_name = get_title_of_page.group(1)
+				
+				# -----------------------------------------------------------------------------
+				# For each character,  Check if it is major/minor
+				# -----------------------------------------------------------------------------
+				major_minor_counter = 0
+				for major_minor_counter in define_list_of_characters:
+					
+					if character_name in define_list_of_characters[major_minor_counter]["character_name"]:
+						if define_list_of_characters[major_minor_counter].has_key("character_major_or_minor"):
+							character_major_or_minor = define_list_of_characters[major_minor_counter]["character_major_or_minor"]
+							# print 'in list-', character_name, character_major_or_minor
+					# else:
+						# print "not in list-", character_name
+				
+				# print 'major or minor character? ', character_major_or_minor
+
+				print 'character_name', character_name, 'is', character_major_or_minor
 				# -----------------------------------------------------------------------------
 				# For each character, get every episode they appeared in 
 				# -----------------------------------------------------------------------------
@@ -393,15 +435,7 @@ def scrape_character_pages(url_array):
 				if get_image_url is not None:
 					image = get_image_url.group(1)
 
-				# -----------------------------------------------------------------------------
-				# Character's name
-				# -----------------------------------------------------------------------------
-				get_title_of_page = re.search('<h1 class="page-header__title">(.+?)</h1>', url_page, re.S|re.DOTALL)
-				character_name = get_title_of_page.group(1)
-
-				set_gender_male = ['Charlie Bilson', 'Dr. Bones', 'Billy Linneman', 'Rich Campion', 'Kyle Diaz', 'Jordan', 'Jordan Kenley', 'Emile Flores', 'Casey', 'Jesse Fannon', 'Mr. Peterson', 'Mr. Peterson', 'Doc', 'Dr. Bones', '"Cosmo" Singh', 'Mr. Shepherd', 'Robbie Reeves', 'Reilly Nash', 'Randy Helsby', 'Jordan Franklin', 'Charlie Bilson']
-				
-				set_gender_female = ['Francesca McNeil', 'JJ', 'Erin Shandley', 'Grandma Anderson', 'Mary Portman', 'Winnie Adkins', 'Bonnie Crasnoff', 'Kim Allen']
+				character_gender = "~~~~~"
 				
 				if "Dr" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
@@ -414,29 +448,30 @@ def scrape_character_pages(url_array):
 				elif "Grandma" in character_name.split(" ")[0]:
 					character_first_name = character_name.split(" ")[1]
 					character_gender = 'female'
-				else: 
-					if character_name in set_gender_male:
-						character_gender = 'male'
-					elif character_name in set_gender_female:
-						character_gender = 'female'
+				else:
+					if character_name.split(" "):
+						print '!!!', character_name.split(" ")[0]
+						character_gender = d.get_gender(character_name.split(" ")[0], u'usa')	
+						print 'gender is over', character_gender		
 					else:
-						character_first_name = character_name.split(" ")[0]
-						character_gender = d.get_gender(character_first_name, u'usa')
-
+						print 'nah', character_name
+					# if len(character_name.split(" ")[1]) > 1:
+					    # print "split", character_name.split(" ")[1]
+					# else:
+						# print character_name
+					
+						# character_gender = d.get_gender(character_first_name, u'usa')
+				
 				# Check for major/minor characters
-				character_counter = 0
-				for character_counter in define_list_of_characters:
-					if character_name in define_list_of_characters[character_counter]["character_name"]:
+				gender_counter = 0
+				for gender_counter in define_list_of_characters:
+					if character_name in define_list_of_characters[gender_counter]["character_name"]:
 						# Check gender in dictionary 
-						if define_list_of_characters[character_counter].has_key("character_gender"):
-							character_gender = define_list_of_characters[character_counter]["character_gender"]
-						
-						# Check if it is major/minor
-						if define_list_of_characters[character_counter].has_key("character_major_or_minor"):
-							character_major_or_minor = define_list_of_characters[character_counter]["character_major_or_minor"]
+						if define_list_of_characters[gender_counter].has_key("character_gender"):
+							character_gender = define_list_of_characters[gender_counter]["character_gender"]
+							print 'key, gender', character_gender
 
-					else:
-						character_major_or_minor = "minor"
+				print 'character_gender -- ', character_gender				
 				# -----------------------------------------------------------------------------
 				# -----------------------------------------------------------------------------
 				# Get the type of character - a doctor (attending, resident, intern), a dog, a skeleton
@@ -676,7 +711,7 @@ def scrape_character_pages(url_array):
 				character_counter = 0			
 				for character_counter in define_list_of_characters:
 					if character_name in define_list_of_characters[character_counter]["character_name"]:
-						print "Yes, the character ", character_name, " is in the big list of characters."
+						# print "Yes, the character ", character_name, " is in the big list of characters."
 
 						if define_list_of_characters[character_counter].has_key("diagnosis"):
 							diagnosis = define_list_of_characters[character_counter]["diagnosis"]
@@ -736,7 +771,7 @@ def scrape_character_pages(url_array):
 		# -----------------------------------------------------------------------------
 		# Increment the number in the counter
 		count = count + 1
-		print 'count', count
+		# print 'count', count
 
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
