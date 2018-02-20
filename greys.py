@@ -37,12 +37,12 @@ top_columns = ['name', 'url',]
 character_list_filename = 'character-list.csv'
 
 # My computer
-character_list_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
-character_list_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_list/'
+# character_list_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
+# character_list_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_list/'
 
 # CBC
-# character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
-# character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
+character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
+character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
 
 CharacterNameAndURL = csv.writer(file(character_list_directory + character_list_filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
@@ -54,15 +54,22 @@ top_columns_character_details =  ['counter', 'character_name', 'character_gender
 filename = 'character-details.csv'
 
 # CBC computer
-# directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+character_details_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
 
 # My computer
-character_details_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+# character_details_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
 character_details_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(character_details_directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
 		
+# ------------------------------------------------------------------------------------------------------------------- # 
+# Make characters as a json file
+# ------------------------------------------------------------------------------------------------------------------- # 
+# json_filename = 'character-details.json'
+# character_details_json_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/json/character_details/character-details.json'
+json_file = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/json/character_details/character-details.json'
+
 # --------------------------------------------------------------------------------------------# 
 # *********************************************************************************************
 # This section is for the issues with the data. Fixing them here instead of the CSV
@@ -336,11 +343,13 @@ def scrape_character_pages(url_array):
 	# Loop over every URL in the URL array
 	# -----------------------------------------------------------------------------
 	character_type_array = []
+	character_data_json = []
 	for url in url_array:
 		# Only get 
 		if count <= counter_total:
 			print '---------------------------------------------------', url
 			
+
 			# -----------------------------------------------------------------------------
 			# Open each page and get the contents
 			# -----------------------------------------------------------------------------
@@ -372,6 +381,9 @@ def scrape_character_pages(url_array):
 				season_episode_code = []
 				seasons_array = []
 
+				
+				
+
 				# -----------------------------------------------------------------------------
 				# Character's name
 				# -----------------------------------------------------------------------------
@@ -393,7 +405,7 @@ def scrape_character_pages(url_array):
 				
 				# print 'major or minor character? ', character_major_or_minor
 
-				print 'character_name', character_name, 'is', character_major_or_minor
+				# print 'character_name', character_name, 'is', character_major_or_minor
 				# -----------------------------------------------------------------------------
 				# For each character, get every episode they appeared in 
 				# -----------------------------------------------------------------------------
@@ -450,11 +462,11 @@ def scrape_character_pages(url_array):
 					character_gender = 'female'
 				else:
 					if character_name.split(" "):
-						print '!!!', character_name.split(" ")[0]
+						# print '!!!', character_name.split(" ")[0]
 						character_gender = d.get_gender(character_name.split(" ")[0], u'usa')	
-						print 'gender is over', character_gender		
-					else:
-						print 'nah', character_name
+						# print 'gender is over', character_gender		
+					# else:
+						# print 'nah', character_name
 					# if len(character_name.split(" ")[1]) > 1:
 					    # print "split", character_name.split(" ")[1]
 					# else:
@@ -469,9 +481,9 @@ def scrape_character_pages(url_array):
 						# Check gender in dictionary 
 						if define_list_of_characters[gender_counter].has_key("character_gender"):
 							character_gender = define_list_of_characters[gender_counter]["character_gender"]
-							print 'key, gender', character_gender
+							# print 'key, gender', character_gender
 
-				print 'character_gender -- ', character_gender				
+				# print 'character_gender -- ', character_gender				
 				# -----------------------------------------------------------------------------
 				# -----------------------------------------------------------------------------
 				# Get the type of character - a doctor (attending, resident, intern), a dog, a skeleton
@@ -768,6 +780,14 @@ def scrape_character_pages(url_array):
 				character_data = [count, character_name, character_gender, character_major_or_minor, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
+				make_character_data_json = {'count': count, 'character_name': character_name, 'character_gender': character_gender, 'character_major_or_minor': character_major_or_minor, 'image': image, 'character_type': character_type, 'diagnosis': diagnosis, 'cause_of_death': cause_of_death, 'treatment': treatment, 'actor': actor, 'single_or_multiple_episodes': single_or_multiple_episodes, 'season_episode_code': season_episode_code, 'first_episode_title_underscore': first_episode_title_underscore, 'first_episode_title_text': first_episode_title_text, 'last_episode_title_underscore': last_episode_title_underscore, 'last_episode_title_text': last_episode_title_text, 'seasons_array': seasons_array}
+				character_data_json.append(make_character_data_json)
+
+
+				with open(json_file, 'w') as outfile:
+					json.dump(character_data_json, outfile)
+
+
 		# -----------------------------------------------------------------------------
 		# Increment the number in the counter
 		count = count + 1
@@ -776,14 +796,17 @@ def scrape_character_pages(url_array):
 		# Reduce calls to the site to every one (1) second
 		# time.sleep(1)
 		# -----------------------------------------------------------------------------
+	# print 'character_data_json', character_data_json
+	# with open('data.json', 'w') as outfile:
+	# 	json.dump(character_data_json, outfile)
 
 	# Remove the destination folder, then copy the list character list + its folder
-	shutil.rmtree(character_list_destination)
-	shutil.copytree(character_list_directory, character_list_destination)
+	# shutil.rmtree(character_list_destination)
+	# shutil.copytree(character_list_directory, character_list_destination)
 
 	# Remove the destination folder, then copy the details folder + csv
-	shutil.rmtree(character_details_destination)
-	shutil.copytree(character_details_directory, character_details_destination)
+	# shutil.rmtree(character_details_destination)
+	# shutil.copytree(character_details_directory, character_details_destination)
 
 # ------------------------------------------------------------------------------------------------------------------- # 
 # Get initial page - get all names
