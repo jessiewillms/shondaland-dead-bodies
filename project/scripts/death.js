@@ -71,7 +71,9 @@ function append_charts(make_total_bars, make_major_bars, make_minor_bars) {
 	$(get_minor_chart).html(make_minor_bars);
 }
 
-function create_deaths_by_season_chart(characters) {
+/*--------------------------------------------------------------------------------
+Create a chart with all the types of patients */ 
+function create_character_types_chart(characters) {
 	
 	const type = characters.map(single => `${single.character_type}`);
 
@@ -118,7 +120,7 @@ function get_data() {
 		if(error) { console.log(error); }
 
 	 	create_gender_chart(gender);
-	 	create_deaths_by_season_chart(characters);
+	 	create_character_types_chart(characters);
 	}
 }
 
