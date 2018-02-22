@@ -42,8 +42,15 @@
 		<h3>All deaths</h3>
 
 		<div id="js-types-wrap">
+	
+			<!-- Let's make this a bubble chart 💭💭💭 -->
+			<p>All types - bubble</p>
+			<div class="chart-example" id="chart"><svg></svg></div>
+
+			<!-- Bar chart -->
 			<p>All types</p>
 			<div id="js-all-types"></div>
+
 		</div>
 	</section>
 
@@ -65,7 +72,8 @@
 	<!-- Death by season -->
 	<section class="wrap--full-height">
 		<h3>By season</h3>
-
+		
+		<!-- Let's make this a heatmap https://bl.ocks.org/Bl3f/cdb5ad854b376765fa99 -->
 		<div id="js-season-wrap"></div>
 	</section>
 
@@ -86,6 +94,20 @@
 	
 	<!-- Get JavaScript -->
 	<script src="scripts/death.js"></script>
+
+	<!-- This is for the bubble chart -->
+	<script>
+    d3.csv('bubbles.csv', function(error, data) {
+      if (error) {
+          console.error('Error getting or parsing the data.');
+          throw error;
+      }
+      var chart = bubbleChart().width(600).height(400);
+      d3.select('#chart').data(data).call(chart);
+    });
+
+</script>
+
 </body>
 </html>
 

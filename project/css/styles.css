@@ -5,6 +5,9 @@
 	background-color: pink;
 }
 
+#chart {
+    border: 1px solid blue;
+}
 .character_type {
     background-color: lightgrey;
     border: 1px solid grey;

@@ -73,7 +73,7 @@ function append_charts(make_total_bars, make_major_bars, make_minor_bars) {
 
 /*--------------------------------------------------------------------------------
 Create a chart with all the types of patients */ 
-function create_character_types_chart(characters) {
+function create_character_types_chart(characters, characters_csv) {
 	
 	const type = characters.map(single => `${single.character_type}`);
 
@@ -85,6 +85,9 @@ function create_character_types_chart(characters) {
       return obj;
     }, {});
 
+    console.log(character_types);
+    console.table(character_types);
+    // Old chart
     const make_type_bars = Object.entries(character_types);
     let all_bars = [];
     make_type_bars.forEach(single => {
@@ -100,12 +103,128 @@ function create_character_types_chart(characters) {
 }
 
 /*--------------------------------------------------------------------------------
+Fun bubble chart */ 
+function bubbleChart() {
+    var width = 960,
+        height = 960,
+        maxRadius = 6,
+        columnForColors = "category",
+        columnForRadius = "views";
+
+    function chart(selection) {
+        var data = selection.enter().data();
+        var div = selection,
+            svg = div.selectAll('svg');
+        svg.attr('width', width).attr('height', height);
+
+        var tooltip = selection
+            .append("div")
+            .style("position", "absolute")
+            .style("visibility", "hidden")
+            .style("color", "white")
+            .style("padding", "5px")
+            .style("background-color", "#626D71")
+            // .style("border-radius", "6px")
+            .style("text-align", "left")
+            .style("font-family", "sans-serif")
+            .style("width", "200px")
+            .text("");
+
+
+        var simulation = d3.forceSimulation(data)
+            .force("charge", d3.forceManyBody().strength([-50]))
+            .force("x", d3.forceX())
+            .force("y", d3.forceY())
+            .on("tick", ticked);
+
+        function ticked(e) {
+            node.attr("cx", function(d) {
+                    return d.x;
+                })
+                .attr("cy", function(d) {
+                    return d.y;
+                });
+        }
+
+        var colorCircles = d3.scaleOrdinal(d3.schemeCategory10);
+        var scaleRadius = d3.scaleLinear().domain([d3.min(data, function(d) {
+            return +d[columnForRadius];
+        }), d3.max(data, function(d) {
+            return +d[columnForRadius];
+        })]).range([5, 18])
+
+        var node = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr('r', function(d) {
+                return scaleRadius(d[columnForRadius])
+            })
+            .style("fill", function(d) {
+                return colorCircles(d[columnForColors])
+            })
+            .attr('transform', 'translate(' + [width / 2, height / 2] + ')')
+            .on("mouseover", function(d) {
+                tooltip.html(d.title + "<br>" + d[columnForRadius] + " deaths");
+                return tooltip.style("visibility", "visible");
+            })
+            .on("mousemove", function() {
+                return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+            })
+            .on("mouseout", function() {
+                return tooltip.style("visibility", "hidden");
+            });
+    }
+
+    chart.width = function(value) {
+        if (!arguments.length) {
+            return width;
+        }
+        width = value;
+        return chart;
+    };
+
+    chart.height = function(value) {
+        if (!arguments.length) {
+            return height;
+        }
+        height = value;
+        return chart;
+    };
+
+
+    chart.columnForColors = function(value) {
+        if (!arguments.columnForColors) {
+            return columnForColors;
+        }
+        columnForColors = value;
+        return chart;
+    };
+
+    chart.columnForRadius = function(value) {
+        if (!arguments.columnForRadius) {
+            return columnForRadius;
+        }
+        columnForRadius = value;
+        return chart;
+    };
+
+    return chart;
+}
+
+
+
+
+/*--------------------------------------------------------------------------------
 Get the data */ 
 function get_data() {
 	console.log('get data called');
 	
 	// Details CSV
 	const character_details = '../json/character_details/character-details.json'
+	const character_details_csv = '../csv/character_details/character-details.csv'
+
+	// /Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_details/character-details.csv
 	const gender_details = '../json/data_analysis/gender-totals.json'
 	
 	// d3.json(gender_details, function(data) {
@@ -114,13 +233,14 @@ function get_data() {
 	d3.queue()
   		.defer(d3.json, gender_details)
 		.defer(d3.json, character_details)
+		// .defer(d3.csv, character_details_csv)
 		.await(analyze);
 
-	function analyze(error, gender, characters) {
+	function analyze(error, gender, characters, characters_csv) {
 		if(error) { console.log(error); }
 
 	 	create_gender_chart(gender);
-	 	create_character_types_chart(characters);
+	 	create_character_types_chart(characters, character_details_csv);
 	}
 }
 
