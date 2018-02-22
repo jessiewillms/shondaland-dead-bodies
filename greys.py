@@ -30,19 +30,21 @@ date = time.time()
 # https://github.com/propublica/weepeople
 # http://papaparse.com/docs#local-files
 
-base_dir = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/'
+# base_dir = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/'
+base_dir = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/'
+
 # ------------------------------------------------------------------------------------------------------------------- 
 # For the CSV of character names + URLs
 top_columns = ['name', 'url',]
 character_list_filename = 'character-list.csv'
 
 # My computer
-# character_list_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
-# character_list_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_list/'
+character_list_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_list/'
+character_list_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_list/'
 
 # CBC
-character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
-character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
+# character_list_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_list/'
+# character_list_destination = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/project/csv/character_list/'
 
 CharacterNameAndURL = csv.writer(file(character_list_directory + character_list_filename, 'w'),dialect='excel')
 CharacterNameAndURL.writerow(top_columns)
@@ -57,8 +59,8 @@ filename = 'character-details.csv'
 character_details_directory = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/csv/character_details/'
 
 # My computer
-# character_details_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
-character_details_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_details/'
+character_details_directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/csv/character_details/'
+# character_details_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/csv/character_details/'
 
 CharacterDeatils = csv.writer(file(character_details_directory + filename, 'w'),dialect='excel')
 CharacterDeatils.writerow(top_columns_character_details)
@@ -67,8 +69,8 @@ CharacterDeatils.writerow(top_columns_character_details)
 # Make characters as a json file
 # ------------------------------------------------------------------------------------------------------------------- # 
 # json_filename = 'character-details.json'
-# character_details_json_destination = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/project/json/character_details/character-details.json'
-json_file = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/json/character_details/character-details.json'
+json_file = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/json/character_details/character-details.json'
+# json_file = '/Users/cbcwebdev02/Dropbox/2018/2018-01-04-intro-to-python/json/character_details/character-details.json'
 
 # --------------------------------------------------------------------------------------------# 
 # *********************************************************************************************
@@ -780,7 +782,7 @@ def scrape_character_pages(url_array):
 				character_data = [count, character_name, character_gender, character_major_or_minor, image, character_type, diagnosis, cause_of_death, treatment, actor, single_or_multiple_episodes, season_episode_code, first_episode_title_underscore, first_episode_title_text, last_episode_title_underscore, last_episode_title_text, seasons_array]
 				CharacterDeatils.writerow(character_data)
 
-				make_character_data_json = {'count': count, 'character_name': character_name, 'character_gender': character_gender, 'character_major_or_minor': character_major_or_minor, 'image': image, 'character_type': character_type, 'diagnosis': diagnosis, 'cause_of_death': cause_of_death, 'treatment': treatment, 'actor': actor, 'single_or_multiple_episodes': single_or_multiple_episodes, 'season_episode_code': season_episode_code, 'first_episode_title_underscore': first_episode_title_underscore, 'first_episode_title_text': first_episode_title_text, 'last_episode_title_underscore': last_episode_title_underscore, 'last_episode_title_text': last_episode_title_text, 'seasons_array': seasons_array}
+				make_character_data_json = {'count': str(count), 'character_name': character_name, 'character_gender': character_gender, 'character_major_or_minor': character_major_or_minor, 'image': image, 'character_type': character_type, 'diagnosis': diagnosis, 'cause_of_death': cause_of_death, 'treatment': treatment, 'actor': actor, 'single_or_multiple_episodes': single_or_multiple_episodes, 'season_episode_code': season_episode_code, 'first_episode_title_underscore': first_episode_title_underscore, 'first_episode_title_text': first_episode_title_text, 'last_episode_title_underscore': last_episode_title_underscore, 'last_episode_title_text': last_episode_title_text, 'seasons_array': seasons_array}
 				character_data_json.append(make_character_data_json)
 
 

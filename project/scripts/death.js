@@ -1,71 +1,129 @@
-// Work with the data
-const make_gender_charts = function(details_data) {
-	console.log(details_data);
-
+/*--------------------------------------------------------------------------------
+Create the HTML for the gender charts*/ 
+function create_gender_chart(json) {
 	
+	console.log(`make gender charts`);
+	/*----------------------------------------------------------------------------
+	Make gender charts (totals)
+	----------------------------------------------------------------------------*/ 
+	const male_total = json.male;
+	const female_total = json.female;
+
+	// console.log({female_total});
+	const total = male_total + female_total;
+
+	// console.log(total);
+	const make_total_bars = `<div class="wrapper">
+		<section class="bar-wrap">
+		<div class="female bar" style="width:${female_total / total * 100}%;"><span class="label">${Math.round(female_total / total * 100)}% female</span></div>
+		<div class="bar-tick"></div>
+		<div class="male bar" style="width:${male_total / total * 100}%;"><span class="label">${Math.round(male_total / total * 100)}% male</span></div>
+		</section>
+	</div>`
+
+	/*----------------------------------------------------------------------------
+	Make gender charts (major characters)
+	----------------------------------------------------------------------------*/ 
+	const male_major_total = json.male_major;
+	const female_major_total = json.female_major;
+
+	const major_total = male_major_total + female_major_total;
+
+	const make_major_bars = `<div class="wrapper">
+		<section class="bar-wrap">
+		<div class="female bar" style="width:${female_major_total / major_total * 100}%;"><span class="label">${Math.round(female_major_total / major_total * 100)}% female</span></div>
+		<div class="bar-tick"></div>
+		<div class="male bar" style="width:${male_major_total / major_total * 100}%;"><span class="label">${Math.round(male_major_total / major_total * 100)}% male</span></div>
+		</section>
+	</div>`
+
+	/*----------------------------------------------------------------------------
+	Make gender charts (minor characters)
+	----------------------------------------------------------------------------*/ 
+	const male_minor_total = json.male_minor;
+	const female_minor_total = json.female_minor;
+
+	const minor_total = male_minor_total + female_minor_total;
+
+	const make_minor_bars = `<div class="wrapper">
+		<section class="bar-wrap">
+		<div class="female bar" style="width:${female_minor_total / minor_total * 100}%;"><span class="label">${Math.round(female_minor_total / minor_total * 100)}% female</span></div>
+		<div class="bar-tick"></div>
+		<div class="male bar" style="width:${male_minor_total / minor_total * 100}%;"><span class="label">${Math.round(male_minor_total / minor_total * 100)}% male</span></div>
+		</section>
+	</div>`
+
+	// Call function to append the HTML into the chart div
+	append_charts(make_total_bars, make_major_bars, make_minor_bars);
 }
 
-// Work with the data
-// const process_details = function(details_data) {
-// 	console.log(details_data);
-// }
+/*--------------------------------------------------------------------------------
+Append the charts to the DOM*/ 
+function append_charts(make_total_bars, make_major_bars, make_minor_bars) {
+	// Make all the charts
+	const get_all_chart = document.getElementById('js-gender-wrap--all');
+	$(get_all_chart).html(make_total_bars);
 
-/* ---------------------------------------------------
-Work with the data now
---------------------------------------------------- */
-const process_episodes = function(episode_data) {
-	console.log(episode_data);
+	const get_major_chart = document.getElementById('js-gender-wrap--major');
+	$(get_major_chart).html(make_major_bars);
 
-	const ep_calendar = [];
-	for (var i = 0; i < episode_data.length; i++) {
-		
-		ep_calendar.push(`<li data-lol="⚰" data-ep-num=${episode_data[i].episode_number} data-code=${episode_data[i].season_episode_code}></li>`)
-		
-		// if (episode_data[i].episode_number) {
-		// }
-	}
-
-	$('#js_ep_calendar').html(ep_calendar);
+	const get_minor_chart = document.getElementById('js-gender-wrap--minor');
+	$(get_minor_chart).html(make_minor_bars);
 }
 
-// Get the data + process it with PapaParse
-const get_data = function(){
+function create_deaths_by_season_chart(characters) {
+	
+	const type = characters.map(single => `${single.character_type}`);
 
-	// const episodes_url = '1517179472.31episode-list.csv';
-	// Papa.parse(episodes_url, {
-	// 	download: true,
-	// 	header: true,
-	// 	// rest of config ...
-		
-	// 	// when this is complete, send data to process function
-	// 	complete: function(results, file) {
-	// 		// console.log("Parsing complete:", results, file);
-	// 		episode_data = results.data;
-	// 		process_episodes(episode_data);
-	// 	}
-	// });
+    const character_types = type.reduce(function(obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
 
+    const make_type_bars = Object.entries(character_types);
+    let all_bars = [];
+    make_type_bars.forEach(single => {
+    	// console.log(single);
+    	var single_bar = `<div class="character_type bar" style="width:${single[1]}%;"><span class="label">${single[0]}: ${single[1] }</span></div>`;
+    	all_bars += single_bar;
+    });
+  
+    const make_total_bars = `<div class="wrapper">
+		<section class="bar-wrap">${all_bars}</section>
+	</div>`;
+	$('#js-all-types').append(make_total_bars);
+}
 
+/*--------------------------------------------------------------------------------
+Get the data */ 
+function get_data() {
+	console.log('get data called');
+	
 	// Details CSV
-	const details_url = '/csv/data_analysis/data-analysis.csv'
-	console.log(`details_url`, details_url);
-	Papa.parse(details_url, {
-		download: true,
-		header: true,
-		skipEmptyLines: true,
-		// rest of config ...
-		
-		// when this is complete, send data to process function
-		complete: function(results, file) {
-			// console.log("Parsing complete:", results, file);
-			details_data = results.data;
-			// process_details(details_data);
-			make_gender_charts(details_data[0]);
-		}
-	});
+	const character_details = '../json/character_details/character-details.json'
+	const gender_details = '../json/data_analysis/gender-totals.json'
+	
+	// d3.json(gender_details, function(data) {
+ //  		console.log(data);
+	// });
+	d3.queue()
+  		.defer(d3.json, gender_details)
+		.defer(d3.json, character_details)
+		.await(analyze);
+
+	function analyze(error, gender, characters) {
+		if(error) { console.log(error); }
+
+	 	create_gender_chart(gender);
+	 	create_deaths_by_season_chart(characters);
+	}
 }
 
 $(document).ready(function() {
+	console.log( "ready!" );
 	get_data();
-	// console.log( "ready!" );
 });
+

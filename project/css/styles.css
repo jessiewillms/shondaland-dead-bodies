@@ -1,0 +1,42 @@
+.male {
+	background-color: blue;
+}
+.female {
+	background-color: pink;
+}
+
+.character_type {
+    background-color: lightgrey;
+    border: 1px solid grey;
+}
+.bar-tick {
+	width: 50%;
+    position: absolute;
+    left: 0;
+    border-right: 2px solid #ccc;
+    padding: 0;
+    margin-top: -4px;
+    height: 48px;
+    z-index: -1;
+}
+
+.bar-wrap {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+.bar {
+	height: 40px;
+    justify-content: left;
+    align-items: center;
+    display: flex;
+    padding: 0 5px;
+}
+
+.label {
+    font-family: sans-serif;
+    font-size: 10px;
+    color: black;
+}
