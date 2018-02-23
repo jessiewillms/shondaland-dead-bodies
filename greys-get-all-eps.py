@@ -20,7 +20,7 @@ directory = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/
 
 episode_json = '/Users/jessiewillms/Dropbox/shonda-greys-db/shondaland-dead-bodies/json/episode_list/episode-list.json'
 
-episode_deatils = csv.writer(file(directory + filename, 'a'),dialect='excel')
+episode_deatils = csv.writer(file(directory + filename, 'w'),dialect='excel')
 episode_deatils.writerow(top_columns_character_details)
 
 # -------------------------------------------------------------------------------------------------------------------
@@ -54,11 +54,11 @@ def scrape_page():
 
 				season_episode_code = 'S-' + season + '-EP-' + ep_num
 
-				data =  [season, ep_num, ep_title, season_episode_code]
+				data =  [season.rstrip(), ep_num.rstrip(), ep_title.rstrip(), season_episode_code.rstrip()]
+				print data
 				episode_deatils.writerow(data)
 
 				episodes.append({'season': season, 'ep_num': ep_num, 'ep_title': ep_title, 'season_episode_code': season_episode_code})
-
 
 	with open(episode_json, 'w') as outfile:
 		json.dump(episodes, outfile)

@@ -2,7 +2,7 @@
 Create the HTML for the gender charts*/ 
 function create_gender_chart(json) {
 	
-	console.log(`make gender charts`);
+	// console.log(`make gender charts`);
 	/*----------------------------------------------------------------------------
 	Make gender charts (totals)
 	----------------------------------------------------------------------------*/ 
@@ -85,8 +85,8 @@ function create_character_types_chart(characters, characters_csv) {
       return obj;
     }, {});
 
-    console.log(character_types);
-    console.table(character_types);
+    // console.log(character_types);
+    // console.table(character_types);
     // Old chart
     const make_type_bars = Object.entries(character_types);
     let all_bars = [];
@@ -104,7 +104,8 @@ function create_character_types_chart(characters, characters_csv) {
 
 /*--------------------------------------------------------------------------------
 Fun bubble chart */ 
-function bubbleChart() {
+function create_bubble_chart() {
+   
     var width = 960,
         height = 960,
         maxRadius = 6,
@@ -113,6 +114,9 @@ function bubbleChart() {
 
     function chart(selection) {
         var data = selection.enter().data();
+
+        console.log(data);
+
         var div = selection,
             svg = div.selectAll('svg');
         svg.attr('width', width).attr('height', height);
@@ -124,12 +128,10 @@ function bubbleChart() {
             .style("color", "white")
             .style("padding", "5px")
             .style("background-color", "#626D71")
-            // .style("border-radius", "6px")
             .style("text-align", "left")
             .style("font-family", "sans-serif")
-            .style("width", "200px")
+            .style("width", "150px")
             .text("");
-
 
         var simulation = d3.forceSimulation(data)
             .force("charge", d3.forceManyBody().strength([-50]))
@@ -207,15 +209,79 @@ function bubbleChart() {
         columnForRadius = value;
         return chart;
     };
-
     return chart;
 }
+
+/*--------------------------------------------------------------------------------
+Heatmaps for each season */ 
+var svg = d3.select("#heatmap-chart"),
+    margin = {top: 20, right: 20, bottom: 20, left: 20},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// var parseTime = d3.timeParse("%y");
+
+var x = d3.scaleTime()
+    .rangeRound([0, width]);
+
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+var line = d3.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.episode); });
+
+d3.csv("bubbles.csv", function(d) {
+	console.log(d.date)
+  // d.date = parseTime(d.date);
+  d.episode = +d.episode;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain(d3.extent(data, function(d) { return d.episode; }));
+
+  g.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+    .select(".domain")
+      .remove();
+
+  g.append("g")
+      .call(d3.axisLeft(y))
+    .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".5rem")
+      .attr("text-anchor", "end")
+      .text("Death count");
+
+  g.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      // .attr("stroke-linejoin", "round")
+      // .attr("stroke-linecap", "round")
+      .attr("stroke-width", 2)
+      .attr("d", line);
+});
+
+
+
+
+
+
+
+
 
 
 /*--------------------------------------------------------------------------------
 Get the data */ 
 function get_data() {
-	console.log('get data called');
+	// console.log('get data called');
 	
 	// Details CSV
 	const character_details = '../json/character_details/character-details.json'
@@ -242,7 +308,7 @@ function get_data() {
 }
 
 $(document).ready(function() {
-	console.log( "ready!" );
+	// console.log( "ready!" );
 	get_data();
 });
 
