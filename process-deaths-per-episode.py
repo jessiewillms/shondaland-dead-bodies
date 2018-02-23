@@ -56,6 +56,6 @@ details_reader = csv.reader(get_details_data)
 for row in details_reader:
 	if row[11] != 'season_episode_code':
 		episodes_list = row[11].split()[-1].replace("[", "").replace("'", "").replace("]", "")
-		print episodes_list
+		print 'episodes_list', episodes_list
 		CharacterTypeAnalysis.writerow(episodes_list)
 
