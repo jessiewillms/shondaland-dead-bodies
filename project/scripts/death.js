@@ -109,7 +109,7 @@ function bubbleChart() {
         height = 960,
         maxRadius = 6,
         columnForColors = "category",
-        columnForRadius = "views";
+        columnForRadius = "total_deaths";
 
     function chart(selection) {
         var data = selection.enter().data();
@@ -192,7 +192,6 @@ function bubbleChart() {
         return chart;
     };
 
-
     chart.columnForColors = function(value) {
         if (!arguments.columnForColors) {
             return columnForColors;
@@ -211,8 +210,6 @@ function bubbleChart() {
 
     return chart;
 }
-
-
 
 
 /*--------------------------------------------------------------------------------

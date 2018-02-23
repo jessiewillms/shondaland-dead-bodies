@@ -1,8 +1,8 @@
-title,category,views
+title,category,total_deaths
 "-",Design,5700
-"Interns",intern-resident,5
+"Interns/residents",intern-resident,5
 "Patients",patient,115
-"Family",family,13
-"Others",others,2
-"Attending",attending,6
-"Nurse",nurse,1
+"Family members",family,13
+"Others (uncategorized)",others,2
+"Attendings",attending,6
+"Nurses",nurse,1
